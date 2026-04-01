@@ -130,7 +130,7 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-        <div className="relative mx-auto flex w-full max-w-[1220px] flex-col gap-12 px-4 py-16 md:px-6 md:py-24 lg:px-8">
+        <div className="relative mx-auto flex w-full max-w-[1440px] flex-col">
           <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden bg-white py-14 md:py-18">
             <div
               className="pointer-events-none absolute inset-0"
@@ -163,7 +163,7 @@ export default function AboutUsPage() {
                 />
               </svg>
             </div>
-            <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 md:px-6 lg:px-8">
+            <div className="relative z-10 mx-auto w-full max-w-[1440px] ">
               <div>
                 <p className="mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-techpay-primary">
                   Leadership
@@ -215,7 +215,7 @@ export default function AboutUsPage() {
               </svg>
             </div>
 
-            <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 md:px-6 lg:px-8">
+            <div className="relative z-10 mx-auto w-full max-w-[1440px]">
               <p className="mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-techpay-primary">
                 Global Presence
               </p>

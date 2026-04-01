@@ -86,7 +86,7 @@ export default function Home() {
     <>
       <SiteNavbar isLandingPage />
 
-      <div className="hero-motion-bg" aria-hidden="true">
+      <div className="hero-motion-bg " aria-hidden="true">
         <svg className="hero-motion-svg" viewBox="0 0 1440 920" preserveAspectRatio="none">
           <path className="hero-motion-line" d="M 1460 182 H 1200 Q 1110 182 1110 104 V -20" pathLength="100" />
           <path className="hero-motion-trace hero-motion-trace--one" d="M 1460 182 H 1200 Q 1110 182 1110 104 V -20" pathLength="100" />
@@ -283,7 +283,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section-problems relative z-[3] flex min-h-screen flex-col justify-center overflow-hidden bg-[#f7f7fb] pt-20 md:pt-[100px] md:pb-[50px]" id="problems">
+        <section className="section-problems relative z-[3]  flex min-h-screen flex-col justify-center overflow-hidden bg-[#f7f7fb] pt-20 md:pt-[100px] md:pb-[50px]" id="problems">
           <div className="problems-container mx-auto block px-5 md:grid md:min-h-screen md:px-[60px]">
             <div className="problems-header mb-9 max-w-[720px] md:mb-14">
               <p className="tag dark mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary">
