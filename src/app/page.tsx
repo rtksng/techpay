@@ -129,25 +129,23 @@ export default function Home() {
 
       <main className="relative z-[2]">
         <section className="section section-hero relative flex min-h-screen flex-col justify-start px-4 pb-10 pt-[120px] text-center md:px-6 md:pb-[60px] md:pt-[120px] lg:px-8 lg:pb-20 lg:pt-[140px]" id="hero">
-          {/* <aside
+          <aside
             className="fixed right-5 top-1/2 z-4 hidden w-[150px] -translate-y-1/2 flex-col items-stretch gap-2 md:flex lg:right-8 lg:w-[165px]"
             aria-label="Audience shortcuts"
           >
-            <p className="pl-3 text-left text-[0.62rem] font-bold uppercase tracking-[0.22em] text-white/70 drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
-              Explore
-            </p>
+            
             <div className="grid gap-2">
               {heroAudienceLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="border border-white/18 bg-black/80 px-4 py-2.5 text-left text-[0.82rem] font-display font-semibold tracking-[0.01em] text-white no-underline shadow-[0_16px_36px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[18px] transition hover:-translate-x-2 hover:border-techpay-primary/45 hover:bg-black/88 hover:text-techpay-primary hover:shadow-[0_20px_44px_rgba(0,0,0,0.48),inset_0_0_0_1px_rgba(237,29,95,0.14)]"
+                  className="border border-white/18 bg-black/80 px-4 py-2.5 text-left text-[0.82rem] font-display font-semibold tracking-[0.01em] text-white no-underline  backdrop-blur-[28px] transition hover:-translate-x-2 hover:border-techpay-primary/45 hover:bg-black/88 hover:text-techpay-primary hover:shadow-[0_20px_44px_rgba(0,0,0,0.48),inset_0_0_0_1px_rgba(237,29,95,0.14)]"
                 >
                   {link.label}
                 </a>
               ))}
             </div>
-          </aside> */}
+          </aside>
 
           <div className="hero-content invisible relative z-[3] mx-auto max-w-full px-2 md:px-0">
             <p className="tag mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary"> Welcome to TechPay.ai
