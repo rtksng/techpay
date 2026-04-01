@@ -40,6 +40,24 @@ export function mountTechPayExperience() {
 
   let lenis;
   let lenisTick;
+  let resizeObserver;
+  let refreshFrame = 0;
+
+  const scheduleScrollRefresh = () => {
+    if (!lenis) {
+      return;
+    }
+
+    if (refreshFrame) {
+      cancelAnimationFrame(refreshFrame);
+    }
+
+    refreshFrame = requestAnimationFrame(() => {
+      refreshFrame = 0;
+      lenis.resize?.();
+      ScrollTrigger.refresh();
+    });
+  };
 
   if (canvasEl instanceof HTMLCanvasElement && laptopShadowEl instanceof HTMLElement) {
     lenis = new Lenis({
@@ -56,6 +74,21 @@ export function mountTechPayExperience() {
 
     gsap.ticker.add(lenisTick);
     gsap.ticker.lagSmoothing(0);
+    window.addEventListener("resize", scheduleScrollRefresh);
+
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(() => {
+        scheduleScrollRefresh();
+      });
+
+      if (document.body) {
+        resizeObserver.observe(document.body);
+      }
+
+      if (document.documentElement) {
+        resizeObserver.observe(document.documentElement);
+      }
+    }
 
     cleanups.push(setupFeatureCardBackgrounds());
     cleanups.push(
@@ -81,6 +114,11 @@ export function mountTechPayExperience() {
     if (lenisTick) {
       gsap.ticker.remove(lenisTick);
     }
+    if (refreshFrame) {
+      cancelAnimationFrame(refreshFrame);
+    }
+    window.removeEventListener("resize", scheduleScrollRefresh);
+    resizeObserver?.disconnect();
     lenis?.destroy();
   };
 }
