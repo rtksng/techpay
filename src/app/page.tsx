@@ -48,9 +48,9 @@ const features = [
   {
     accentClass: "feature-card--purple",
     iconClass: "bg-techpay-purple/10 text-techpay-purple",
-    title: "Real Human Support",
-    description: "Friendly in-store guidance and personalized help after purchase.",
-    Icon: PeopleIcon,
+    title: "Life Time Support",
+    description: "Get help after purchase too, from setup and learning to troubleshooting later on.",
+    Icon: InfinityIcon,
   },
 ];
 
@@ -391,6 +391,14 @@ function PeopleIcon() {
       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
       <circle cx="9" cy="7" r="4" />
       <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  );
+}
+
+function InfinityIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M18.5 8.5c-2.2 0-3.4 1.2-5.5 4-2.1-2.8-3.3-4-5.5-4A4.5 4.5 0 0 0 3 13c0 2.49 2.01 4.5 4.5 4.5 2.2 0 3.4-1.2 5.5-4 2.1 2.8 3.3 4 5.5 4A4.5 4.5 0 0 0 23 13c0-2.49-2.01-4.5-4.5-4.5z" />
     </svg>
   );
 }
