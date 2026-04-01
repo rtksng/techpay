@@ -23,7 +23,7 @@ export default function TechPayEligibilitySection() {
         <div className="relative overflow-hidden border border-slate-900/10 bg-white shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
           <DotBackgroundDemo
             showLabel={false}
-            className="absolute inset-0 z-0 h-full min-h-0 w-full bg-white"
+            className="pointer-events-none absolute inset-0 z-0 h-full min-h-0 w-full bg-white"
             patternClassName="opacity-100"
             patternStyle={{
               backgroundSize: "22px 22px, 22px 22px, 22px 22px",
