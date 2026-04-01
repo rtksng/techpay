@@ -214,14 +214,14 @@ export function StaggerTestimonials({
       <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 md:bottom-6">
         <button
           onClick={() => handleMove(-1)}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-900 transition-colors hover:border-slate-300 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 md:h-11 md:w-11"
+          className="flex h-10 w-10 items-center justify-center border border-slate-200 bg-white text-slate-900 transition-colors hover:border-slate-300 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 md:h-11 md:w-11"
           aria-label="Previous testimonial"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
         <button
           onClick={() => handleMove(1)}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-900 transition-colors hover:border-slate-300 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 md:h-11 md:w-11"
+          className="flex h-10 w-10 items-center justify-center border border-slate-200 bg-white text-slate-900 transition-colors hover:border-slate-300 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 md:h-11 md:w-11"
           aria-label="Next testimonial"
         >
           <ChevronRight className="h-4 w-4" />

@@ -16,6 +16,11 @@ export type FeaturesSectionDemoItem = {
 type FeaturesSectionDemoProps = {
   items: FeaturesSectionDemoItem[];
   className?: string;
+  columnsClassName?: string;
+  contentClassName?: string;
+  cardClassName?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
 };
 
 const fallbackPatterns = [
@@ -52,11 +57,17 @@ const fallbackPatterns = [
 export default function FeaturesSectionDemo1({
   items,
   className,
+  columnsClassName,
+  contentClassName,
+  cardClassName,
+  titleClassName,
+  descriptionClassName,
 }: FeaturesSectionDemoProps) {
   return (
     <div
       className={cn(
-        "grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4",
+        "grid grid-cols-1 gap-5",
+        columnsClassName ?? "md:grid-cols-2 xl:grid-cols-4",
         className
       )}
     >
@@ -64,9 +75,10 @@ export default function FeaturesSectionDemo1({
         <div
           key={`${feature.number}-${feature.title}`}
           className={cn(
-            "group relative overflow-hidden rounded-[28px] border p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_34px_86px_rgba(15,23,42,0.12)] md:p-8",
+            "group relative overflow-hidden border p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_34px_86px_rgba(15,23,42,0.12)] md:p-8",
             "bg-linear-to-b from-white to-[#fff7fb]",
             "border-techpay-primary/15",
+            cardClassName,
             feature.borderClass,
             feature.surfaceClass
           )}
@@ -92,14 +104,29 @@ export default function FeaturesSectionDemo1({
             pattern={feature.pattern ?? fallbackPatterns[index % fallbackPatterns.length]}
           />
 
-          <div className="relative z-20 flex h-full min-h-[220px] flex-col">
+          <div
+            className={cn(
+              "relative z-20 flex h-full min-h-[220px] flex-col",
+              contentClassName
+            )}
+          >
             
-            <h3 className="mb-5 font-display text-[1.28rem] font-bold leading-[1.15] tracking-[-0.03em] text-[#111111] md:text-[1.45rem]">
+            <h3
+              className={cn(
+                "mb-5 font-display text-[1.28rem] font-bold leading-[1.15] tracking-[-0.03em] text-[#111111] md:text-[1.45rem]",
+                titleClassName
+              )}
+            >
               <span className="text-techpay-primary">{feature.number}</span>
               <span className="mx-2 text-slate-300">/</span>
               <span>{feature.title}</span>
             </h3>
-            <p className="grow text-[0.94rem] leading-[1.75] text-slate-600">
+            <p
+              className={cn(
+                "grow text-[0.94rem] leading-[1.75] text-slate-600",
+                descriptionClassName
+              )}
+            >
               {feature.description}
             </p>
           </div>

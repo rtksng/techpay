@@ -96,11 +96,11 @@ export default function TechPaySolutionSection() {
           <h2 className="mb-[18px] font-display text-[1.8rem] font-bold leading-[1.15] tracking-[-0.03em] text-[#111111] md:text-[clamp(1.9rem,4vw,3.3rem)]">
             One Platform. Four Promises.
           </h2>
-          <p className="max-w-[680px] text-[1.05rem] leading-[1.7] text-[#555555]">
+          {/* <p className="max-w-[680px] text-[1.05rem] leading-[1.7] text-[#555555]">
             TechPay.ai brings together the four things people need most when
             buying a computer: clarity, choice, flexible payments, and
             dependable support through the local store they already trust.
-          </p>
+          </p> */}
         </div>
 
         <FeaturesSectionDemo1 items={solutionPromises} />

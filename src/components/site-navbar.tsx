@@ -3,9 +3,10 @@ import LogoMark from "@/components/logo-mark";
 
 const sharedMenuLinks = [
   { href: "#hero", absoluteHref: "/#hero", label: "Home" },
+  { href: "/about-us", absoluteHref: "/about-us", label: "About Us" },
   { href: "#how-it-works", absoluteHref: "/#how-it-works", label: "How It Works" },
   { href: "#features", absoluteHref: "/#features", label: "Features" },
-  { href: "#recommendation", absoluteHref: "/#recommendation", label: "Recommendation" },
+  // { href: "#recommendation", absoluteHref: "/#recommendation", label: "Recommendation" },
   { href: "#qr-section", absoluteHref: "/#qr-section", label: "Find a Store" },
 ];
 
@@ -18,13 +19,13 @@ export default function SiteNavbar({ isLandingPage = false }: { isLandingPage?: 
 
   return (
     <>
-      <nav className="navbar fixed left-3 right-3 top-3 z-[100] mx-auto w-auto rounded-full border border-white/10 bg-black/20 px-4 py-3 backdrop-blur-3xl md:left-6 md:right-6 md:top-[18px] md:px-[26px] md:py-[14px]">
+      <nav className="navbar fixed left-3 right-3 top-3 z-100 mx-auto w-auto rounded-full border border-white/10 bg-black/20 px-4 py-3 backdrop-blur-3xl md:left-6 md:right-6 md:top-[18px] md:px-[26px] md:py-[14px]">
         <div className="nav-inner mx-auto flex max-w-full items-center justify-between">
           <Link href={homeHref} className="logo inline-flex items-center no-underline">
             <LogoMark priority={isLandingPage} />
           </Link>
           <button
-            className="menu-toggle inline-flex cursor-pointer items-center gap-2.5 rounded-full border-0 bg-white/[0.04] px-[14px] py-[10px] text-techpay-heading transition hover:bg-white/[0.08] md:gap-[14px] md:px-[18px]"
+            className="menu-toggle inline-flex cursor-pointer items-center gap-2.5 rounded-full border-0 bg-white/4 px-[14px] py-[10px] text-techpay-heading transition hover:bg-white/8 md:gap-[14px] md:px-[18px]"
             type="button"
             aria-expanded="false"
             aria-controls="menu-overlay"
@@ -39,7 +40,7 @@ export default function SiteNavbar({ isLandingPage = false }: { isLandingPage?: 
       </nav>
 
       <div
-        className="menu-overlay fixed inset-0 z-[140] invisible pointer-events-none opacity-0 backdrop-blur-2xl"
+        className="menu-overlay fixed inset-0 z-140 invisible pointer-events-none opacity-0 backdrop-blur-2xl"
         id="menu-overlay"
         aria-hidden="true"
       >

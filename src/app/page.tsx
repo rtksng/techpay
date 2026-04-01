@@ -45,6 +45,13 @@ const features = [
     description: "Friendly in-store guidance and personalized help after purchase.",
     Icon: PeopleIcon,
   },
+  {
+    accentClass: "feature-card--purple",
+    iconClass: "bg-techpay-purple/10 text-techpay-purple",
+    title: "Real Human Support",
+    description: "Friendly in-store guidance and personalized help after purchase.",
+    Icon: PeopleIcon,
+  },
 ];
 
 const problems = [
@@ -122,7 +129,7 @@ export default function Home() {
 
       <main className="relative z-[2]">
         <section className="section section-hero relative flex min-h-screen flex-col justify-start px-4 pb-10 pt-[120px] text-center md:px-6 md:pb-[60px] md:pt-[120px] lg:px-8 lg:pb-20 lg:pt-[140px]" id="hero">
-          <aside
+          {/* <aside
             className="fixed right-5 top-1/2 z-4 hidden w-[150px] -translate-y-1/2 flex-col items-stretch gap-2 md:flex lg:right-8 lg:w-[165px]"
             aria-label="Audience shortcuts"
           >
@@ -134,13 +141,13 @@ export default function Home() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="rounded-full border border-white/18 bg-black/80 px-4 py-2.5 text-left text-[0.82rem] font-display font-semibold tracking-[0.01em] text-white no-underline shadow-[0_16px_36px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[18px] transition hover:-translate-x-2 hover:border-techpay-primary/45 hover:bg-black/88 hover:text-techpay-primary hover:shadow-[0_20px_44px_rgba(0,0,0,0.48),inset_0_0_0_1px_rgba(237,29,95,0.14)]"
+                  className="border border-white/18 bg-black/80 px-4 py-2.5 text-left text-[0.82rem] font-display font-semibold tracking-[0.01em] text-white no-underline shadow-[0_16px_36px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[18px] transition hover:-translate-x-2 hover:border-techpay-primary/45 hover:bg-black/88 hover:text-techpay-primary hover:shadow-[0_20px_44px_rgba(0,0,0,0.48),inset_0_0_0_1px_rgba(237,29,95,0.14)]"
                 >
                   {link.label}
                 </a>
               ))}
             </div>
-          </aside>
+          </aside> */}
 
           <div className="hero-content invisible relative z-[3] mx-auto max-w-full px-2 md:px-0">
             <p className="tag mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary"> Welcome to TechPay.ai
@@ -206,7 +213,7 @@ export default function Home() {
                 </h2>
                 <div className="steps mt-1 flex flex-col gap-5">
                   {steps.map((step, index) => (
-                    <div key={step} className="step flex items-start gap-[18px] rounded-[12px] border border-transparent px-4 py-[14px] transition hover:border-white/10 hover:bg-white/[0.02]">
+                    <div key={step} className="step flex items-start gap-[18px] border border-transparent px-4 py-[14px] transition hover:border-white/10 hover:bg-white/[0.02]">
                       <div className="step-num min-w-10 pt-[2px] font-display text-[1.5rem] font-bold leading-none">
                         {String(index + 1).padStart(2, "0")}
                       </div>
@@ -245,7 +252,7 @@ export default function Home() {
                 </p>
                 <a
                   href="#"
-                  className="btn-primary btn-lg btn-pill relative isolate mt-3 inline-block overflow-hidden rounded-full px-9 py-[18px] text-[1.05rem] font-bold text-white no-underline"
+                  className="btn-primary btn-lg btn-pill relative isolate mt-3 inline-block overflow-hidden px-9 py-[18px] text-[1.05rem] font-bold text-white no-underline"
                 >
                   Get Your Recommendation &rarr;
                 </a>
@@ -255,9 +262,9 @@ export default function Home() {
         </section>
 
         <section className="section-features relative z-[3] px-5 pb-[60px] pt-[100px] md:px-[60px] md:pb-20 md:pt-[140px]" id="features">
-          <div className="features-inner mx-auto grid max-w-[1100px] grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+          <div className="features-inner mx-auto grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-4 md:gap-6">
             {features.map(({ accentClass, iconClass, title, description, Icon }) => (
-              <div key={title} className={`feature-card ${accentClass} relative isolate overflow-hidden rounded-[20px] border border-black px-8 py-10 text-center`}>
+              <div key={title} className={`feature-card ${accentClass} relative isolate overflow-hidden border border-black px-8 py-10 text-center`}>
                 <div className="feature-card-bg" aria-hidden="true">
                   <canvas className="feature-card-dots" />
                   <div className="feature-card-glow" />
@@ -307,7 +314,7 @@ export default function Home() {
                 {problems.map((problem) => (
                   <div
                     key={problem.mode}
-                    className={`problem-card ${problem.cardClass} relative left-auto top-auto flex w-full flex-col rounded-[28px] border border-slate-900/10 bg-white px-6 py-7 md:absolute md:left-1/2 md:top-1/2 md:px-[34px] md:pb-7 md:pt-[34px]`}
+                    className={`problem-card ${problem.cardClass} relative left-auto top-auto flex w-full flex-col border border-slate-900/10 bg-white px-6 py-7 md:absolute md:left-1/2 md:top-1/2 md:px-[34px] md:pb-7 md:pt-[34px]`}
                   >
                     <div className="problem-card-head mb-[18px] flex items-start justify-between gap-[18px] md:mb-[26px]">
                       <p className="problem-card-mode font-display text-[1.7rem] font-bold uppercase leading-[0.95] tracking-[-0.04em] text-[#111111] md:text-[clamp(2rem,2.2vw,2.7rem)]">
@@ -351,7 +358,7 @@ export default function Home() {
         <TechPayTestimonialsSection />
         <TechPayImpactNumbersSection />
         <TechPayEligibilitySection />
-        <TechPayDifferenceSection />
+        {/* <TechPayDifferenceSection /> */}
 
         <SiteFooter />
       </main>
