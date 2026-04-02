@@ -65,7 +65,7 @@ export default function TechPayImpactNumbersSection() {
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute left-[-6%] top-8 h-64 w-64 rounded-full bg-techpay-primary/8 blur-3xl" />
         <div className="absolute right-[-8%] top-1/4 h-72 w-72 rounded-full bg-techpay-purple/8 blur-3xl" />
-        <div className="absolute -bottom-16 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-techpay-orange/6 blur-3xl" />
+        {/* <div className="absolute -bottom-16 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-techpay-orange/6 blur-3xl" /> */}
       </div>
 
       <div className="relative mx-auto max-w-[1440px]">

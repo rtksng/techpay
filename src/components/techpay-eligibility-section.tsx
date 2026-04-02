@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 import DotBackgroundDemo from "@/components/ui/dot-background-demo";
 
@@ -16,7 +17,7 @@ export default function TechPayEligibilitySection() {
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute left-[-8%] top-12 h-64 w-64 rounded-full bg-techpay-primary/8 blur-3xl" />
         <div className="absolute right-[-8%] top-1/3 h-72 w-72 rounded-full bg-techpay-purple/8 blur-3xl" />
-        <div className="absolute -bottom-16 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-techpay-orange/6 blur-3xl" />
+        {/* <div className="absolute -bottom-16 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-techpay-orange/6 blur-3xl" /> */}
       </div>
 
       <div className="relative mx-auto max-w-[1440px]">
@@ -52,37 +53,47 @@ export default function TechPayEligibilitySection() {
               </p>
             </div>
 
-            <div className="relative z-1 border border-slate-200 bg-[#fcfbff] p-6 shadow-[0_16px_40px_rgba(15,23,42,0.05)] md:p-8">
-              <ul className="space-y-4">
-                {eligibilityBenefits.map((benefit, index) => (
-                  <li key={benefit} className="flex items-start gap-4">
-                    <span
-                      className={cn(
-                        "mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
-                        index === 0 &&
-                          "bg-techpay-primary/10 text-techpay-primary",
-                        index === 1 &&
-                          "bg-techpay-orange/10 text-techpay-orange",
-                        index === 2 &&
-                          "bg-techpay-purple/10 text-techpay-purple"
-                      )}
-                      aria-hidden="true"
-                    >
-                      <CheckIcon />
-                    </span>
-                    <span className="text-[1rem] font-semibold leading-[1.6] text-[#111111]">
-                      {benefit}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+            <div
+              className="scales-frame relative p-[18px]"
+              style={{ "--scales-color": "rgba(124, 58, 237, 0.32)" } as CSSProperties}
+            >
+              <span className="scales-strip scales-strip--left" aria-hidden="true" />
+              <span className="scales-strip scales-strip--right" aria-hidden="true" />
+              <span className="scales-strip scales-strip--top" aria-hidden="true" />
+              <span className="scales-strip scales-strip--bottom" aria-hidden="true" />
 
-              <a
-                href="#"
-                className="btn-primary btn-pill relative isolate mt-8 inline-flex overflow-hidden px-8 py-[16px] text-[1rem] font-bold text-white no-underline shadow-[0_18px_42px_rgba(237,29,95,0.24)]"
-              >
-                Check Your Eligibility
-              </a>
+              <div className="relative z-1 border border-slate-200 bg-[#fcfbff] p-6 shadow-[0_16px_40px_rgba(15,23,42,0.05)] md:p-8">
+                <ul className="space-y-4">
+                  {eligibilityBenefits.map((benefit, index) => (
+                    <li key={benefit} className="flex items-start gap-4">
+                      <span
+                        className={cn(
+                          "mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
+                          index === 0 &&
+                            "bg-techpay-primary/10 text-techpay-primary",
+                          index === 1 &&
+                            "bg-techpay-orange/10 text-techpay-orange",
+                          index === 2 &&
+                            "bg-techpay-purple/10 text-techpay-purple"
+                        )}
+                        aria-hidden="true"
+                      >
+                        <CheckIcon />
+                      </span>
+                      <span className="text-[1rem] font-semibold leading-[1.6] text-[#111111]">
+                        {benefit}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="#"
+                  className="btn-primary btn-pill relative isolate mt-8 inline-flex overflow-hidden px-8 py-[16px] text-[1rem] font-bold text-white no-underline shadow-[0_18px_42px_rgba(237,29,95,0.24)]"
+                >
+                  Check Your Eligibility
+                </a>
+              </div>
             </div>
           </div>
         </div>

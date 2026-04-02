@@ -20,7 +20,7 @@ const steps = [
 const heroAudienceLinks = [
   { href: "#", label: "OEM" },
   { href: "#", label: "Consumer" },
-  { href: "#", label: "Retailer" },
+  { href: "/retailers", label: "Retailer" },
 ];
 
 const features = [

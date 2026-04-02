@@ -94,37 +94,36 @@ export default function AboutUsPage() {
       <SiteNavbar />
 
       <main className="relative  overflow-hidden  text-techpay-text">
-        <section className="relative left-1/2 right-1/2 flex min-h-screen w-screen -translate-x-1/2 items-center overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/hero-bg/about-hero.webp')" }}
-            aria-hidden="true"
-          />
-          <div
-            aria-hidden="true"
-          />
+        <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden bg-white">
+          <div className="mx-auto grid min-h-screen w-full  lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+            <div className="relative min-h-[42vh] md:min-h-[50vh] lg:min-h-screen">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: "url('/hero-bg/about-hero.webp')" }}
+                aria-hidden="true"
+              />
+              <div className="absolute inset-0 bg-linear-to-br from-black/20 via-black/10 to-transparent" aria-hidden="true" />
+            </div>
 
-          <div className="relative mx-auto flex w-full max-w-[1440px] flex-col px-4 pt-28 pb-14 md:px-6 md:pt-32 md:pb-18 lg:px-8">
-            <div className="max-w-5xl">
-              <p className="mb-4 text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-white/80">
-                About TechPay.ai
-              </p>
-              <div className="space-y-10">
-                {missionVision.map((item) => (
-                  <article
-                    key={item.label}
-                   
-                  >
-                    <span className="font-display font-semibold tracking-[0.04em] text-white text-3xl">
-                      {item.label}
-                    </span>
-                    <div className="mt-5 space-y-4 text-xl  text-white/85">
-                      {item.body.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                    </div>
-                  </article>
-                ))}
+            <div className="flex items-center px-4 py-14 md:px-6 md:py-18 lg:px-10 lg:py-24">
+              <div className="max-w-4xl">
+                <p className="mb-4 text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-techpay-primary">
+                  About TechPay.ai
+                </p>
+                <div className="space-y-10">
+                  {missionVision.map((item) => (
+                    <article key={item.label}>
+                      <span className="font-display text-3xl font-semibold tracking-[0.04em] text-slate-950">
+                        {item.label}
+                      </span>
+                      <div className="mt-5 space-y-4 text-lg leading-8 text-slate-600 md:text-xl">
+                        {item.body.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                    </article>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -175,7 +174,7 @@ export default function AboutUsPage() {
                   textAlign="left"
                   className="mb-3 block font-display text-[clamp(2.2rem,5vw,4rem)] font-bold tracking-[-0.04em] text-slate-950"
                 />
-               lo
+               
 
                 <FollowingPointerDemo leaders={leadershipTeam} />
               </div>

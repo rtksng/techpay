@@ -88,7 +88,7 @@ export default function FeaturesSectionDemo({
   return (
     <div
       className={cn(
-        "relative z-10 mx-auto grid  grid-cols-1 overflow-hidden rounded-[28px] border border-slate-200/80 bg-white md:grid-cols-2 lg:grid-cols-4",
+        "relative z-10 mx-auto grid  grid-cols-1 overflow-hidden  border border-slate-200/80 bg-white md:grid-cols-2 lg:grid-cols-4",
         className
       )}
     >

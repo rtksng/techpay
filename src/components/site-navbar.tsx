@@ -4,6 +4,7 @@ import LogoMark from "@/components/logo-mark";
 const sharedMenuLinks = [
   { href: "#hero", absoluteHref: "/#hero", label: "Home" },
   { href: "/about-us", absoluteHref: "/about-us", label: "About Us" },
+  { href: "/retailers", absoluteHref: "/retailers", label: "Retailers" },
   { href: "#how-it-works", absoluteHref: "/#how-it-works", label: "How It Works" },
   { href: "#features", absoluteHref: "/#features", label: "Features" },
   // { href: "#recommendation", absoluteHref: "/#recommendation", label: "Recommendation" },
