@@ -6,7 +6,7 @@ import {
   BarChart3,
   Globe,
   ShieldCheck,
-  Sparkles,
+  Store,
   TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -109,6 +109,25 @@ const returnsItems: BenefitCardItem[] = [
   },
 ];
 
+const brandConsistencyItems: BenefitCardItem[] = [
+  {
+    title: "Unified pricing enforced across all participating retailers",
+    Icon: Store,
+  },
+  {
+    title: "Consistent product messaging and feature communication",
+    Icon: Store,
+  },
+  {
+    title: "Controlled digital brand experience at every touchpoint",
+    Icon: Store,
+  },
+  {
+    title: "Premium feel maintained regardless of retailer size",
+    Icon: Store,
+  },
+];
+
 const panels = [
   {
     id: "expanded-market-reach",
@@ -143,6 +162,15 @@ const panels = [
     title: "Reduced Returns & Support Costs",
     description:
       "AI-guided buying means customers get the right product the first time. Fewer returns, lower RMA load and reduced after-sales support costs.",
+    bgClass: "bg-[#fbfbfe]",
+    dark: false,
+  },
+  {
+    id: "brand-consistency",
+    eyebrow: "Benefit 05",
+    title: "Brand Consistency Across Retail",
+    description:
+      "TechPay ensures your brand, pricing and messaging stay consistent. Every retailer delivers the same premium product experience — at scale.",
     bgClass: "bg-[#fbfbfe]",
     dark: false,
   },
@@ -304,7 +332,8 @@ function getPanelItems(panelId: (typeof panels)[number]["id"]) {
   if (panelId === "expanded-market-reach") return marketReachItems;
   if (panelId === "higher-asp-attach") return aspItems;
   if (panelId === "real-time-intelligence") return intelligenceItems;
-  return returnsItems;
+  if (panelId === "reduced-returns") return returnsItems;
+  return brandConsistencyItems;
 }
 
 function SectionHeading({
