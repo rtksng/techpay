@@ -7,6 +7,7 @@ import {
   Store,
   TrendingUp,
 } from "lucide-react";
+import MenuSetup from "@/components/menu-setup";
 import SiteFooter from "@/components/site-footer";
 import OemBenefitsShowcase from "@/components/oem/oem-benefits-showcase";
 import SiteNavbar from "@/components/site-navbar";
@@ -66,6 +67,7 @@ export default function OemPage() {
       </main>
 
       <SiteFooter />
+      <MenuSetup />
     </>
   );
 }

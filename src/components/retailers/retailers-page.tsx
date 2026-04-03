@@ -17,6 +17,7 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
+import MenuSetup from "@/components/menu-setup";
 import SiteFooter from "@/components/site-footer";
 import RetailersBenefitsShowcase from "@/components/retailers/retailers-benefits-showcase";
 import SiteNavbar from "@/components/site-navbar";
@@ -176,6 +177,7 @@ export default function RetailersPage() {
       </main>
 
       <SiteFooter />
+      <MenuSetup />
     </>
   );
 }
