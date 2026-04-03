@@ -5,6 +5,7 @@ const sharedMenuLinks = [
   { href: "#hero", absoluteHref: "/#hero", label: "Home" },
   { href: "/about-us", absoluteHref: "/about-us", label: "About Us" },
   { href: "/retailers", absoluteHref: "/retailers", label: "Retailers" },
+  { href: "/distributors", absoluteHref: "/distributors", label: "Distributors" },
   { href: "/oem", absoluteHref: "/oem", label: "OEM" },
   { href: "#how-it-works", absoluteHref: "/#how-it-works", label: "How It Works" },
   { href: "#features", absoluteHref: "/#features", label: "Features" },
