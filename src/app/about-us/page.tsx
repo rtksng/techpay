@@ -25,12 +25,36 @@ const missionVision = [
 ];
 
 const leadershipTeam = [
-  { name: "Praveen Sahai", title: "Founder & CEO" },
-  { name: "Ajay Mohan", title: "GTM Advisor & Chief Growth Officer" },
-  { name: "Arunava Chakrabarty", title: "Chief Operating Officer" },
-  { name: "Dilip Sundaram", title: "CFO" },
-  { name: "Hemant Thathod", title: "Chief Business Officer, Consumer Div." },
-  { name: "Asif Bhat", title: "Chief AI Officer - TechPay.ai CEO & Co Founder - Getafix Technologies" },
+  {
+    name: "Praveen Sahai",
+    title: "Founder & CEO",
+    image: "/members/praveen_sahai.png",
+  },
+  {
+    name: "Ajay Mohan",
+    title: "GTM Advisor & Chief Growth Officer",
+    image: "/members/ajay_mohan.png",
+  },
+  {
+    name: "Arunava Chakrabarty",
+    title: "Chief Operating Officer",
+    image: "/members/arunava.png",
+  },
+  {
+    name: "Dilip Sundaram",
+    title: "CFO",
+    image: "/members/dilip_sundaram.png",
+  },
+  {
+    name: "Hemant Thathod",
+    title: "Chief Business Officer, Consumer Div.",
+    image: "/members/hemant.png",
+  },
+  {
+    name: "Asif Bhat",
+    title: "Chief AI Officer - TechPay.ai CEO & Co Founder - Getafix Technologies",
+    image: "/members/asif.png",
+  },
 ];
 
 const officeLocations = [

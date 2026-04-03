@@ -5,6 +5,7 @@ import { FollowerPointerCard } from "@/components/ui/following-pointer";
 type Leader = {
   name: string;
   title: string;
+  image?: string;
 };
 
 const portraitImages = [
@@ -54,7 +55,7 @@ export default function FollowingPointerDemo({
                   />
                   <div className="relative h-full w-full">
                     <Image
-                      src={portraitImages[index % portraitImages.length]}
+                      src={leader.image ?? portraitImages[index % portraitImages.length]}
                       alt={`${leader.name} portrait`}
                       fill
                       sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
