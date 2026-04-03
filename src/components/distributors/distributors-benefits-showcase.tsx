@@ -72,27 +72,27 @@ const fasterSalesItems: BenefitCardItem[] = [
 
 const scalableGrowthItems: BenefitCardItem[] = [
   {
-    title: "Multi-Region Expansion",
+    title: "AI Product Matching",
     description:
-      "Enter new geographies through digital partners — no physical setup needed.",
+      "Smarter recommendations lower return rates and build retailer trust.",
     Icon: Scaling,
   },
   {
-    title: "Partner Network Growth",
+    title: "Credit-Thin Segment Access",
     description:
-      "Onboard new retail partners quickly with a standardised digital platform.",
+      "Reach buyers previously excluded by traditional financing models.",
     Icon: Scaling,
   },
   {
-    title: "Volume Without Overhead",
+    title: "Lower RMA Rates",
     description:
-      "Increase order volume without proportional rises in staffing or logistics.",
+      "Fewer misfit purchases means fewer returns and support calls.",
     Icon: Scaling,
   },
   {
-    title: "Flexible Operations",
+    title: "Data-Driven Forecasting",
     description:
-      "Scale up or down seasonally without fixed infrastructure commitments.",
+      "Real-time sell-through data enables leaner inventory planning.",
     Icon: Scaling,
   },
 ];
@@ -146,9 +146,9 @@ const panels = [
   {
     id: "scalable-growth",
     eyebrow: "Benefit 03",
-    title: "Scalable Growth",
+    title: "Scalable Growth & Efficiency",
     description:
-      "Grow your distribution network across regions and partners without proportional increases in cost, complexity or headcount.",
+      "AI-powered matching and helpdesk reduce operational load Build a loyal, expanding retailer network with less manual effort",
     bgClass: "bg-[#fbfbfe]",
     dark: false,
   },

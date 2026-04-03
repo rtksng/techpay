@@ -17,29 +17,25 @@ import FloatingLines from "../ui/FloatingLines";
 const benefits = [
   {
     title: "Expanded Market Reach",
-    description:
-      "TechPay extends your reach beyond physical constraints into Tier 2/3 markets.",
+  
     accent: "primary",
     Icon: Globe,
   },
   {
     title: "Faster Sales and Higher Revenue",
-    description:
-      "Finance and AI guidance drive faster decisions and premium uptake.",
+    
     accent: "orange",
     Icon: TrendingUp,
   },
   {
     title: "Scalable Growth",
-    description:
-      "Grow your distribution network without proportional increases in cost or complexity.",
+   
     accent: "purple",
     Icon: Scaling,
   },
   {
     title: "Enhanced Efficiency",
-    description:
-      "Replace manual processes with data and automation across the distribution chain.",
+
     accent: "pink",
     Icon: Zap,
   },
@@ -52,7 +48,7 @@ export default function DistributorsPage() {
 
       <main className="bg-[#f7f7fb] text-[#111111]">
         <DistributorsHero />
-        <DistributorsBenefitsOverviewSection />
+        {/* <DistributorsBenefitsOverviewSection /> */}
         <DistributorsBenefitsSection />
         <DistributorsBenefitsShowcase />
       </main>
@@ -84,39 +80,39 @@ function DistributorsHero() {
   );
 }
 
-function DistributorsBenefitsOverviewSection() {
-  return (
-    <section
-      id="distributor-benefits-overview"
-      className="relative overflow-hidden px-5 py-20 md:px-[60px] md:py-24"
-    >
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute left-0 top-0 h-56 w-56 rounded-full bg-techpay-primary/8 blur-3xl" />
-        <div className="absolute right-0 top-20 h-60 w-60 rounded-full bg-techpay-orange/8 blur-3xl" />
-      </div>
+// function DistributorsBenefitsOverviewSection() {
+//   return (
+//     <section
+//       id="distributor-benefits-overview"
+//       className="relative overflow-hidden px-5 py-20 md:px-[60px] md:py-24"
+//     >
+//       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+//         <div className="absolute left-0 top-0 h-56 w-56 rounded-full bg-techpay-primary/8 blur-3xl" />
+//         <div className="absolute right-0 top-20 h-60 w-60 rounded-full bg-techpay-orange/8 blur-3xl" />
+//       </div>
 
-      <div className="relative mx-auto max-w-[1440px]">
-        <SectionHeading
-          eyebrow="Benefits for Distributors"
-          title="Reach further. Sell faster. Scale smarter."
-          description="TechPay.ai empowers distributors to expand into new markets, accelerate sales cycles, and drive operational efficiency — all through a single digital platform."
-          dark={false}
-          maxWidthClassName="max-w-[820px]"
-        />
+//       <div className="relative mx-auto max-w-[1440px]">
+//         <SectionHeading
+//           eyebrow="Benefits for Distributors"
+//           title="Reach further. Sell faster. Scale smarter."
+//           description="TechPay.ai empowers distributors to expand into new markets, accelerate sales cycles, and drive operational efficiency — all through a single digital platform."
+//           dark={false}
+//           maxWidthClassName="max-w-[820px]"
+//         />
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {benefits.map((benefit, index) => (
-            <DistributorBenefitCard
-              key={benefit.title}
-              benefit={benefit}
-              index={index}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+//         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+//           {benefits.map((benefit, index) => (
+//             <DistributorBenefitCard
+//               key={benefit.title}
+//               benefit={benefit}
+//               index={index}
+//             />
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
 function DistributorsBenefitsSection() {
   return (
@@ -187,7 +183,7 @@ function DistributorBenefitCard({
 }) {
   return (
     <article
-      className="group relative overflow-hidden border border-slate-900/7 bg-linear-to-b from-white to-[#fff7fb] p-6 shadow-[0_22px_60px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_70px_rgba(15,23,42,0.12)] md:min-h-[260px] md:p-7"
+      className="group relative overflow-hidden border border-slate-900/7 bg-linear-to-b from-white to-[#fff7fb] p-6 shadow-[0_22px_60px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_70px_rgba(15,23,42,0.12)] md:min-h-[200px] md:p-7"
     >
       <Grid
         size={24}
@@ -235,9 +231,7 @@ function DistributorBenefitCard({
         <h3 className="mt-6 font-display text-[1.5rem] font-bold tracking-[-0.03em] text-slate-950">
           {benefit.title}
         </h3>
-        <p className="mt-3 max-w-[58ch] text-sm leading-7 text-slate-600 md:text-base">
-          {benefit.description}
-        </p>
+      
       </div>
     </article>
   );

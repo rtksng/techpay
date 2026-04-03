@@ -61,7 +61,7 @@ export default function OemPage() {
 
       <main className="bg-[#f7f7fb] text-[#111111]">
         <OemHero />
-        <OemBenefitsOverviewSection />
+        {/* <OemBenefitsOverviewSection /> */}
         <OemBenefitsSection />
         <OemBenefitsShowcase />
       </main>
