@@ -106,7 +106,7 @@ export default function OemBenefitsTimeline() {
 
   return (
     <div ref={sectionRef}>
-      <div className="mt-10 space-y-5 md:hidden">
+      <div className="mt-10 space-y-5 lg:hidden">
         {benefitRail.map((benefit, index) => {
           const isVisible = hasStarted;
 
@@ -146,7 +146,7 @@ export default function OemBenefitsTimeline() {
         })}
       </div>
 
-      <div className="relative mt-14 hidden h-[200px] md:block">
+      <div className="relative mt-14 hidden h-[200px] lg:block">
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2">
           <svg
             viewBox="0 0 1200 260"

@@ -3,33 +3,33 @@
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import {
-  Globe,
+  BadgeDollarSign,
+  Sparkles,
+  Store,
   TrendingUp,
-  Scaling,
-  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const benefitRail = [
   {
     number: "01",
-    title: "Expanded Market Reach",
-    Icon: Globe,
-  },
-  {
-    number: "02",
-    title: "Faster Sales and Higher Revenue",
+    title: "Increased Sales",
     Icon: TrendingUp,
   },
   {
+    number: "02",
+    title: "Increased Ticket Size",
+    Icon: Sparkles,
+  },
+  {
     number: "03",
-    title: "Scalable Growth",
-    Icon: Scaling,
+    title: "Higher Walk-In Conversion",
+    Icon: Store,
   },
   {
     number: "04",
-    title: "Enhanced Efficiency",
-    Icon: Zap,
+    title: "Additional Income Streams",
+    Icon: BadgeDollarSign,
   },
 ] as const;
 
@@ -49,7 +49,7 @@ const POINT_REVEAL_DELAYS_MS = POINT_REVEAL_PROGRESS.map((progress) =>
   Math.round(LINE_DRAW_DURATION_MS * progress)
 );
 
-export default function DistributorsBenefitsTimeline() {
+export default function RetailersBenefitsTimeline() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -99,7 +99,7 @@ export default function DistributorsBenefitsTimeline() {
 
   return (
     <div ref={sectionRef}>
-      <div className="mt-10 space-y-5 md:hidden">
+      <div className="mt-10 space-y-5 lg:hidden">
         {benefitRail.map((benefit, index) => {
           const isVisible = hasStarted;
 
@@ -139,7 +139,7 @@ export default function DistributorsBenefitsTimeline() {
         })}
       </div>
 
-      <div className="relative mt-14 hidden h-[200px] md:block">
+      <div className="relative mt-14 hidden h-[200px] lg:block">
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2">
           <svg
             viewBox="0 0 1200 260"
@@ -149,7 +149,7 @@ export default function DistributorsBenefitsTimeline() {
           >
             <defs>
               <linearGradient
-                id="distributor-benefit-wave-gradient"
+                id="benefit-wave-gradient"
                 x1="0%"
                 y1="0%"
                 x2="100%"
@@ -172,7 +172,7 @@ export default function DistributorsBenefitsTimeline() {
               d={WAVE_PATH}
               pathLength={1}
               fill="none"
-              stroke="url(#distributor-benefit-wave-gradient)"
+              stroke="url(#benefit-wave-gradient)"
               strokeWidth="8"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -188,7 +188,7 @@ export default function DistributorsBenefitsTimeline() {
               d={WAVE_PATH}
               pathLength={1}
               fill="none"
-              stroke="url(#distributor-benefit-wave-gradient)"
+              stroke="url(#benefit-wave-gradient)"
               strokeWidth="16"
               strokeLinecap="round"
               strokeLinejoin="round"

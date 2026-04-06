@@ -3,13 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
-  BadgeDollarSign,
-  CreditCard,
-  LaptopMinimal,
-  Shield,
-  Sparkles,
-  Store,
+  Globe,
   TrendingUp,
+  Scaling,
+  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -19,126 +16,148 @@ type BenefitCardItem = {
   Icon: LucideIcon;
 };
 
-const salesItems: BenefitCardItem[] = [
+const marketReachItems: BenefitCardItem[] = [
   {
-    title: "Confused shoppers become confident buyers",
+    title: "Unlimited SKU Showcase",
+    description:
+      "Your entire catalogue is visible — no shelf space limits.",
+    Icon: Globe,
+  },
+  {
+    title: "Tier 2/3 Market Access",
+    description:
+      "Reach underserved cities without opening new warehouses.",
+    Icon: Globe,
+  },
+  {
+    title: "Zero Physical Constraints",
+    description:
+      "Cloud inventory means no dead stock, no missed sales.",
+    Icon: Globe,
+  },
+  {
+    title: "Faster Product Launch",
+    description:
+      "New SKUs go live instantly across all partner touchpoints.",
+    Icon: Globe,
+  },
+];
+
+const fasterSalesItems: BenefitCardItem[] = [
+  {
+    title: "Finance Removes Barriers",
+    description:
+      "Embedded finance closes deals that cash constraints would kill.",
     Icon: TrendingUp,
   },
   {
-    title: "More walk-ins convert into paying customers",
+    title: "Faster Customer Decisions",
+    description:
+      "Guided buying eliminates deliberation — customers commit faster.",
     Icon: TrendingUp,
   },
   {
-    title: "Guided buying experience happens inside the store",
+    title: "Premium SKU Uptake",
+    description:
+      "AI-driven comparisons naturally guide buyers to better models.",
     Icon: TrendingUp,
   },
   {
-    title: "Higher store revenue without extra marketing",
+    title: "Reduced Inventory Aging",
+    description:
+      "Live demand signals help you move stock before it stagnates.",
     Icon: TrendingUp,
   },
 ];
 
-const ticketItems: BenefitCardItem[] = [
+const scalableGrowthItems: BenefitCardItem[] = [
   {
-    title: "Clear Comparisons",
+    title: "AI Product Matching",
     description:
-      "Side-by-side feature matrices show tangible differences between models.",
-    Icon: Sparkles,
+      "Smarter recommendations lower return rates and build retailer trust.",
+    Icon: Scaling,
   },
   {
-    title: "Value Communication",
+    title: "Credit-Thin Segment Access",
     description:
-      "Platform explains why better specs matter for specific use cases.",
-    Icon: Sparkles,
+      "Reach buyers previously excluded by traditional financing models.",
+    Icon: Scaling,
   },
   {
-    title: "Natural Upgrades",
+    title: "Lower RMA Rates",
     description:
-      "Customers choose premium options when they understand the benefits.",
-    Icon: Sparkles,
+      "Fewer misfit purchases means fewer returns and support calls.",
+    Icon: Scaling,
   },
   {
-    title: "Higher Revenue",
+    title: "Data-Driven Forecasting",
     description:
-      "Average order value increases across all transactions.",
-    Icon: Sparkles,
+      "Real-time sell-through data enables leaner inventory planning.",
+    Icon: Scaling,
   },
 ];
 
-const conversionItems: BenefitCardItem[] = [
+const enhancedEfficiencyItems: BenefitCardItem[] = [
   {
-    title: "Sell PCs even if they are not physically available in store",
-    Icon: Store,
-  },
-  {
-    title: "Access a wider product catalogue instantly through the platform",
-    Icon: Store,
-  },
-  {
-    title: "Fulfil orders through trusted supply partners without adding friction",
-    Icon: Store,
-  },
-  {
-    title: "Give the customer a smooth home-delivery path with full confidence",
-    Icon: Store,
-  },
-];
-
-const revenueStreams: BenefitCardItem[] = [
-  {
-    title: "Financing Commissions",
+    title: "Data-Driven Forecasting",
     description:
-      "Earn referral fees when customers choose payment plans.",
-    Icon: CreditCard,
+      "Live sell-through data powers accurate demand forecasting.",
+    Icon: Zap,
   },
   {
-    title: "Extended Warranty",
+    title: "Remote Enablement",
     description:
-      "Upsell protection plans with demonstrated value.",
-    Icon: Shield,
+      "Train and support retailers remotely — no in-person visits needed.",
+    Icon: Zap,
   },
   {
-    title: "Accessories Bundles",
+    title: "Efficient Capex",
     description:
-      "Recommended accessories increase total transaction value.",
-    Icon: LaptopMinimal,
+      "Digital-first model reduces warehouse, logistics and admin overhead.",
+    Icon: Zap,
+  },
+  {
+    title: "Leaner Operations",
+    description:
+      "Automate routine workflows and redeploy team capacity to growth.",
+    Icon: Zap,
   },
 ];
 
 const panels = [
   {
-    id: "increased-sales",
+    id: "expanded-market-reach",
     eyebrow: "Benefit 01",
-    title: "Increased Sales",
+    title: "Expanded Market Reach",
     description:
-      "TechPay.ai transforms confused browsers into confident buyers. The guided experience eliminates decision paralysis and builds trust through clear, personalized recommendations.",
+      "TechPay extends your reach beyond physical constraints. Unlock Tier 2/3 markets and showcase your full catalogue digitally.",
     bgClass: "bg-[#fbfbfe]",
     dark: false,
   },
   {
-    id: "increased-ticket-size",
+    id: "faster-sales-higher-revenue",
     eyebrow: "Benefit 02",
-    title: "Increased Ticket Size",
+    title: "Faster Sales & Higher Revenue",
     description:
-      "Customers clearly see feature differences and understand the value proposition, so upgrades happen naturally. TechPay.ai makes the business case obvious without relying on pushy sales tactics.",
+      "Finance and AI guidance drive faster decisions and premium uptake. Reduce inventory aging while improving average transaction value.",
     bgClass: "bg-[#fbfbfe]",
     dark: false,
   },
   {
-    id: "higher-walkin-conversion",
+    id: "scalable-growth",
     eyebrow: "Benefit 03",
-    title: "Higher Walk-In Conversion",
+    title: "Scalable Growth & Efficiency",
     description:
-      "TechPay.ai's cloud inventory model means you can sell any eligible PC in the catalogue, even if that device is not on the shop floor. Customers stay in the journey because the best option is still available.",
+      "AI-powered matching and helpdesk reduce operational load Build a loyal, expanding retailer network with less manual effort",
     bgClass: "bg-[#fbfbfe]",
     dark: false,
   },
   {
-    id: "additional-income-streams",
+    id: "enhanced-efficiency",
     eyebrow: "Benefit 04",
-    title: "Additional Income Streams",
+    title: "Enhanced Efficiency",
     description:
-      "Beyond laptop sales, TechPay.ai creates natural opportunities for add-on revenue. The platform surfaces relevant accessories, financing options, and protection plans at the right point in the conversation.",
+      "TechPay drives operational efficiency across the distribution chain. Free up capital and resources by replacing manual processes with data and automation.",
     bgClass: "bg-[#fbfbfe]",
     dark: false,
   },
@@ -146,7 +165,7 @@ const panels = [
 
 const DESKTOP_BREAKPOINT = 1024;
 
-export default function RetailersBenefitsShowcase() {
+export default function DistributorsBenefitsShowcase() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [progress, setProgress] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -185,7 +204,6 @@ export default function RetailersBenefitsShowcase() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (prefersReducedMotion || !isDesktop) {
-      setProgress(0);
       return;
     }
 
@@ -217,12 +235,8 @@ export default function RetailersBenefitsShowcase() {
     };
   }, [isDesktop, prefersReducedMotion]);
 
-  const activePanel = Math.min(
-    panels.length - 1,
-    Math.round(progress * (panels.length - 1))
-  );
-
   const shouldPinDesktop = isDesktop && !prefersReducedMotion;
+  const displayProgress = shouldPinDesktop ? progress : 0;
 
   return (
     <>
@@ -248,13 +262,11 @@ export default function RetailersBenefitsShowcase() {
         style={{ height: shouldPinDesktop ? `${panels.length * 100}vh` : undefined }}
       >
         <div className="sticky top-0 h-screen overflow-hidden">
-         
-
           <div
             className="flex h-full will-change-transform"
             style={{
               width: `${panels.length * 100}vw`,
-              transform: `translate3d(-${progress * (panels.length - 1) * 100}vw, 0, 0)`,
+              transform: `translate3d(-${displayProgress * (panels.length - 1) * 100}vw, 0, 0)`,
             }}
           >
             {panels.map((panel, index) => (
@@ -299,10 +311,10 @@ function renderPanel(
 }
 
 function getPanelItems(panelId: (typeof panels)[number]["id"]) {
-  if (panelId === "increased-sales") return salesItems;
-  if (panelId === "increased-ticket-size") return ticketItems;
-  if (panelId === "higher-walkin-conversion") return conversionItems;
-  return revenueStreams;
+  if (panelId === "expanded-market-reach") return marketReachItems;
+  if (panelId === "faster-sales-higher-revenue") return fasterSalesItems;
+  if (panelId === "scalable-growth") return scalableGrowthItems;
+  return enhancedEfficiencyItems;
 }
 
 function SectionHeading({
@@ -353,7 +365,7 @@ function BenefitCardsGrid({
   return (
     <div
       className={cn(
-        "relative z-10 grid overflow-hidden  border border-slate-200/80 bg-white shadow-[0_22px_60px_rgba(15,23,42,0.08)]",
+        "relative z-10 grid overflow-hidden border border-slate-200/80 bg-white shadow-[0_22px_60px_rgba(15,23,42,0.08)]",
         items.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-4"
       )}
     >

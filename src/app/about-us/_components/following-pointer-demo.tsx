@@ -38,8 +38,6 @@ export default function FollowingPointerDemo({
             title={
               <TitleComponent
                 title={leader.name}
-                subtitle={leader.title}
-                initials={getInitials(leader.name)}
               />
             }
           >
@@ -89,12 +87,8 @@ export default function FollowingPointerDemo({
 
 function TitleComponent({
   title,
-  subtitle,
-  initials,
 }: {
   title: string;
-  subtitle: string;
-  initials: string;
 }) {
   return (
     <div className="flex items-center gap-2 text-white px-3">

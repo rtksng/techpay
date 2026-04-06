@@ -217,7 +217,6 @@ export default function OemBenefitsShowcase() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (prefersReducedMotion || !isDesktop) {
-      setProgress(0);
       return;
     }
 
@@ -249,12 +248,8 @@ export default function OemBenefitsShowcase() {
     };
   }, [isDesktop, prefersReducedMotion]);
 
-  const activePanel = Math.min(
-    panels.length - 1,
-    Math.round(progress * (panels.length - 1))
-  );
-
   const shouldPinDesktop = isDesktop && !prefersReducedMotion;
+  const displayProgress = shouldPinDesktop ? progress : 0;
 
   return (
     <>
@@ -284,7 +279,7 @@ export default function OemBenefitsShowcase() {
             className="flex h-full will-change-transform"
             style={{
               width: `${panels.length * 100}vw`,
-              transform: `translate3d(-${progress * (panels.length - 1) * 100}vw, 0, 0)`,
+              transform: `translate3d(-${displayProgress * (panels.length - 1) * 100}vw, 0, 0)`,
             }}
           >
             {panels.map((panel, index) => (

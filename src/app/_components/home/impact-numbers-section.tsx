@@ -81,7 +81,7 @@ export default function TechPayImpactNumbersSection() {
 
         <FeaturesSectionDemo1
           items={impactMetrics}
-          columnsClassName="md:grid-cols-3 xl:grid-cols-3"
+          columnsClassName="md:grid-cols-2 lg:grid-cols-3"
           cardClassName="p-5 md:p-6"
           contentClassName="min-h-[140px]!"
           titleClassName="mb-3 md:text-[1.3rem]"

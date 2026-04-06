@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import DistributorsPage from "@/components/distributors/distributors-page";
+import DistributorsPage from "./_components/distributors-page";
 
 export const metadata: Metadata = {
   title: "Distributors | TechPay.ai",

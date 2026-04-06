@@ -2,7 +2,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { setupFeatureCardBackgrounds } from "./techpay-feature-dots";
-import { setupMenuOverlay } from "./techpay-menu";
 import { mountTechPayScene } from "./techpay-scene";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,11 +12,8 @@ export function mountTechPayExperience() {
   const monitorBackdropEl = document.querySelector(".monitor-backdrop");
   const headphonesBackdropEl = document.querySelector(".headphones-backdrop");
   const heroMotionBackground = document.querySelector(".hero-motion-bg");
+  const heroContent = document.querySelector(".hero-content");
   const navbarEl = document.querySelector(".navbar");
-  const menuToggleButton = document.querySelector(".menu-toggle");
-  const menuCloseButton = document.querySelector(".menu-close");
-  const menuOverlay = document.querySelector(".menu-overlay");
-  const menuOverlayLinks = document.querySelectorAll(".menu-overlay a");
 
   const animations = [];
   const matchMediaInstances = [];
@@ -28,20 +24,11 @@ export function mountTechPayExperience() {
     return animation;
   };
 
-  cleanups.push(
-    setupMenuOverlay({
-      menuToggleButton,
-      menuCloseButton,
-      menuOverlay,
-      menuOverlayLinks,
-      trackAnimation,
-    }),
-  );
-
   let lenis;
   let lenisTick;
   let resizeObserver;
   let refreshFrame = 0;
+  const canMountDesktopScene = typeof window !== "undefined" && window.innerWidth >= 1280;
 
   const scheduleScrollRefresh = () => {
     if (!lenis) {
@@ -59,7 +46,11 @@ export function mountTechPayExperience() {
     });
   };
 
-  if (canvasEl instanceof HTMLCanvasElement && laptopShadowEl instanceof HTMLElement) {
+  if (
+    canvasEl instanceof HTMLCanvasElement &&
+    laptopShadowEl instanceof HTMLElement &&
+    canMountDesktopScene
+  ) {
     lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -103,6 +94,16 @@ export function mountTechPayExperience() {
         matchMediaInstances,
       }),
     );
+  } else if (canvasEl instanceof HTMLCanvasElement) {
+    cleanups.push(setupFeatureCardBackgrounds());
+
+    if (heroContent instanceof HTMLElement) {
+      gsap.set(heroContent, {
+        autoAlpha: 1,
+        y: 0,
+        clearProps: "visibility,opacity,transform",
+      });
+    }
   }
 
   return () => {

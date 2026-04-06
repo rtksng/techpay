@@ -41,6 +41,7 @@ export default function CurvedLoop({
   const offsetRef = useRef(0);
 
   const [spacing, setSpacing] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const uid = useId();
   const pathId = useMemo(() => `curve-${uid.replace(/:/g, "")}`, [uid]);
@@ -60,6 +61,7 @@ export default function CurvedLoop({
   }, [spacing, text]);
 
   const ready = spacing > 0;
+  const startOffset = spacing ? -spacing : 0;
 
   useEffect(() => {
     dirRef.current = direction;
@@ -95,10 +97,9 @@ export default function CurvedLoop({
       return;
     }
 
-    const initialOffset = -spacing;
-    offsetRef.current = initialOffset;
-    textPathRef.current.setAttribute("startOffset", `${initialOffset}px`);
-  }, [spacing, totalText]);
+    offsetRef.current = startOffset;
+    textPathRef.current.setAttribute("startOffset", `${startOffset}px`);
+  }, [spacing, startOffset, totalText]);
 
   useEffect(() => {
     if (!spacing || !ready) {
@@ -156,6 +157,7 @@ export default function CurvedLoop({
     }
 
     dragRef.current = true;
+    setIsDragging(true);
     lastXRef.current = event.clientX;
     velRef.current = 0;
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -178,6 +180,7 @@ export default function CurvedLoop({
     }
 
     dragRef.current = false;
+    setIsDragging(false);
 
     if (
       event &&
@@ -191,11 +194,7 @@ export default function CurvedLoop({
     }
   };
 
-  const cursorStyle = interactive
-    ? dragRef.current
-      ? "grabbing"
-      : "grab"
-    : "auto";
+  const cursorStyle = interactive ? (isDragging ? "grabbing" : "grab") : "auto";
 
   return (
     <div
@@ -233,7 +232,7 @@ export default function CurvedLoop({
             <textPath
               ref={textPathRef}
               href={`#${pathId}`}
-              startOffset={`${offsetRef.current}px`}
+              startOffset={`${startOffset}px`}
               xmlSpace="preserve"
             >
               {totalText}

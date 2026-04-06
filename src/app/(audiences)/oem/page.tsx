@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import OemPage from "@/components/oem/oem-page";
+import OemPage from "./_components/oem-page";
 
 export const metadata: Metadata = {
   title: "OEM | TechPay.ai",

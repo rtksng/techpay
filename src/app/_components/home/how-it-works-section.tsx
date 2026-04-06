@@ -79,7 +79,7 @@ export default function TechPayHowItWorksSection() {
         <div className="mt-10 md:mt-12">
           <a
             href="#qr-section"
-            className="btn-primary btn-pill relative isolate inline-flex overflow-hidden px-8 py-[16px] text-[1rem] font-bold text-white no-underline shadow-[0_18px_42px_rgba(237,29,95,0.24)]"
+            className="btn-primary btn-pill relative isolate inline-flex w-full justify-center overflow-hidden px-8 py-[16px] text-[1rem] font-bold text-white no-underline shadow-[0_18px_42px_rgba(237,29,95,0.24)] sm:w-auto"
           >
             Find Your Nearest Store
           </a>
@@ -93,7 +93,7 @@ function HowItWorksStepCard({ step }: { step: JourneyStep }) {
   return (
     <article
       className={cn(
-        "feature-card group relative isolate flex h-full min-h-[250px] flex-col overflow-hidden border border-black px-8 py-5",
+        "feature-card group relative isolate flex h-full min-h-[250px] flex-col overflow-hidden border border-black px-6 py-5 md:px-8",
         step.accentClass
       )}
     >
