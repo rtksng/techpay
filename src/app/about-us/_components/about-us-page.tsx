@@ -113,7 +113,7 @@ export default function AboutUsPageContent() {
             <div className="relative min-h-[42vh] md:min-h-[50vh] lg:min-h-screen">
               <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('/hero-bg/about-hero.webp')" }}
+                style={{ backgroundImage: "url('/hero-bg/about-hero.jpg')" }}
                 aria-hidden="true"
               />
               <div className="absolute inset-0 bg-linear-to-br from-black/20 via-black/10 to-transparent" aria-hidden="true" />
