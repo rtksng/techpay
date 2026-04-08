@@ -13,6 +13,8 @@ export function mountTechPayScene({
   navbarEl,
   trackAnimation,
   matchMediaInstances,
+  enableScrollExperience = true,
+  animateHeroContent = true,
 }) {
   RectAreaLightUniformsLib.init();
 
@@ -57,6 +59,7 @@ export function mountTechPayScene({
     { trigger: "#recommendation", rotation: -0.12 * Math.PI },
   ];
   const backdropEls = [monitorBackdropEl, headphonesBackdropEl].filter((el) => el instanceof HTMLElement);
+  const animatedBackdropEls = enableScrollExperience ? backdropEls : [];
 
   initScene();
   createMaterials();
@@ -81,9 +84,11 @@ export function mountTechPayScene({
       macGroup.scale.setScalar(introLaptopScale);
 
       playIntro();
-      setupProblemsScroll();
-      setupScrollAnimations();
-      setupContentAnimations();
+      if (enableScrollExperience) {
+        setupProblemsScroll();
+        setupScrollAnimations();
+        setupContentAnimations();
+      }
       startFloating();
 
       renderer.setAnimationLoop(render);
@@ -392,9 +397,12 @@ export function mountTechPayScene({
   function getHeroLaptopPose() {
     const heroContent = document.querySelector(".hero-content");
     const heroBounds = heroContent?.getBoundingClientRect();
-    const viewportWidth = gsap.utils.clamp(390, 1600, window.innerWidth);
+    const isMobileViewport = window.innerWidth <= 768;
+    const viewportWidth = gsap.utils.clamp(isMobileViewport ? 320 : 390, isMobileViewport ? 768 : 1600, window.innerWidth);
     const viewportHeight = gsap.utils.clamp(680, 1080, window.innerHeight);
-    const heroScale = gsap.utils.mapRange(390, 1600, 1.04, heroLaptopScale, viewportWidth);
+    const heroScale = isMobileViewport
+      ? gsap.utils.mapRange(320, 768, 0.84, 0.96, viewportWidth)
+      : gsap.utils.mapRange(390, 1600, 1.04, heroLaptopScale, viewportWidth);
     const pixelPerWorldUnit = window.innerHeight / getViewportHeightInWorld();
     const laptopTopOffset = (laptopMetrics?.top ?? 11.5) * heroScale * pixelPerWorldUnit;
     const heroGap = gsap.utils.mapRange(680, 1080, 52, 28, viewportHeight) + gsap.utils.mapRange(390, 1600, 18, 0, viewportWidth);
@@ -451,11 +459,17 @@ export function mountTechPayScene({
     const heroContent = document.querySelector(".hero-content");
     const timeline = trackAnimation(gsap.timeline());
 
-    if (heroContent) {
+    if (heroContent && animateHeroContent) {
       gsap.set(heroContent, { autoAlpha: 0, y: 32 });
+    } else if (heroContent) {
+      gsap.set(heroContent, {
+        autoAlpha: 1,
+        y: 0,
+        clearProps: "visibility,opacity,transform",
+      });
     }
 
-    backdropEls.forEach((backdropEl) => {
+    animatedBackdropEls.forEach((backdropEl) => {
       gsap.set(backdropEl, {
         autoAlpha: 0,
         xPercent: 0,
@@ -474,7 +488,7 @@ export function mountTechPayScene({
       .to(screenMaterial, { duration: 0.15, opacity: 0.96 }, 1.3)
       .to(screenLight, { duration: 0.15, intensity: 1.5 }, 1.3);
 
-    backdropEls.forEach((backdropEl) => {
+    animatedBackdropEls.forEach((backdropEl) => {
       timeline.to(
         backdropEl,
         {
@@ -488,7 +502,7 @@ export function mountTechPayScene({
       );
     });
 
-    if (heroContent) {
+    if (heroContent && animateHeroContent) {
       timeline.to(heroContent, { duration: 0.95, autoAlpha: 1, y: 0, ease: "power2.out" }, 1.75);
     }
   }
@@ -598,7 +612,7 @@ export function mountTechPayScene({
       );
     }
 
-    backdropEls.forEach((backdropEl) => {
+    animatedBackdropEls.forEach((backdropEl) => {
       trackAnimation(
         gsap.fromTo(
           backdropEl,
@@ -751,7 +765,7 @@ export function mountTechPayScene({
       }),
     );
 
-    backdropEls.forEach((backdropEl) => {
+    animatedBackdropEls.forEach((backdropEl) => {
       trackAnimation(
         gsap.to(backdropEl, {
           y: "+=10",
@@ -793,5 +807,3 @@ function disposeMaterial(material) {
   material.alphaMap?.dispose?.();
   material.dispose?.();
 }
-
-

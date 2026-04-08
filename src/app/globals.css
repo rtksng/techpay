@@ -670,10 +670,20 @@ a {
   }
 
   .monitor-backdrop,
-  .headphones-backdrop,
-  .laptop-shadow,
-  #laptop {
+  .headphones-backdrop {
     display: none !important;
+  }
+
+  #laptop,
+  .laptop-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block !important;
+  }
+
+  #laptop {
+    height: 100svh;
   }
 
   .problems-container {

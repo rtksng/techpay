@@ -29,7 +29,7 @@ export default function FollowingPointerDemo({
   leaders: Leader[];
 }) {
   return (
-    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-5 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
       {leaders.map((leader, index) => {
         return (
           <FollowerPointerCard
@@ -43,7 +43,7 @@ export default function FollowingPointerDemo({
           >
             <article className="group relative flex h-full flex-col overflow-hidden  border border-slate-200 bg-white shadow-[0_20px_45px_rgba(15,23,42,0.08)] transition duration-300">
               <div className="flex h-full flex-col p-3">
-                <div className="relative mb-5 flex aspect-16/11 w-full items-center justify-center overflow-hidden  border border-slate-200 bg-slate-50">
+                <div className="relative mb-5 flex aspect-[4/5] w-full items-center justify-center overflow-hidden border border-slate-200 bg-slate-50">
                   <div className="absolute inset-0 bg-linear-to-br from-slate-100 via-white to-slate-100" />
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${
@@ -56,6 +56,7 @@ export default function FollowingPointerDemo({
                       src={leader.image ?? portraitImages[index % portraitImages.length]}
                       alt={`${leader.name} portrait`}
                       fill
+                      quality={95}
                       sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover"
                     />

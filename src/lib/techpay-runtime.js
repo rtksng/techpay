@@ -28,7 +28,8 @@ export function mountTechPayExperience() {
   let lenisTick;
   let resizeObserver;
   let refreshFrame = 0;
-  const canMountDesktopScene = typeof window !== "undefined" && window.innerWidth >= 1280;
+  const canMountScene = typeof window !== "undefined";
+  const hasDesktopScrollExperience = canMountScene && window.innerWidth >= 1280;
 
   const scheduleScrollRefresh = () => {
     if (!lenis) {
@@ -46,42 +47,49 @@ export function mountTechPayExperience() {
     });
   };
 
-  if (
-    canvasEl instanceof HTMLCanvasElement &&
-    laptopShadowEl instanceof HTMLElement &&
-    canMountDesktopScene
-  ) {
-    lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
+  if (canvasEl instanceof HTMLCanvasElement && laptopShadowEl instanceof HTMLElement && canMountScene) {
+    cleanups.push(setupFeatureCardBackgrounds());
 
-    lenis.on("scroll", ScrollTrigger.update);
+    if (heroContent instanceof HTMLElement) {
+      gsap.set(heroContent, hasDesktopScrollExperience ? { autoAlpha: 0, y: 32 } : {
+        autoAlpha: 1,
+        y: 0,
+        clearProps: "visibility,opacity,transform",
+      });
+    }
 
-    lenisTick = (time) => {
-      lenis.raf(time * 1000);
-    };
-
-    gsap.ticker.add(lenisTick);
-    gsap.ticker.lagSmoothing(0);
-    window.addEventListener("resize", scheduleScrollRefresh);
-
-    if (typeof ResizeObserver !== "undefined") {
-      resizeObserver = new ResizeObserver(() => {
-        scheduleScrollRefresh();
+    if (hasDesktopScrollExperience) {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
       });
 
-      if (document.body) {
-        resizeObserver.observe(document.body);
-      }
+      lenis.on("scroll", ScrollTrigger.update);
 
-      if (document.documentElement) {
-        resizeObserver.observe(document.documentElement);
+      lenisTick = (time) => {
+        lenis.raf(time * 1000);
+      };
+
+      gsap.ticker.add(lenisTick);
+      gsap.ticker.lagSmoothing(0);
+      window.addEventListener("resize", scheduleScrollRefresh);
+
+      if (typeof ResizeObserver !== "undefined") {
+        resizeObserver = new ResizeObserver(() => {
+          scheduleScrollRefresh();
+        });
+
+        if (document.body) {
+          resizeObserver.observe(document.body);
+        }
+
+        if (document.documentElement) {
+          resizeObserver.observe(document.documentElement);
+        }
       }
     }
 
-    cleanups.push(setupFeatureCardBackgrounds());
     cleanups.push(
       mountTechPayScene({
         canvasEl,
@@ -92,9 +100,11 @@ export function mountTechPayExperience() {
         navbarEl,
         trackAnimation,
         matchMediaInstances,
+        enableScrollExperience: hasDesktopScrollExperience,
+        animateHeroContent: hasDesktopScrollExperience,
       }),
     );
-  } else if (canvasEl instanceof HTMLCanvasElement) {
+  } else if (canvasEl instanceof HTMLCanvasElement || heroContent instanceof HTMLElement) {
     cleanups.push(setupFeatureCardBackgrounds());
 
     if (heroContent instanceof HTMLElement) {
