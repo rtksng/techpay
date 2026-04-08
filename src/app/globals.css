@@ -267,9 +267,16 @@ a {
 }
 
 .hero-content {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   will-change: transform, opacity;
+}
+
+@media (min-width: 1280px) {
+  .hero-content {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .section-hero {

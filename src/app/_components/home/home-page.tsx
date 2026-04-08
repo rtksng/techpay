@@ -142,7 +142,7 @@ export default function HomePage() {
             </div>
           </aside>
 
-          <div className="hero-content invisible relative z-[3] mx-auto max-w-[22rem] px-2 sm:max-w-[30rem] md:max-w-full md:px-0">
+          <div className="hero-content relative z-[3] mx-auto max-w-[22rem] px-2 sm:max-w-[30rem] md:max-w-full md:px-0">
             <p className="tag mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary"> Welcome to TechPay.ai
             </p>
             <h1 className="mb-4 font-display text-[clamp(2.6rem,8vw,5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-techpay-heading">
