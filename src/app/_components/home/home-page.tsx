@@ -119,11 +119,13 @@ export default function HomePage() {
         />
       </div>
 
-      <div className="laptop-shadow" aria-hidden="true" />
-      <canvas id="laptop" />
-
       <main className="relative z-[2]">
         <section className="section section-hero relative flex min-h-screen flex-col justify-start px-4 pb-10 pt-[120px] text-center md:px-6 md:pb-[60px] md:pt-[120px] lg:px-8 lg:pb-20 lg:pt-[140px]" id="hero">
+          <div className="hero-laptop-stage" aria-hidden="true">
+            <div className="laptop-shadow" />
+            <canvas id="laptop" />
+          </div>
+
           <aside
             className="fixed right-5 top-1/2 z-4 hidden w-[150px] -translate-y-1/2 flex-col items-stretch gap-2 lg:flex lg:right-8 lg:w-[165px]"
             aria-label="Audience shortcuts"

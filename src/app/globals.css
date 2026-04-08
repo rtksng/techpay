@@ -279,6 +279,13 @@ a {
   }
 }
 
+.hero-laptop-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .section-hero {
   overflow-x: hidden;
   overflow-x: clip;
@@ -687,6 +694,10 @@ a {
     top: 0;
     left: 0;
     display: block !important;
+  }
+
+  .hero-laptop-stage {
+    overflow: hidden;
   }
 
   #laptop {

@@ -401,7 +401,7 @@ export function mountTechPayScene({
     const viewportWidth = gsap.utils.clamp(isMobileViewport ? 320 : 390, isMobileViewport ? 768 : 1600, window.innerWidth);
     const viewportHeight = gsap.utils.clamp(680, 1080, window.innerHeight);
     const heroScale = isMobileViewport
-      ? gsap.utils.mapRange(320, 768, 0.84, 0.96, viewportWidth)
+      ? gsap.utils.mapRange(320, 768, 0.76, 0.88, viewportWidth)
       : gsap.utils.mapRange(390, 1600, 1.04, heroLaptopScale, viewportWidth);
     const pixelPerWorldUnit = window.innerHeight / getViewportHeightInWorld();
     const laptopTopOffset = (laptopMetrics?.top ?? 11.5) * heroScale * pixelPerWorldUnit;
