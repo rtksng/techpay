@@ -57,6 +57,7 @@ export function mountTechPayScene({
     { trigger: "#qr-section", rotation: -0.12 * Math.PI },
     { trigger: "#how-it-works", rotation: 0.12 * Math.PI },
     { trigger: "#recommendation", rotation: -0.12 * Math.PI },
+    { trigger: "#infinite-shelf", rotation: 0.12 * Math.PI },
   ];
   const backdropEls = [monitorBackdropEl, headphonesBackdropEl].filter((el) => el instanceof HTMLElement);
   const animatedBackdropEls = enableScrollExperience ? backdropEls : [];
@@ -419,17 +420,23 @@ export function mountTechPayScene({
   }
 
   function getSectionLaptopPose(sectionConfig) {
-    const anchor = document.querySelector(`${sectionConfig.trigger} .laptop-anchor`);
-    const block = document.querySelector(`${sectionConfig.trigger} .content-block`);
-    const target = anchor || block;
+    const sectionEl = document.querySelector(sectionConfig.trigger);
+    const anchor = sectionEl?.querySelector(".laptop-anchor");
+    const block = sectionEl?.querySelector(".content-block");
 
-    if (!target || window.innerWidth <= 768) {
+    if (!sectionEl || !block || window.innerWidth <= 768) {
       return getHeroLaptopPose();
     }
 
-    const rect = target.getBoundingClientRect();
+    const anchorIsVisible = Boolean(
+      anchor &&
+      anchor.getBoundingClientRect().width > 0 &&
+      anchor.getBoundingClientRect().height > 0,
+    );
+
+    const rect = anchorIsVisible ? anchor.getBoundingClientRect() : block.getBoundingClientRect();
     const targetCenterX = rect.left + rect.width / 2;
-    const screenTargetX = anchor ? targetCenterX : window.innerWidth - targetCenterX;
+    const screenTargetX = anchorIsVisible ? targetCenterX : window.innerWidth - targetCenterX;
     return {
       x: getWorldXForScreenX(screenTargetX + sectionLaptopXOffsetPx),
       y: sectionLaptopY,
@@ -537,32 +544,66 @@ export function mountTechPayScene({
       primeProblemLineDraw([...solidLines, ...traceLines]);
 
       const getDeckMetrics = () => {
+        const cardCount = cards.length;
         const stageWidth = stage.clientWidth || stage.getBoundingClientRect().width || 1200;
         const stageHeight = stage.clientHeight || stage.getBoundingClientRect().height || 560;
-        const cardWidth = cards[0].offsetWidth || 340;
-        const edgeGap = Math.max((stageWidth - cardWidth * 3) / 4, 12);
-        const maxSpread = Math.max(stageWidth / 2 - cardWidth / 2 - 8, 180);
-        const finalSpread = Math.min(cardWidth + edgeGap, maxSpread);
+        const cardWidth = cards[0].offsetWidth || 320;
+        const centerOffset = (cardCount - 1) / 2;
+        const edgeGap = cardCount >= 4 ? 20 : 12;
+        const maxOuterCenter = Math.max(stageWidth / 2 - cardWidth / 2 - 8, 180);
+        const finalStep = Math.min(cardWidth + edgeGap, maxOuterCenter / Math.max(centerOffset, 1));
+        const openingStep = finalStep * 0.34;
+
+        const finalPositions = cards.map((_, index) => (index - centerOffset) * finalStep);
+        const openingPositions = cards.map((_, index) => (index - centerOffset) * openingStep);
+        const openingY = cards.map((_, index) => {
+          const offset = index - centerOffset;
+          if (offset < -0.5) {
+            return stageHeight * 0.05;
+          }
+          if (offset < 0) {
+            return stageHeight * 0.022;
+          }
+          if (offset > 0.5) {
+            return -stageHeight * 0.032;
+          }
+          if (offset > 0) {
+            return -stageHeight * 0.01;
+          }
+          return stageHeight * 0.012;
+        });
+        const openingRotations = cards.map((_, index) => (index - centerOffset) * 6.25);
+        const openingScales = cards.map((_, index) => 0.985 + index * 0.012);
+        const initialStates = cards.map((_, index) => {
+          const offset = index - centerOffset;
+          return {
+            x: offset * 18,
+            y: stageHeight * (0.04 - index * 0.016),
+            rotation: offset * 5.4,
+            scale: 0.96 + index * 0.015,
+          };
+        });
+
         return {
-          stageHeight,
-          openingSpread: Math.max(finalSpread * 0.24, 54),
-          finalSpread,
-          openDrop: stageHeight * 0.045,
-          centerNudge: stageHeight * 0.012,
-          openLift: stageHeight * 0.03,
+          finalPositions,
+          initialStates,
+          openingPositions,
+          openingRotations,
+          openingScales,
+          openingY,
           finalRowY: 0,
         };
       };
 
       gsap.set(track, { clearProps: "display,gap,padding,width" });
       gsap.set(cards, { xPercent: -50, yPercent: -50, transformOrigin: "50% 50%", force3D: true });
-      gsap.set(cards[0], { x: -18, y: 18, rotation: -6, scale: 0.96 });
-      gsap.set(cards[1], { x: 0, y: 8, rotation: -1.5, scale: 0.985 });
-      gsap.set(cards[2], { x: 14, y: -6, rotation: 4.5, scale: 1.01 });
+      getDeckMetrics().initialStates.forEach((state, index) => {
+        gsap.set(cards[index], state);
+      });
       gsap.set(solidLines, { opacity: 0.14, strokeDashoffset: (_, target) => Number(target.dataset.drawLength || target.getTotalLength()) });
       gsap.set(traceLines, { opacity: 0, strokeDashoffset: (_, target) => Number(target.dataset.drawLength || target.getTotalLength()) });
       if (linesLayer) {
-        gsap.set(linesLayer, { xPercent: 0, yPercent: 1.2, scale: 1, opacity: 0.42, force3D: true });
+        gsap.set(linesLayer, { opacity: 0.42, force3D: true });
       }
 
       trackAnimation(
@@ -578,15 +619,25 @@ export function mountTechPayScene({
             invalidateOnRefresh: true,
           },
         })
-          .to(cards[0], { x: () => -getDeckMetrics().openingSpread, y: () => getDeckMetrics().openDrop, rotation: -8, scale: 0.97, duration: 0.18 }, 0)
-          .to(cards[1], { y: () => getDeckMetrics().centerNudge, rotation: -0.8, duration: 0.18 }, 0)
-          .to(cards[2], { x: () => getDeckMetrics().openingSpread, y: () => -getDeckMetrics().openLift, rotation: 7, scale: 1.02, duration: 0.18 }, 0)
-          .to(cards[0], { x: () => -getDeckMetrics().finalSpread, y: () => getDeckMetrics().finalRowY, rotation: 0, scale: 1, duration: 0.46 }, 0.18)
-          .to(cards[1], { x: 0, y: () => getDeckMetrics().finalRowY, rotation: 0, scale: 1, duration: 0.46 }, 0.18)
-          .to(cards[2], { x: () => getDeckMetrics().finalSpread, y: () => getDeckMetrics().finalRowY, rotation: 0, scale: 1, duration: 0.46 }, 0.18)
+          .to(cards, {
+            x: (index) => getDeckMetrics().openingPositions[index],
+            y: (index) => getDeckMetrics().openingY[index],
+            rotation: (index) => getDeckMetrics().openingRotations[index],
+            scale: (index) => getDeckMetrics().openingScales[index],
+            duration: 0.18,
+            stagger: 0,
+          }, 0)
+          .to(cards, {
+            x: (index) => getDeckMetrics().finalPositions[index],
+            y: () => getDeckMetrics().finalRowY,
+            rotation: 0,
+            scale: 1,
+            duration: 0.46,
+            stagger: 0,
+          }, 0.18)
           .to(solidLines, { opacity: 0.2, strokeDashoffset: 0, duration: 0.62, stagger: 0.04 }, 0)
           .to(traceLines, { opacity: 1, strokeDashoffset: 0, duration: 0.72, stagger: 0.03 }, 0.12)
-          .to(linesLayer, { xPercent: 0, yPercent: -1.2, scale: 1, opacity: 0.96, duration: 0.9 }, 0),
+          .to(linesLayer, { opacity: 0.96, duration: 0.35 }, 0.08),
       );
     });
   }

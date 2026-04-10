@@ -14,13 +14,13 @@ export default function SiteFooter() {
           </p>
         </div>
         <div className="footer-links flex flex-col items-center gap-3 md:flex-row md:items-start md:gap-8">
-          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="#">
+          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
             Privacy Policy
           </Link>
-          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="#">
+          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
             Terms of Service
           </Link>
-          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="#">
+          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
             Contact Us
           </Link>
         </div>

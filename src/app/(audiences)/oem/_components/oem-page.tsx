@@ -1,11 +1,16 @@
 import AudienceHero from "../../_components/audience-hero";
 import OemBenefitsShowcase from "./oem-benefits-showcase";
 import OemBenefitsTimeline from "./oem-benefits-timeline";
+import OemHeroOverlay from "./oem-hero-overlay";
 
 export default function OemPage() {
   return (
     <main className="bg-[#f7f7fb] text-[#111111]">
-      <AudienceHero title="How does TechPay help OEMs?" />
+      <AudienceHero
+        title="How does TechPay help OEMs?"
+        eyebrow="OEM Growth"
+        overlay={<OemHeroOverlay />}
+      />
       <OemBenefitsSection />
       <OemBenefitsShowcase />
     </main>

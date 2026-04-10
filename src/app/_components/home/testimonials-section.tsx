@@ -5,60 +5,76 @@ import {
 
 const testimonials: StaggerTestimonialItem[] = [
   {
-    id: "maria-colombia",
+    id: "priya-india",
     testimonial:
-      "I was nervous about buying a laptop because I did not want to choose the wrong one. The store explained everything clearly and helped me find exactly what my children needed for school. The monthly payment felt manageable from day one.",
-    by: "Maria, Colombia",
+      "I was unsure which laptop to pick for my freelance work, but the store in Bengaluru walked me through specs and budget without pressure. Getting approved on the spot and splitting the cost made it possible to start the same week.",
+    by: "Priya, India",
     imgSrc:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
   },
   {
-    id: "adaeze-nigeria",
+    id: "hakim-malaysia",
     testimonial:
-      "I needed a laptop for my tailoring business, but paying all at once was difficult. The store guided me through the options, and I was approved while I was still there. It changed what felt possible for me.",
-    by: "Adaeze, Nigeria",
+      "Paying upfront for a good laptop felt out of reach for our family. TechPay.ai at the KL store explained the instalments clearly, and we left with a machine my daughter could use for school — the process felt fair and straightforward.",
+    by: "Hakim, Malaysia",
+    imgSrc:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: "arjun-india",
+    testimonial:
+      "I run a small accounting practice in Mumbai and needed something reliable for GST filings and video calls with clients. The team compared two models honestly, and the monthly plan meant I did not have to drain working capital in one shot.",
+    by: "Arjun, India",
+    imgSrc:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: "mei-ling-malaysia",
+    testimonial:
+      "As a design student in Penang, I was worried about EMIs and hidden fees. The store showed everything upfront, and I walked out with a laptop that actually handles my software — not the cheapest one they could push.",
+    by: "Mei Ling, Malaysia",
     imgSrc:
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80",
   },
   {
-    id: "daniel-kenya",
+    id: "kavitha-india",
     testimonial:
-      "What I liked most was the confidence. I could ask questions, compare options, and make a decision without feeling rushed. It felt like someone was actually helping me, not just selling to me.",
-    by: "Daniel, Kenya",
-    imgSrc:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    id: "sofie-peru",
-    testimonial:
-      "I bought my first laptop for online classes through TechPay.ai. The store broke everything down in simple words, and the payment plan meant I could start learning immediately instead of waiting for months.",
-    by: "Sofie, Peru",
-    imgSrc:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    id: "kwame-ghana",
-    testimonial:
-      "We needed a reliable computer for our small printing shop, but cash flow changes every month. TechPay.ai made it realistic to invest in the right machine without putting pressure on the business.",
-    by: "Kwame, Ghana",
-    imgSrc:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    id: "nadia-egypt",
-    testimonial:
-      "The best part was not feeling alone in the process. I could explain what I needed for work, compare a few options, and walk out knowing I had made a smart decision for my family.",
-    by: "Nadia, Egypt",
+      "My son needed a laptop for college in Hyderabad, and we had a fixed budget. TechPay.ai helped us stretch to a better build quality with instalments we could plan around. Support after purchase answered his setup questions quickly.",
+    by: "Kavitha, India",
     imgSrc:
       "https://images.unsplash.com/photo-1546961329-78bef0414d7c?auto=format&fit=crop&w=600&q=80",
   },
   {
-    id: "benjamin-philippines",
+    id: "danial-malaysia",
     testimonial:
-      "Approval was fast, the laptop recommendation made sense, and the store support felt honest. It gave me the confidence to upgrade sooner than I thought I could.",
-    by: "Benjamin, Philippines",
+      "I work from Johor and wanted to upgrade for heavier spreadsheets and calls. Approval took minutes in store, and the staff did not rush me — I compared screens and keyboards until it felt right.",
+    by: "Danial, Malaysia",
     imgSrc:
-      "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: "rohan-india",
+    testimonial:
+      "First laptop for my coding bootcamp in Pune. I did not want to guess on RAM or SSD. The associate explained it like a friend would, and the payment schedule matched what I could manage while studying.",
+    by: "Rohan, India",
+    imgSrc:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: "nur-malaysia",
+    testimonial:
+      "We bought through a partner store in Petaling Jaya for our home business. Being able to split payments made it easier to buy a proper machine instead of compromising and replacing it in a year.",
+    by: "Nur, Malaysia",
+    imgSrc:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: "vikram-india",
+    testimonial:
+      "Chennai heat and commute meant I wanted something light with good battery. The store let me try the keyboard and trackpad, then sorted TechPay.ai in one visit. No awkward follow-ups or surprises on the statement.",
+    by: "Vikram, India",
+    imgSrc:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
   },
 ];
 

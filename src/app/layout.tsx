@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import LenisProvider from "@/components/lenis-provider";
 import MenuSetup from "@/components/menu-setup";
 import SiteFooter from "@/components/site-footer";
 import SiteNavbar from "@/components/site-navbar";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,6 +36,7 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-techpay-bg">
+        <LenisProvider />
         <SiteNavbar />
         {children}
         <SiteFooter />

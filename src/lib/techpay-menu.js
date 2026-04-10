@@ -15,7 +15,8 @@ export function setupMenuOverlay({
   const menuOverlayLogo = menuOverlay.querySelector(".menu-logo");
   const menuKicker = menuOverlay.querySelector(".menu-kicker");
   const menuMeta = menuOverlay.querySelector(".menu-meta");
-  const menuLinkItems = gsap.utils.toArray(".menu-links a", menuOverlay);
+  const menuLinkItems = gsap.utils.toArray(".menu-nav-enter", menuOverlay);
+  let lockedScrollY = 0;
 
   const menuTimeline = trackAnimation(
     gsap.timeline({
@@ -41,19 +42,54 @@ export function setupMenuOverlay({
     .to(menuLinkItems, { y: 0, opacity: 1, duration: 0.34, stagger: 0.05 }, 0.16)
     .to(menuMeta, { y: 0, opacity: 1, duration: 0.24 }, 0.24);
 
+  const lockBodyScroll = () => {
+    lockedScrollY = window.scrollY;
+    document.body.classList.add("menu-open");
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  };
+
+  const unlockBodyScroll = ({ restoreScroll } = { restoreScroll: true }) => {
+    const scrollY = lockedScrollY;
+
+    document.body.classList.remove("menu-open");
+    document.body.style.removeProperty("position");
+    document.body.style.removeProperty("top");
+    document.body.style.removeProperty("left");
+    document.body.style.removeProperty("right");
+    document.body.style.removeProperty("width");
+
+    if (restoreScroll) {
+      window.scrollTo(0, scrollY);
+    }
+
+    lockedScrollY = 0;
+  };
+
   const openMenu = () => {
     menuOverlay.classList.add("is-open");
     menuOverlay.setAttribute("aria-hidden", "false");
     menuToggleButton.setAttribute("aria-expanded", "true");
     menuToggleButton.classList.add("is-active");
-    document.body.classList.add("menu-open");
+    lockBodyScroll();
     menuTimeline.play();
   };
 
   const closeMenu = () => {
+    const isMenuOpen = menuOverlay.classList.contains("is-open");
+
     menuToggleButton.setAttribute("aria-expanded", "false");
     menuToggleButton.classList.remove("is-active");
-    document.body.classList.remove("menu-open");
+
+    if (isMenuOpen) {
+      unlockBodyScroll();
+    } else {
+      unlockBodyScroll({ restoreScroll: false });
+    }
+
     menuTimeline.reverse();
   };
 

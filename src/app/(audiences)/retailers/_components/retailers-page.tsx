@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Boxes, CircleHelp, DoorOpen, TrendingUp } from "lucide-react";
 import AudienceHero from "../../_components/audience-hero";
+import RetailersHeroOverlay from "./retailers-hero-overlay";
 import RetailersBenefitsShowcase from "./retailers-benefits-showcase";
 import RetailersBenefitsTimeline from "./retailers-benefits-timeline";
 import { Grid } from "@/components/ui/features-section-demo-1";
@@ -63,7 +64,11 @@ const salesTeamPrinciples = [
 export default function RetailersPage() {
   return (
     <main className="bg-[#f7f7fb] text-[#111111]">
-      <AudienceHero title="Turn walk-ins into high-value checkouts." />
+      <AudienceHero
+        title="Turn walk-ins into high-value checkouts."
+        eyebrow="Retail Growth"
+        overlay={<RetailersHeroOverlay />}
+      />
       <RetailersChallengesSection />
       <RetailersBenefitsSection />
       <RetailersBenefitsShowcase />
@@ -78,10 +83,10 @@ function RetailersChallengesSection() {
       id="retailer-challenges"
       className="relative overflow-hidden px-5 py-20 md:px-[60px] md:py-24"
     >
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      {/* <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute left-0 top-0 h-56 w-56 rounded-full bg-techpay-primary/8 blur-3xl" />
         <div className="absolute right-0 top-20 h-60 w-60 rounded-full bg-techpay-orange/8 blur-3xl" />
-      </div>
+      </div> */}
 
       <div className="relative mx-auto max-w-[1440px]">
         <SectionHeading

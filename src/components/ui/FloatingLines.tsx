@@ -55,6 +55,7 @@ uniform vec2 parallaxOffset;
 
 uniform vec3 lineGradient[8];
 uniform int lineGradientCount;
+uniform bool transparentBackground;
 
 const vec3 BLACK = vec3(0.0);
 const vec3 PINK  = vec3(233.0, 71.0, 245.0) / 255.0;
@@ -198,7 +199,13 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 void main() {
   vec4 color = vec4(0.0);
   mainImage(color, gl_FragCoord.xy);
-  gl_FragColor = color;
+  float alpha = 1.0;
+
+  if (transparentBackground) {
+    alpha = clamp(length(color.rgb) * 1.85, 0.0, 1.0);
+  }
+
+  gl_FragColor = vec4(color.rgb, alpha);
 }
 `;
 
@@ -227,6 +234,7 @@ type FloatingLinesProps = {
   parallax?: boolean;
   parallaxStrength?: number;
   mixBlendMode?: React.CSSProperties['mixBlendMode'];
+  transparentBackground?: boolean;
 };
 
 function hexToVec3(hex: string): Vector3 {
@@ -268,7 +276,8 @@ export default function FloatingLines({
   mouseDamping = 0.05,
   parallax = true,
   parallaxStrength = 0.2,
-  mixBlendMode = 'screen'
+  mixBlendMode = 'screen',
+  transparentBackground = false,
 }: FloatingLinesProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const targetMouseRef = useRef<Vector2>(new Vector2(-1000, -1000));
@@ -311,8 +320,11 @@ export default function FloatingLines({
     const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
     camera.position.z = 1;
 
-    const renderer = new WebGLRenderer({ antialias: true, alpha: false });
+    const renderer = new WebGLRenderer({ antialias: true, alpha: transparentBackground });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    if (transparentBackground) {
+      renderer.setClearColor(0x000000, 0);
+    }
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
     container.appendChild(renderer.domElement);
@@ -366,6 +378,8 @@ export default function FloatingLines({
         value: Array.from({ length: MAX_GRADIENT_STOPS }, () => new Vector3(1, 1, 1))
       },
       lineGradientCount: { value: 0 }
+      ,
+      transparentBackground: { value: transparentBackground }
     };
 
     if (linesGradient && linesGradient.length > 0) {
@@ -500,6 +514,8 @@ export default function FloatingLines({
     mouseDamping,
     parallax,
     parallaxStrength
+    ,
+    transparentBackground
   ]);
 
   return (

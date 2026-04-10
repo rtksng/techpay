@@ -29,7 +29,7 @@ export default function FollowingPointerDemo({
   leaders: Leader[];
 }) {
   return (
-    <div className="grid gap-5 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-5  md:grid-cols-2 xl:grid-cols-3">
       {leaders.map((leader, index) => {
         return (
           <FollowerPointerCard
@@ -41,9 +41,9 @@ export default function FollowingPointerDemo({
               />
             }
           >
-            <article className="group relative flex h-full flex-col overflow-hidden  border border-slate-200 bg-white shadow-[0_20px_45px_rgba(15,23,42,0.08)] transition duration-300">
-              <div className="flex h-full flex-col p-3">
-                <div className="relative mb-5 flex aspect-[4/5] w-full items-center justify-center overflow-hidden border border-slate-200 bg-slate-50">
+            <article className="group relative flex h-full flex-col overflow-hidden border border-slate-200 bg-white shadow-[0_20px_45px_rgba(15,23,42,0.08)] transition duration-300">
+              <div className="flex h-full items-center gap-4 p-4 md:gap-5 md:p-5">
+                <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border border-slate-200 bg-slate-50 md:h-28 md:w-28">
                   <div className="absolute inset-0 bg-linear-to-br from-slate-100 via-white to-slate-100" />
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${
@@ -57,25 +57,19 @@ export default function FollowingPointerDemo({
                       alt={`${leader.name} portrait`}
                       fill
                       quality={95}
-                      sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      sizes="(min-width: 768px) 112px, 96px"
                       className="object-cover"
                     />
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-slate-950 font-display text-[1rem] font-bold text-white shadow-[0_12px_30px_rgba(15,23,42,0.18)]">
-                    {getInitials(leader.name)}
-                  </div>
-
-                  <div className="min-w-0">
-                    <h2 className="text-[1.2rem] font-semibold tracking-[-0.02em] text-slate-950">
-                      {leader.name}
-                    </h2>
-                    <p className="mt-1 text-[0.95rem] leading-[1.55] text-slate-600">
-                      {leader.title}
-                    </p>
-                  </div>
+                <div className="min-w-0">
+                  <h2 className="text-[1.08rem] font-semibold tracking-[-0.02em] text-slate-950 md:text-[1.16rem]">
+                    {leader.name}
+                  </h2>
+                  <p className="mt-1 text-[0.9rem] leading-[1.5] text-slate-600 md:text-[0.94rem]">
+                    {leader.title}
+                  </p>
                 </div>
               </div>
             </article>
@@ -104,11 +98,3 @@ function TitleComponent({
   );
 }
 
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
-}

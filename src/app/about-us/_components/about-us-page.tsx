@@ -4,6 +4,7 @@ import TechPayExperience from "@/components/techpay-experience";
 import FeaturesSectionDemo, {
   type FeatureSectionItem,
 } from "./offices-grid";
+import Hyperspeed from "./hyperspeed";
 
 const missionVision = [
   {
@@ -107,37 +108,50 @@ const officeFeatures: FeatureSectionItem[] = officeLocations.map((office) => ({
 export default function AboutUsPageContent() {
   return (
     <>
-      <main className="relative  overflow-hidden  text-techpay-text">
-        <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden bg-white">
-          <div className="mx-auto grid min-h-screen w-full  lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-            <div className="relative min-h-[42vh] md:min-h-[50vh] lg:min-h-screen">
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('/hero-bg/about-hero.jpg')" }}
-                aria-hidden="true"
-              />
-              <div className="absolute inset-0 bg-linear-to-br from-black/20 via-black/10 to-transparent" aria-hidden="true" />
-            </div>
+      <main className="relative overflow-hidden text-techpay-text">
+        <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden">
+          <div className="absolute inset-0 opacity-10 dark:opacity-15">
+            <Hyperspeed
+              effectOptions={{ "distortion": "turbulentDistortion", "length": 400, "roadWidth": 10, "islandWidth": 2, "lanesPerRoad": 3, "fov": 90, "fovSpeedUp": 150, "speedUp": 2, "carLightsFade": 0.4, "totalSideLightSticks": 20, "lightPairsPerRoadWay": 40, "shoulderLinesWidthPercentage": 0.05, "brokenLinesWidthPercentage": 0.1, "brokenLinesLengthPercentage": 0.5, "lightStickWidth": [0.12, 0.5], "lightStickHeight": [1.3, 1.7], "movingAwaySpeed": [60, 80], "movingCloserSpeed": [-120, -160], "carLightsLength": [12, 80], "carLightsRadius": [0.05, 0.14], "carWidthPercentage": [0.3, 0.5], "carShiftX": [-0.8, 0.8], "carFloorSeparation": [0, 5], "colors": { "roadColor": 526344, "islandColor": 657930, "background": 0, "shoulderLines": 1250072, "brokenLines": 1250072, "leftCars": [14177983, 6770850, 12732332], "rightCars": [242627, 941733, 3294549], "sticks": 242627 } }}
+            />
+          </div>
+         
 
-            <div className="flex items-center px-4 py-14 md:px-6 md:py-18 lg:px-10 lg:py-24">
-              <div className="max-w-4xl">
-                <p className="mb-4 text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-techpay-primary">
+          <div className="mx-auto min-h-screen w-full max-w-[1440px] px-4 py-14 md:px-6 md:py-18 lg:px-10 lg:py-24">
+            <div className="relative z-10 flex min-h-[calc(100vh-7rem)] flex-col justify-center gap-10">
+              <div className="max-w-4xl mx-auto mt-5 md:mt-0">
+                <p className="mb-4 text-xl font-semibold uppercase tracking-[0.2em] text-techpay-primary">
                   About TechPay.ai
                 </p>
-                <div className="space-y-10">
-                  {missionVision.map((item) => (
-                    <article key={item.label}>
-                      <span className="font-display text-2xl font-semibold tracking-[0.04em] text-slate-950 md:text-3xl">
+               
+              </div>
+              <div className="grid gap-6 xl:gap-20 lg:grid-cols-2">
+                {missionVision.map((item, index) => (
+                  <article
+                    key={item.label}
+                    className="group relative overflow-hidden border border-white/55 bg-white/58 p-7 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-2xl dark:border-white/12 dark:bg-white/7 dark:shadow-[0_24px_80px_rgba(2,6,23,0.42)] md:p-12"
+                  >
+                    <div
+                      className={`absolute inset-x-0 top-0 h-1 ${
+                        index === 0
+                          ? "bg-gradient-to-r from-techpay-primary via-techpay-orange to-transparent"
+                          : "bg-gradient-to-r from-techpay-purple via-techpay-primary to-transparent"
+                      }`}
+                    />
+                    <div className="absolute -right-12 top-0 h-40 w-40 rounded-full bg-techpay-primary/12 blur-3xl dark:bg-techpay-primary/16" />
+                    <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.24),transparent_52%)] dark:bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_55%)]" />
+                    <div className="relative">
+                      <span className="font-display text-2xl font-semibold tracking-[0.04em] text-slate-950 dark:text-white md:text-3xl">
                         {item.label}
                       </span>
-                      <div className="mt-5 space-y-4 text-base leading-7 text-slate-600 md:text-xl md:leading-8">
+                      <div className="mt-5 space-y-4 text-base leading-7 text-slate-700 dark:text-slate-200/82 md:text-lg md:leading-8">
                         {item.body.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
                         ))}
                       </div>
-                    </article>
-                  ))}
-                </div>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
@@ -145,37 +159,6 @@ export default function AboutUsPageContent() {
 
         <div className="relative mx-auto flex w-full max-w-[1440px] flex-col">
           <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden bg-white py-14 md:py-18">
-            <div
-              className="pointer-events-none absolute inset-0"
-              aria-hidden="true"
-            >
-              <svg
-                viewBox="0 0 1440 420"
-                className="h-full w-full"
-                preserveAspectRatio="none"
-              >
-                <defs>
-                  <linearGradient id="leadership-curve" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#ed1d5f" stopOpacity="0.1" />
-                    <stop offset="50%" stopColor="#7c3aed" stopOpacity="0.22" />
-                    <stop offset="100%" stopColor="#f97316" stopOpacity="0.1" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0 248C178 132 339 116 491 166C622 208 724 312 867 305C1018 297 1142 149 1267 126C1328 115 1388 122 1440 143"
-                  fill="none"
-                  stroke="url(#leadership-curve)"
-                  strokeWidth="3"
-                />
-                <path
-                  d="M0 280C168 185 315 183 452 221C616 268 740 362 904 349C1072 336 1192 207 1310 182C1360 171 1406 171 1440 178"
-                  fill="none"
-                  stroke="#ed1d5f"
-                  strokeOpacity="0.08"
-                  strokeWidth="1.5"
-                />
-              </svg>
-            </div>
             <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 md:px-6 lg:px-10">
               <div>
                 <p className="mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-techpay-primary">
@@ -188,7 +171,6 @@ export default function AboutUsPageContent() {
                   textAlign="left"
                   className="mb-3 block font-display text-[clamp(2.2rem,5vw,4rem)] font-bold tracking-[-0.04em] text-slate-950"
                 />
-               
 
                 <FollowingPointerDemo leaders={leadershipTeam} />
               </div>

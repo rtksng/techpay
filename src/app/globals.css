@@ -48,6 +48,7 @@ body {
 
 body.menu-open {
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 a {
@@ -148,8 +149,8 @@ a {
 
 .monitor-backdrop {
   position: fixed;
-  top: 58%;
-  left: clamp(8rem, 16vw, 20rem) !important;
+  top: 66%;
+  left: clamp(8rem, 16vw, 16rem) !important;
   z-index: 0;
   width: clamp(300px, 23vw, 410px) !important;
   aspect-ratio: 1436 / 1200;
@@ -165,11 +166,11 @@ a {
 
 .headphones-backdrop {
   position: fixed;
-  top: 57%;
-  right: clamp(8rem, 17vw, 21.875rem) !important;
+  top: 66%;
+  left: auto !important;
+  right: clamp(8rem, 16vw, 24rem) !important;
   z-index: 0;
-  width: clamp(140px, 13vw, 250px);
-  aspect-ratio: 695 / 723;
+  width: clamp(120px, 10.5vw, 410px) !important;
   overflow: visible;
   pointer-events: none;
   opacity: 0;
@@ -183,6 +184,14 @@ a {
 .monitor-backdrop-image {
   object-fit: contain;
   object-position: center;
+}
+
+.headphones-backdrop-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: right center;
 }
 
 #laptop {
@@ -251,11 +260,19 @@ a {
     rgba(6, 6, 17, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 .menu-overlay.is-open {
   visibility: visible;
   pointer-events: auto;
+}
+
+.menu-overlay-inner {
+  min-height: 100dvh;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .menu-links a {
@@ -264,6 +281,36 @@ a {
 
 .menu-links a:hover {
   transform: translateX(10px);
+}
+
+.menu-partner-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-partner-panel-open {
+  grid-template-rows: 1fr;
+}
+
+.menu-partner-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.menu-partner-sublink {
+  font-size: clamp(1.35rem, 5.2vw, 2.35rem);
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-partner-panel {
+    transition-duration: 0.01ms;
+  }
+
+  .menu-partner-trigger .menu-partner-chevron svg {
+    transition-duration: 0.01ms;
+  }
 }
 
 .hero-content {
@@ -520,8 +567,9 @@ a {
 }
 
 .section-problems {
-  --problem-card-height: clamp(420px, 36vw, 520px);
-  --problem-stage-bleed: clamp(14px, 1.8vw, 24px);
+  /* Fixed card height so all four problem cards match (desktop deck + tablet grid). */
+  --problem-card-height: clamp(360px, 32vw, 420px);
+  --problem-stage-bleed: clamp(22px, 2.4vw, 36px);
 }
 
 .problems-container {
@@ -530,9 +578,8 @@ a {
 }
 
 .problems-stage {
-  width: calc(100% + 120px);
-  margin-left: -60px;
-  margin-right: -60px;
+  width: 100%;
+  min-width: 0;
   min-height: calc(var(--problem-card-height) + var(--problem-stage-bleed));
 }
 
@@ -585,26 +632,28 @@ a {
   stroke: rgba(147, 38, 143, 0.86);
 }
 
+.problems-line-trace--rose {
+  stroke: rgba(219, 130, 182, 0.92);
+}
+
 .problems-track {
   min-height: inherit;
 }
 
 .problem-card {
-  width: min(438px, calc((100% - 72px) / 3));
+  /* Must stay narrow enough that 4 cards + gaps fit ~1280px viewports; wider breaks GSAP deck spacing (finalStep < width → overlap). */
+  width: min(292px, calc((100% - 96px) / 4));
+  height: var(--problem-card-height);
   min-height: var(--problem-card-height);
-  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.08);
+  max-height: var(--problem-card-height);
+  box-sizing: border-box;
   backface-visibility: hidden;
   will-change: transform, opacity;
   --problem-accent: var(--color-techpay-primary);
 }
 
 .problem-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0));
-  pointer-events: none;
+  content: none;
 }
 
 .problem-card:nth-child(1) {
@@ -619,6 +668,10 @@ a {
   z-index: 3;
 }
 
+.problem-card:nth-child(4) {
+  z-index: 4;
+}
+
 .problem-card.card-pink {
   --problem-accent: var(--color-techpay-primary);
 }
@@ -629,6 +682,10 @@ a {
 
 .problem-card.card-purple {
   --problem-accent: var(--color-techpay-purple);
+}
+
+.problem-card.card-rose {
+  --problem-accent: var(--color-techpay-pink);
 }
 
 .btn-problem {
@@ -721,12 +778,20 @@ a {
   }
 
   .problems-track {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
     min-height: auto;
   }
 
   .problem-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
     width: 100%;
-    min-height: auto;
+    height: var(--problem-card-height);
+    min-height: var(--problem-card-height);
+    max-height: var(--problem-card-height);
     transform: none !important;
   }
 
@@ -736,6 +801,21 @@ a {
 }
 
 @media (max-width: 768px) {
+  .section-problems {
+    /* Shorter fixed cards when stacked (single column); desktop/tablet keep base token. */
+    --problem-card-height: auto;
+  }
+
+  .problems-track {
+    grid-template-columns: 1fr;
+  }
+
+  .problem-card {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
   .hero-motion-bg {
     opacity: 0.5;
   }

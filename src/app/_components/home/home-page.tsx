@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import TechPayEligibilitySection from "@/app/_components/home/eligibility-section";
 import TechPayHowItWorksSection from "@/app/_components/home/how-it-works-section";
 import TechPayImpactNumbersSection from "@/app/_components/home/impact-numbers-section";
-import TechPaySolutionSection from "@/app/_components/home/solution-section";
+import TechPayProblemsSection from "@/app/_components/home/problems-section";
 import TechPayTestimonialsSection from "@/app/_components/home/testimonials-section";
 import TechPayExperience from "@/components/techpay-experience";
 import CurvedLoop from "@/components/ui/curved-loop";
@@ -14,11 +15,11 @@ const steps = [
   "Support for Life",
 ];
 
-const heroAudienceLinks = [
-  { href: "/oem", label: "OEM" },
-  { href: "/distributors", label: "Distributor" },
-  { href: "/retailers", label: "Retailer" },
-];
+// const heroAudienceLinks = [
+//   { href: "/oem", label: "OEM" },
+//   { href: "/distributors", label: "Distributor" },
+//   { href: "/retailers", label: "Retailer" },
+// ];
 
 const features = [
   {
@@ -31,50 +32,11 @@ const features = [
   {
     accentClass: "feature-card--orange",
     iconClass: "bg-techpay-orange/10 text-techpay-orange",
-    title: "60-Second Approval",
-    description: "Get a payment decision in under a minute.",
-    Icon: BoltIcon,
-  },
-  {
-    accentClass: "feature-card--purple",
-    iconClass: "bg-techpay-purple/10 text-techpay-purple",
-    title: "Real Human Support",
-    description: "Friendly in-store guidance and personalized help after purchase.",
-    Icon: PeopleIcon,
-  },
-  {
-    accentClass: "feature-card--purple",
-    iconClass: "bg-techpay-purple/10 text-techpay-purple",
-    title: "Life Time Support",
-    description: "Get help after purchase too, from setup and learning to troubleshooting later on.",
-    Icon: InfinityIcon,
-  },
-];
-
-const problems = [
-  {
-    cardClass: "card-pink",
-    mode: "Choice",
-    title: "&ldquo;I don&apos;t know what to choose&rdquo;",
-    body:
-      "There are hundreds of laptops out there, and most people do not want to make an expensive mistake. You should not need to understand technical jargon to make the right decision. TechPay.ai helps you compare options in plain language, so you can choose with confidence.",
-    cta: "Help Me Choose",
-  },
-  {
-    cardClass: "card-orange",
-    mode: "Availability",
-    title: "&ldquo;The store might not have it&rdquo;",
-    body:
-      "You find the right laptop online, then discover your local store does not stock it. That usually means compromise, delay, or walking away empty-handed. With TechPay.ai, your local store gets access to a wider digital catalogue, so you are not limited to what is on display.",
-    cta: "Browse Catalogue",
-  },
-  {
-    cardClass: "card-purple",
-    mode: "Affordability",
-    title: "&ldquo;I can&apos;t afford it all at once&rdquo;",
-    body:
-      "A computer can open doors for school, work, business, and daily life, but paying the full amount upfront is not always possible. Our flexible payment plans help you take home what you need now and pay in manageable instalments.",
-    cta: "Check Your Eligibility",
+    title: "Find a Store",
+    description: "Locate your nearest TechPay.ai partner store and start your journey in person.",
+    Icon: StoreIcon,
+    href: "/retailers",
+    ctaLabel: "Find a Store",
   },
 ];
 
@@ -110,12 +72,13 @@ export default function HomePage() {
 
       <div className="headphones-backdrop" aria-hidden="true">
         <Image
-          src="/parts/headphones.png"
+          src="/parts/pri-head2.png"
           alt=""
-          fill
+          width={700}
+          height={526}
           priority
           sizes="(max-width: 768px) 36vw, 18vw"
-          className="monitor-backdrop-image"
+          className="headphones-backdrop-image"
         />
       </div>
 
@@ -126,7 +89,7 @@ export default function HomePage() {
             <canvas id="laptop" />
           </div>
 
-          <aside
+          {/* <aside
             className="fixed right-5 top-1/2 z-4 hidden w-[150px] -translate-y-1/2 flex-col items-stretch gap-2 lg:flex lg:right-8 lg:w-[165px]"
             aria-label="Audience shortcuts"
           >
@@ -142,7 +105,7 @@ export default function HomePage() {
                 </a>
               ))}
             </div>
-          </aside>
+          </aside> */}
 
           <div className="hero-content relative z-[3] mx-auto max-w-[22rem] px-2 sm:max-w-[30rem] md:max-w-full md:px-0">
             <p className="tag mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary"> Welcome to TechPay.ai
@@ -163,29 +126,19 @@ export default function HomePage() {
               <span className="scales-strip scales-strip--bottom" aria-hidden="true" />
               <div className="content-block relative z-[1] w-full max-w-full overflow-hidden border border-white/10 bg-black/[0.72] px-[22px] py-7 backdrop-blur-[28px] md:px-9 md:py-9 lg:px-10 lg:py-11">
                 <div className="card-accent accent-pink" />
-                <p className="tag mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary">
-                  Find a Store
-                </p>
+
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
-                  Your Device, Your Way
+                  <span className="inline-flex flex-col items-start gap-3">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-primary/12 text-techpay-primary">
+                      <GuidanceIcon />
+                    </span>
+                    <span>Get Expert Guidance</span>
+                  </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  Use our recommendation engine to find the right device, then scan the QR code to locate a trusted store near you.
+                  Choosing the right computer can be confusing. We help you compare options based on your needs, so you can buy with more clarity and confidence.
                 </p>
-                <div className="qr-wrapper mt-6 text-center">
-                  <div className="qr-code inline-block cursor-pointer">
-                    <Image
-                      src="/assets/qrcode.png"
-                      alt="QR code to find a TechPay.ai store near you"
-                      width={140}
-                      height={140}
-                      className="block h-auto rounded-[8px]"
-                    />
-                  </div>
-                  <p className="qr-label mt-[14px] text-[0.8rem] tracking-[0.04em] text-techpay-muted">
-                    Scan to find your nearest store
-                  </p>
-                </div>
+
               </div>
             </div>
           </div>
@@ -200,26 +153,18 @@ export default function HomePage() {
               <span className="scales-strip scales-strip--bottom" aria-hidden="true" />
               <div className="content-block relative z-[1] w-full max-w-full overflow-hidden border border-white/10 bg-black/[0.72] px-[22px] py-7 backdrop-blur-[28px] md:px-9 md:py-9 lg:px-10 lg:py-11">
                 <div className="card-accent accent-orange" />
-                <p className="tag mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary">
-                  Simple Process
-                </p>
+
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
-                  See How It Works
+                  <span className="inline-flex flex-col items-start gap-3">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
+                      <InstallmentsIcon />
+                    </span>
+                    <span>Easy Installments</span>
+                  </span>
                 </h2>
-                <div className="steps mt-1 flex flex-col gap-5">
-                  {steps.map((step, index) => (
-                    <div key={step} className="step flex items-start gap-[18px] border border-transparent px-4 py-[14px] transition hover:border-white/10 hover:bg-white/[0.02]">
-                      <div className="step-num min-w-10 pt-[2px] font-display text-[1.5rem] font-bold leading-none">
-                        {String(index + 1).padStart(2, "0")}
-                      </div>
-                      <div>
-                        <h3 className="mb-[3px] font-display text-[1rem] font-semibold text-techpay-heading">
-                          {step}
-                        </h3>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
+                  A better computer should not feel out of reach. Our flexible payment options make it easier to bring home what you need without the pressure of paying everything upfront.
+                </p>
               </div>
             </div>
             <div className="laptop-anchor hidden min-h-[clamp(280px,34vw,460px)] xl:block" aria-hidden="true" />
@@ -236,30 +181,54 @@ export default function HomePage() {
               <span className="scales-strip scales-strip--bottom" aria-hidden="true" />
               <div className="content-block relative z-[1] w-full max-w-full overflow-hidden border border-white/10 bg-black/[0.72] px-[22px] py-7 backdrop-blur-[28px] md:px-9 md:py-9 lg:px-10 lg:py-11">
                 <div className="card-accent accent-purple" />
-                <p className="tag mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary">
-                  AI-Powered
-                </p>
+
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
-                  Get Laptop Recommendation
+                  <span className="inline-flex flex-col items-start gap-3">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-purple/14 text-techpay-purple">
+                      <SupportIcon />
+                    </span>
+                    <span>Support for Life</span>
+                  </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  Answer a few simple questions and our AI-powered engine will find the perfect laptop for your needs, budget, and usage.
+                  Your journey does not end after purchase. From setup help to everyday questions, our team is here to support you well beyond checkout.
                 </p>
-                <a
-                  href="#"
-                  className="btn-primary btn-lg btn-pill relative isolate mt-3 inline-flex w-full justify-center overflow-hidden px-9 py-[18px] text-center text-[1.05rem] font-bold text-white no-underline sm:w-auto"
-                >
-                  Get Your Recommendation &rarr;
-                </a>
+
               </div>
             </div>
           </div>
         </section>
+        <section className="section laptop-right relative flex min-h-[auto] items-center justify-center px-4 pb-10 md:pt-[88px] pt-[20px] md:min-h-[72vh] md:px-6 md:pb-[60px] md:pt-[96px] lg:min-h-screen lg:px-8 lg:pb-20 lg:pt-[120px]" id="infinite-shelf">
+          <div className="section-pair mx-auto grid w-full items-center gap-0 md:gap-8 xl:gap-[clamp(40px,7vw,96px)] xl:[grid-template-columns:minmax(360px,460px)_minmax(0,1.15fr)]">
+            <div className="scales-frame relative ml-0 mr-auto w-full p-[18px] md:p-[22px] xl:w-[min(560px,100%)]">
+              <span className="scales-strip scales-strip--left" aria-hidden="true" />
+              <span className="scales-strip scales-strip--right" aria-hidden="true" />
+              <span className="scales-strip scales-strip--top" aria-hidden="true" />
+              <span className="scales-strip scales-strip--bottom" aria-hidden="true" />
+              <div className="content-block relative z-[1] w-full max-w-full overflow-hidden border border-white/10 bg-black/[0.72] px-[22px] py-7 backdrop-blur-[28px] md:px-9 md:py-9 lg:px-10 lg:py-11">
+                <div className="card-accent accent-orange" />
 
+                <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
+                  <span className="inline-flex flex-col items-start gap-3">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
+                      <ShelfIcon />
+                    </span>
+                    <span>Choose Beyond the Shelf</span>
+                  </span>
+                </h2>
+                <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
+                  You should not have to settle for what happens to be on the shelf. TechPay.ai gives you access to more options through your local store, so you can choose what truly fits your needs.
+                </p>
+
+              </div>
+            </div>
+            <div className="laptop-anchor hidden min-h-[clamp(280px,34vw,460px)] xl:block" aria-hidden="true" />
+          </div>
+        </section>
         <section className="section-features relative z-[3] px-5 pb-[60px] md:pt-[100px] pt-[20px] md:px-[60px] md:pb-20 md:pt-[140px]" id="features">
-          <div className="features-inner mx-auto grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
-            {features.map(({ accentClass, iconClass, title, description, Icon }) => (
-              <div key={title} className={`feature-card ${accentClass} relative isolate overflow-hidden border border-black px-6 py-8 text-center md:px-8 md:py-10`}>
+          <div className="features-inner mx-auto grid max-w-[1440px] gap-5 md:grid-cols-2">
+            {features.map(({ accentClass, iconClass, title, description, Icon, href, ctaLabel }) => (
+              <div key={title} className={`feature-card ${accentClass} relative isolate flex h-full flex-col overflow-hidden border border-black px-6 py-8 text-center md:px-8 md:py-10`}>
                 <div className="feature-card-bg" aria-hidden="true">
                   <canvas className="feature-card-dots" />
                   <div className="feature-card-glow" />
@@ -273,71 +242,22 @@ export default function HomePage() {
                 <p className="relative z-[2] text-[0.95rem] leading-[1.65] text-techpay-muted">
                   {description}
                 </p>
+                {href && ctaLabel ? (
+                  <Link
+                    href={href}
+                    className="relative z-[2] mt-6 inline-flex items-center justify-center self-center rounded-full border border-white/12 bg-white/6 px-5 py-2.5 text-[0.84rem] font-semibold tracking-[0.01em] text-techpay-heading transition hover:border-techpay-orange/45 hover:bg-techpay-orange/12 hover:text-white"
+                  >
+                    {ctaLabel}
+                  </Link>
+                ) : null}
               </div>
             ))}
           </div>
         </section>
 
-        <section className="section-problems relative z-[3]  flex min-h-screen flex-col justify-center overflow-hidden bg-[#f7f7fb] pt-20 md:pt-[100px] md:pb-[50px]" id="problems">
-          <div className="problems-container mx-auto block px-5 md:grid md:min-h-screen md:px-[60px]">
-            <div className="problems-header mb-9 max-w-[720px] md:mb-14">
-              <p className="tag dark mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary">
-                The Real Challenges
-              </p>
-              <h2 className="mb-[18px] font-display text-[1.8rem] font-bold leading-[1.2] tracking-[-0.02em] text-[#111111] md:text-[clamp(1.6rem,4vw,3.1rem)]">
-                Buying a computer can feel overwhelming. We get it.
-              </h2>
-              <p className="text-[1.05rem] leading-[1.7] text-[#555555]">
-                For many organizations, the problem is not just wanting a computer. It is knowing what to choose, where to find it, and how to pay for it without stress.
-              </p>
-            </div>
-            <div className="problems-stage relative mt-[18px] flex items-center md:mt-[clamp(10px,2vw,24px)]">
-              <div className="problems-lines" aria-hidden="true">
-                <svg className="problems-lines-svg" viewBox="0 0 1440 640" preserveAspectRatio="none">
-                  <path className="problems-line" d="M 0 232 C 176 112, 348 112, 544 174 S 1014 304, 1440 144" />
-                  <path className="problems-line-trace problems-line-trace--pink" d="M 0 232 C 176 112, 348 112, 544 174 S 1014 304, 1440 144" />
+        <TechPayProblemsSection />
 
-                  <path className="problems-line" d="M 0 386 C 188 286, 372 244, 576 294 S 1030 428, 1440 336" />
-                  <path className="problems-line-trace problems-line-trace--orange" d="M 0 386 C 188 286, 372 244, 576 294 S 1030 428, 1440 336" />
-
-                  <path className="problems-line" d="M 0 548 C 194 446, 430 414, 668 448 S 1064 566, 1440 470" />
-                  <path className="problems-line-trace problems-line-trace--purple" d="M 0 548 C 194 446, 430 414, 668 448 S 1064 566, 1440 470" />
-                </svg>
-              </div>
-
-              <div className="problems-track grid gap-[18px] md:block">
-                {problems.map((problem) => (
-                  <div
-                    key={problem.mode}
-                    className={`problem-card ${problem.cardClass} relative left-auto top-auto flex w-full flex-col border border-slate-900/10 bg-white px-6 py-7 md:absolute md:left-1/2 md:top-1/2 md:px-[34px] md:pb-7 md:pt-[34px]`}
-                  >
-                    <div className="problem-card-head mb-[18px] flex items-start justify-between gap-[18px] md:mb-[26px]">
-                      <p className="problem-card-mode font-display text-[1.7rem] font-bold uppercase leading-[0.95] tracking-[-0.04em] text-[#111111] md:text-[clamp(2rem,2.2vw,2.7rem)]">
-                        {problem.mode}
-                      </p>
-                    </div>
-                    <h3
-                      className="problem-card-title mb-4 font-display text-[1.04rem] font-semibold leading-[1.2] tracking-[-0.03em] text-[#161616] md:mb-[18px] md:text-[clamp(1.14rem,1.22vw,1.4rem)]"
-                      dangerouslySetInnerHTML={{ __html: problem.title }}
-                    />
-                    <p className="problem-card-body grow text-[0.88rem] leading-[1.64] tracking-[-0.01em] text-slate-600 md:text-[0.93rem] md:leading-[1.72]">
-                      {problem.body}
-                    </p>
-                    <div className="problem-card-footer mt-auto grid items-end gap-[10px] pt-6 [grid-template-columns:auto_1fr] md:gap-3 md:[grid-template-columns:auto_1fr_auto]">
-                      <a href="#" className="btn-problem">
-                        {problem.cta}
-                      </a>
-                      <span className="problem-card-rotate">{problem.mode}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <TechPaySolutionSection />
-        <section className="relative z-[3] overflow-hidden bg-[#f7f7fb] pb-10">
+        {/* <section className="relative z-[3] overflow-hidden bg-[#f7f7fb] pb-10">
          
           <div className="relative px-4 md:px-[60px]">
             <CurvedLoop
@@ -348,7 +268,7 @@ export default function HomePage() {
               className="font-display text-[clamp(2.5rem,7vw,5.5rem)] tracking-[0.08em] fill-black/85"
             />
           </div>
-        </section>
+        </section> */}
         <TechPayHowItWorksSection />
         <TechPayTestimonialsSection />
         <TechPayImpactNumbersSection />
@@ -392,6 +312,61 @@ function InfinityIcon() {
   return (
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
       <path d="M18.5 8.5c-2.2 0-3.4 1.2-5.5 4-2.1-2.8-3.3-4-5.5-4A4.5 4.5 0 0 0 3 13c0 2.49 2.01 4.5 4.5 4.5 2.2 0 3.4-1.2 5.5-4 2.1 2.8 3.3 4 5.5 4A4.5 4.5 0 0 0 23 13c0-2.49-2.01-4.5-4.5-4.5z" />
+    </svg>
+  );
+}
+
+function StoreIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M4 9l1.2-4h13.6L20 9" />
+      <path d="M5 9h14v10a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V9z" />
+      <path d="M9 20v-5h6v5" />
+      <path d="M3 9h18" />
+    </svg>
+  );
+}
+
+function GuidanceIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 3" />
+    </svg>
+  );
+}
+
+function InstallmentsIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M3 10h18" />
+      <path d="M7 15h3" />
+      <path d="M13.5 14l1.5-2 1.5 2 1.5-2" />
+    </svg>
+  );
+}
+
+function SupportIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 12a8 8 0 0 1 16 0" />
+      <rect x="3" y="12" width="4" height="6" rx="2" />
+      <rect x="17" y="12" width="4" height="6" rx="2" />
+      <path d="M12 20v1a2 2 0 0 1-2 2h-1" />
+    </svg>
+  );
+}
+
+function ShelfIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 6h16" />
+      <path d="M4 12h16" />
+      <path d="M4 18h16" />
+      <path d="M7 6v12" />
+      <path d="M13 12v6" />
+      <path d="M17 6v6" />
     </svg>
   );
 }

@@ -1,11 +1,16 @@
 import AudienceHero from "../../_components/audience-hero";
 import DistributorsBenefitsShowcase from "./distributors-benefits-showcase";
 import DistributorsBenefitsTimeline from "./distributors-benefits-timeline";
+import DistributorsHeroOverlay from "./distributors-hero-overlay";
 
 export default function DistributorsPage() {
   return (
     <main className="bg-[#f7f7fb] text-[#111111]">
-      <AudienceHero title="How does TechPay help Distributors?" />
+      <AudienceHero
+        title="How does TechPay help Distributors?"
+        eyebrow="Distribution Growth"
+        overlay={<DistributorsHeroOverlay />}
+      />
       <DistributorsBenefitsSection />
       <DistributorsBenefitsShowcase />
     </main>
