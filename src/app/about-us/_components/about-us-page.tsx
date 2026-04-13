@@ -87,8 +87,7 @@ const officeLocations = [
   {
     title: "Coming Soon",
     lines: [
-      "Middle East Office - Dubai",
-      "Australia Office - Sydney and Melbourne",
+      "South East Asia - Indonesia, Philippines, Thailand, Vietnam, Japan, South Korea, Australia, Dubai",
     ],
     accent: "from-white/14 to-techpay-primary/12",
   },

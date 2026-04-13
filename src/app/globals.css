@@ -642,7 +642,7 @@ a {
 
 .problem-card {
   /* Must stay narrow enough that 4 cards + gaps fit ~1280px viewports; wider breaks GSAP deck spacing (finalStep < width → overlap). */
-  width: min(292px, calc((100% - 96px) / 4));
+  width: min(400px, calc((100% - 96px) / 4));
   height: var(--problem-card-height);
   min-height: var(--problem-card-height);
   max-height: var(--problem-card-height);

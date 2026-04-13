@@ -21,6 +21,7 @@ type FeaturesSectionDemoProps = {
   cardClassName?: string;
   titleClassName?: string;
   descriptionClassName?: string;
+  numberPlacement?: "inline" | "corner";
 };
 
 const fallbackPatterns = [
@@ -62,6 +63,7 @@ export default function FeaturesSectionDemo1({
   cardClassName,
   titleClassName,
   descriptionClassName,
+  numberPlacement = "inline",
 }: FeaturesSectionDemoProps) {
   return (
     <div
@@ -110,17 +112,40 @@ export default function FeaturesSectionDemo1({
               contentClassName
             )}
           >
-            
-            <h3
-              className={cn(
-                "mb-5 font-display text-[1.28rem] font-bold leading-[1.15] tracking-[-0.03em] text-[#111111] md:text-[1.45rem]",
-                titleClassName
-              )}
-            >
-              <span className="text-techpay-primary">{feature.number}</span>
-              <span className="mx-2 text-slate-300">/</span>
-              <span>{feature.title}</span>
-            </h3>
+            {numberPlacement === "corner" ? (
+              <>
+                <div className="mb-5 flex items-start justify-between gap-4">
+                  <h3
+                    className={cn(
+                      "max-w-[calc(100%-6rem)] font-display text-[1.28rem] font-bold leading-[1.15] tracking-[-0.03em] text-[#111111] md:text-[1.45rem]",
+                      titleClassName
+                    )}
+                  >
+                    {feature.title}
+                  </h3>
+                  <span
+                    className={cn(
+                      "inline-flex min-w-[84px] shrink-0 items-center justify-center self-start rounded-[18px] border border-white/70 bg-linear-to-r px-3 py-2 text-right font-display text-[1.2rem] font-bold leading-none tracking-[-0.03em] text-white shadow-[0_16px_36px_rgba(15,23,42,0.14)] md:text-[1.35rem]",
+                      "from-techpay-primary via-techpay-pink to-techpay-purple/75",
+                      feature.accentClass
+                    )}
+                  >
+                    {feature.number}
+                  </span>
+                </div>
+              </>
+            ) : (
+              <h3
+                className={cn(
+                  "mb-5 font-display text-[1.28rem] font-bold leading-[1.15] tracking-[-0.03em] text-[#111111] md:text-[1.45rem]",
+                  titleClassName
+                )}
+              >
+                <span className="text-techpay-primary">{feature.number}</span>
+                <span className="mx-2 text-slate-300">/</span>
+                <span>{feature.title}</span>
+              </h3>
+            )}
             <p
               className={cn(
                 "grow text-[0.94rem] leading-[1.75] text-slate-600",

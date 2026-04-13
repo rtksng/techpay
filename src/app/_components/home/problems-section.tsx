@@ -148,7 +148,7 @@ export default function TechPayProblemsSection() {
               {problems.map((problem) => (
                 <div
                   key={problem.id}
-                  className={`problem-card ${problem.cardClass} group relative left-auto top-auto flex w-full flex-col overflow-hidden border p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)] md:absolute md:left-1/2 md:top-1/2 md:p-8 ${problem.borderClass} ${problem.surfaceClass}`}
+                  className={`problem-card ${problem.cardClass} group relative left-auto top-auto flex w-full flex-col overflow-hidden border p-6 shadow-[0_24px_64px_rgba(15,23,42,0.08)] md:absolute md:left-1/2 md:top-1/2  ${problem.borderClass} ${problem.surfaceClass}`}
                 >
                   <div
                     className={`absolute inset-x-0 top-0 h-1 bg-linear-to-r ${problem.accentClass}`}

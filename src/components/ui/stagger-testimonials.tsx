@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const SQRT_5000 = Math.sqrt(5000);
+const AUTO_ADVANCE_MS = 3200;
 
 export type StaggerTestimonialItem = {
   id: string;
@@ -97,10 +99,12 @@ function TestimonialCard({
         }}
       />
 
-      <img
+      <Image
         src={testimonial.imgSrc}
         alt={testimonial.by.split(",")[0]}
-        loading="lazy"
+        width={56}
+        height={56}
+        sizes="56px"
         className={cn(
           "mb-5 h-14 w-14 object-cover object-top",
           isCenter ? "bg-slate-100" : "bg-white"
@@ -139,7 +143,7 @@ export function StaggerTestimonials({
 }: StaggerTestimonialsProps) {
   const [cardWidth, setCardWidth] = useState(365);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPageVisible, setIsPageVisible] = useState(true);
 
   useEffect(() => {
     const updateSize = () => {
@@ -175,16 +179,27 @@ export function StaggerTestimonials({
   const cardHeight = Math.round(cardWidth * 1.24);
 
   useEffect(() => {
-    if (!items.length || isPaused) {
+    const updateVisibility = () => {
+      setIsPageVisible(!document.hidden);
+    };
+
+    updateVisibility();
+    document.addEventListener("visibilitychange", updateVisibility);
+
+    return () => document.removeEventListener("visibilitychange", updateVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (!items.length || !isPageVisible) {
       return;
     }
 
-    const timer = window.setInterval(() => {
-      handleMove(1);
-    }, 3200);
+    const timer = window.setTimeout(() => {
+      setActiveIndex((currentIndex) => (currentIndex + 1) % items.length);
+    }, AUTO_ADVANCE_MS);
 
-    return () => window.clearInterval(timer);
-  }, [items.length, isPaused]);
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, isPageVisible, items.length]);
 
   return (
     <div
@@ -193,8 +208,6 @@ export function StaggerTestimonials({
         className
       )}
       style={{ height: cardHeight + 170 }}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       {items.map((testimonial, index) => {
         const position = getRelativePosition(index, activeIndex, items.length);

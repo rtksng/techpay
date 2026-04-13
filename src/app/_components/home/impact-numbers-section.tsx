@@ -4,8 +4,8 @@ import FeaturesSectionDemo1, {
 
 const impactMetrics: FeaturesSectionDemoItem[] = [
   {
-    number: "50+",
-    title: "Stores Powered",
+    number: "500+",
+    title: "Powering Stores",
     description:
       "Helping local retailers serve more customers with less lost demand.",
     accentClass: "from-techpay-primary via-techpay-pink to-techpay-primary/70",
@@ -21,8 +21,8 @@ const impactMetrics: FeaturesSectionDemoItem[] = [
     ],
   },
   {
-    number: "500+",
-    title: "Families Served",
+    number: "5000+",
+    title: "Serving Families",
     description:
       "Supporting households on their journey to computer ownership.",
     accentClass: "from-techpay-orange via-[#ffb36b] to-techpay-primary/70",
@@ -39,7 +39,7 @@ const impactMetrics: FeaturesSectionDemoItem[] = [
   },
   {
     number: "2",
-    title: "Countries Active",
+    title: "Active Countries",
     description:
       "Growing across markets where access, affordability, and trust matter most.",
     accentClass: "from-techpay-purple via-[#be73d0] to-techpay-primary/70",
@@ -86,6 +86,7 @@ export default function TechPayImpactNumbersSection() {
           contentClassName="min-h-[140px]!"
           titleClassName="mb-3 md:text-[1.3rem]"
           descriptionClassName="text-[0.9rem] leading-[1.6]"
+          numberPlacement="corner"
         />
       </div>
     </section>

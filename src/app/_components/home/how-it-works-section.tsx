@@ -81,7 +81,7 @@ export default function TechPayHowItWorksSection() {
             href="#qr-section"
             className="btn-primary btn-pill relative isolate inline-flex w-full justify-center overflow-hidden px-8 py-[16px] text-[1rem] font-bold text-white no-underline shadow-[0_18px_42px_rgba(237,29,95,0.24)] sm:w-auto"
           >
-            Find Your Nearest Store
+            Find a Store or Scan the QR
           </a>
         </div>
       </div>
