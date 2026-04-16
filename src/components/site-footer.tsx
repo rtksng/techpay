@@ -20,9 +20,9 @@ export default function SiteFooter() {
           <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
             Terms of Service
           </Link>
-          {/* <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
+          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
             Contact Us
-          </Link> */}
+          </Link>
         </div>
       </div>
       <div className="footer-bottom mx-auto max-w-[1100px] pt-6 text-center md:text-left">
