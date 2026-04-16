@@ -3,7 +3,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+basePath: '/staging',
+  assetPrefix: '/staging',
   images: {
+ unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
