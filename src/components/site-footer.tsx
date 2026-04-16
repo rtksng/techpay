@@ -17,11 +17,11 @@ const socialLinks = [
     href: "/coming-soon",
     icon: IconBrandX,
   },
-  {
-    label: "Instagram",
-    href: "/coming-soon",
-    icon: IconBrandInstagram,
-  },
+  // {
+  //   label: "Instagram",
+  //   href: "/coming-soon",
+  //   icon: IconBrandInstagram,
+  // },
 ];
 
 export default function SiteFooter() {
