@@ -4,8 +4,9 @@ import {
   CreditCard,
   Globe2,
   Headset,
-  
+
   PanelsTopLeft,
+  
   Store,
 } from "lucide-react";
 import TechPayImpactNumbersSection from "@/app/_components/home/impact-numbers-section";
