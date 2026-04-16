@@ -67,7 +67,7 @@ function TestimonialCard({
     <article
       aria-current={isCenter}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer overflow-hidden border p-6 text-left transition-[transform,box-shadow,opacity,border-color,background-color,color] duration-500 ease-in-out md:p-8",
+        "absolute left-1/2 top-1/2 flex cursor-pointer flex-col overflow-hidden border p-6 text-left transition-[transform,box-shadow,opacity,border-color,background-color,color] duration-500 ease-in-out md:p-8",
         isCenter
           ? "border-white bg-white text-[#111111]"
           : "border-slate-200 bg-[#eceff3] text-slate-900 hover:border-slate-300"
@@ -118,7 +118,7 @@ function TestimonialCard({
 
       <h3
         className={cn(
-          "pr-2 text-[1rem] font-medium leading-[1.45] md:text-[1.15rem]",
+          "pr-2 text-[0.98rem] font-medium leading-[1.5] md:text-[1.15rem]",
           isCenter ? "text-[#111111]" : "text-slate-900"
         )}
       >
@@ -127,7 +127,7 @@ function TestimonialCard({
 
       <p
         className={cn(
-          "absolute bottom-6 left-6 right-6 mt-2 text-[0.78rem] italic md:bottom-8 md:left-8 md:right-8 md:text-sm",
+          "mt-auto pt-4 text-[0.78rem] italic md:pt-5 md:text-sm",
           isCenter ? "text-[#4b4b4b]" : "text-slate-500"
         )}
       >
@@ -142,6 +142,7 @@ export function StaggerTestimonials({
   className,
 }: StaggerTestimonialsProps) {
   const [cardWidth, setCardWidth] = useState(365);
+  const [cardHeight, setCardHeight] = useState(452);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPageVisible, setIsPageVisible] = useState(true);
 
@@ -149,15 +150,18 @@ export function StaggerTestimonials({
     const updateSize = () => {
       if (window.innerWidth >= 1280) {
         setCardWidth(365);
+        setCardHeight(452);
         return;
       }
 
       if (window.innerWidth >= 768) {
         setCardWidth(320);
+        setCardHeight(432);
         return;
       }
 
       setCardWidth(270);
+      setCardHeight(420);
     };
 
     updateSize();
@@ -175,8 +179,6 @@ export function StaggerTestimonials({
       return ((nextIndex % items.length) + items.length) % items.length;
     });
   };
-
-  const cardHeight = Math.round(cardWidth * 1.24);
 
   useEffect(() => {
     const updateVisibility = () => {

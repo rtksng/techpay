@@ -1,5 +1,28 @@
 import Link from "next/link";
+import {
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandX,
+} from "@tabler/icons-react";
 import LogoMark from "@/components/logo-mark";
+
+const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/techpay-ai/",
+    icon: IconBrandLinkedin,
+  },
+  {
+    label: "X",
+    href: "/coming-soon",
+    icon: IconBrandX,
+  },
+  {
+    label: "Instagram",
+    href: "/coming-soon",
+    icon: IconBrandInstagram,
+  },
+];
 
 export default function SiteFooter() {
   return (
@@ -13,16 +36,37 @@ export default function SiteFooter() {
             Making computer ownership accessible for everyone.
           </p>
         </div>
-        <div className="footer-links flex flex-col items-center gap-3 md:flex-row md:items-start md:gap-8">
-          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
-            Privacy Policy
-          </Link>
-          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
-            Terms of Service
-          </Link>
-          <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
-            Contact Us
-          </Link>
+        <div className="flex flex-col items-center gap-4 md:items-end">
+          <div className="footer-links flex flex-col items-center gap-3 md:flex-row md:items-start md:gap-8">
+            <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
+              Privacy Policy
+            </Link>
+            <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
+              Terms of Service
+            </Link>
+            <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
+              Contact Us
+            </Link>
+          </div>
+          <div className="flex items-center gap-3" aria-label="Social media links">
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+              const isExternal = social.href.startsWith("http");
+
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={`TechPay.ai on ${social.label}`}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-techpay-muted/20 text-techpay-muted transition hover:border-techpay-primary/45 hover:bg-techpay-primary/8 hover:text-techpay-heading"
+                  rel={isExternal ? "noreferrer" : undefined}
+                  target={isExternal ? "_blank" : undefined}
+                >
+                  <Icon aria-hidden="true" size={19} stroke={1.8} />
+                </a>
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className="footer-bottom mx-auto max-w-[1100px] pt-6 text-center md:text-left">

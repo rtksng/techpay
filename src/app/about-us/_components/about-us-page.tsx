@@ -87,7 +87,10 @@ const officeLocations = [
   {
     title: "Coming Soon",
     lines: [
-      "South East Asia - Indonesia, Philippines, Thailand, Vietnam, Japan, South Korea, Australia, Dubai",
+      "South East Asia: Singapore, Malaysia, Indonesia, Thailand, Vietnam, Philippines",
+      "North East Asia: Japan, South Korea",
+      "Oceania: Australia West",
+      "Asia: UAE",
     ],
     accent: "from-white/14 to-techpay-primary/12",
   },
@@ -128,7 +131,7 @@ export default function AboutUsPageContent() {
                 {missionVision.map((item, index) => (
                   <article
                     key={item.label}
-                    className="group relative overflow-hidden border border-white/55 bg-white/58 p-7 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-2xl dark:border-white/12 dark:bg-white/7 dark:shadow-[0_24px_80px_rgba(2,6,23,0.42)] md:p-12"
+                    className="group relative overflow-hidden border p-7 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-2xl border-white/12 bg-white/7 dark:shadow-[0_24px_80px_rgba(2,6,23,0.42)] md:p-12"
                   >
                     <div
                       className={`absolute inset-x-0 top-0 h-1 ${

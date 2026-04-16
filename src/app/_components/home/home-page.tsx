@@ -157,13 +157,12 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  Forget generic recommendations. Our AI listens to how you
-                  actually use a computer and finds the one built for your world
-                  - not everyone else&apos;s.
+                Forget generic recommendations. Our AI avoids the broad lists to match hardware directly to your unique professional needs, whether you're building automated testing frameworks or writing technical whitepapers. We look at real-time inventory from both in-store shelves and global wholesalers to find the most budget-friendly options for your next gadget.
+
                 </p>
                 <MarketAwareLinkButton
-                  kind="recommendation"
-                  label="Get Recommendations"
+                  kind="catalog"
+                  label="Get Your Tailored List Now"
                   loadingLabel="Finding nearest store..."
                   className="btn-primary relative inline-flex items-center justify-center rounded-none px-5 py-3 text-[0.84rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
                 />
@@ -185,22 +184,21 @@ export default function HomePage() {
               <div className="content-block relative z-[1] w-full max-w-full overflow-hidden border border-white/10 bg-black/[0.72] px-[22px] py-7 backdrop-blur-[28px] md:px-9 md:py-9 lg:px-10 lg:py-11">
                 <div className="card-accent accent-orange" />
 
+                
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
-                      <CreditCard size={22} strokeWidth={1.8} />
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-purple/14 text-techpay-purple">
+                      <PanelsTopLeft size={22} strokeWidth={1.8} />
                     </span>
-                    <span>Easy Installments</span>
+                    <span>Unlimited Choices</span>
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  A better computer should not feel out of reach. Our flexible
-                  payment options make it easier to bring home what you need
-                  without the pressure of paying everything upfront.
+                Whether you need your gear delivered directly to your doorstep or prefer the hands-on experience of a local pickup, we bridge the gap between digital browsing and physical availability. Our platform offers a seamless transition from screen to store, ensuring every device in our inventory is accessible exactly when and where you need it. 
                 </p>
                 <MarketAwareLinkButton
                   kind="catalog"
-                  label="Browse Catelog"
+                  label="Browse Online, Feel In-Store"
                   loadingLabel="Loading..."
                   className="btn-primary relative inline-flex items-center justify-center rounded-none px-6 py-3.5 text-[0.88rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
                 />
@@ -232,16 +230,16 @@ export default function HomePage() {
 
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-purple/14 text-techpay-purple">
-                      <PanelsTopLeft size={22} strokeWidth={1.8} />
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
+                      <CreditCard size={22} strokeWidth={1.8} />
                     </span>
-                    <span>Choose behind the shelf</span>
+                    <span>Easy Installments</span>
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  Whatever you need, we&apos;ll find it and bring it to you -
-                  delivered to your door or ready at your local store.
+                Our quick approval procedure means you may have the tech you need right away. It just takes a few minutes, not days. Our interactive plan calculator lets you see your payments and choose a way to complete ownership that suits your financial goals exactly.  
                 </p>
+                
               </div>
             </div>
           </div>
@@ -265,14 +263,11 @@ export default function HomePage() {
                     <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
                       <Headset size={22} strokeWidth={1.8} />
                     </span>
-                    <span>Support for Life</span>
+                    <span>Personalized IT Help Desk</span>
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  From getting connected on day one to fixing everyday hiccups -
-                  we&apos;re here for it all. WiFi setup, printer installation,
-                  finding the best apps, even help writing your resume with AI.
-                  Real support, for real life.
+                Technology shouldn’t be a barrier to your productivity. From initial setups to troubleshooting Wi-Fi, printers, and the latest AI tools, we provide hands-on support for the hardware and software that keep your day running. By handing off the technical issues to us, you can stop fighting with your gear and get back to the work that actually matters.
                 </p>
               </div>
             </div>
@@ -312,25 +307,7 @@ export default function HomePage() {
                   <StoreAccessPanel />
                 </div>
 
-                <div className="h-px w-full bg-white/10" aria-hidden="true" />
-
-                <div className=" border border-white/10 bg-black/22 px-5 py-5 md:px-6 md:py-6">
-                  <div className="grid gap-4 md:grid-cols-[auto_minmax(0,1fr)] md:items-center">
-                    <div
-                      className={`feature-icon flex h-16 w-16 items-center justify-center rounded-2xl ${availabilityFeature.iconClass}`}
-                    >
-                      <AvailabilityIcon size={32} strokeWidth={1.8} />
-                    </div>
-                    <div className="text-left">
-                      <h3 className="mb-[8px] font-display text-[clamp(1rem,2vw,1.65rem)] font-semibold text-techpay-heading">
-                        {availabilityFeature.title}
-                      </h3>
-                      <p className="text-[0.95rem] leading-[1.65] text-techpay-muted">
-                        {availabilityFeature.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>

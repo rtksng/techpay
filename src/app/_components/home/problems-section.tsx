@@ -17,7 +17,7 @@ export default function TechPayProblemsSection() {
   const kicker = "TechPay.ai Solution";
   const heading = "One Platform. Four Promises.";
   const intro =
-    "TechPay.ai brings together clarity, wider product choice, flexible payments, and dependable support through the local store people already trust.";
+    "Your journey does not end at checkout. If you need help getting started, setting something up, or solving a problem later, TechPay.ai connects you with real support.";
 
   const problems: ProblemCard[] = [
     {
