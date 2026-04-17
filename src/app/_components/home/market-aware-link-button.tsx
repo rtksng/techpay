@@ -11,7 +11,7 @@ import {
 
 type MarketAwareLinkButtonProps = {
   className: string;
-  kind: "catalog" | "recommendation";
+  kind: "catalog" | "recommendation" | "eligibility" | "helpdesk";
   label: string;
   loadingLabel?: string;
 };

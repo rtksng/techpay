@@ -7,7 +7,7 @@ const impactMetrics: FeaturesSectionDemoItem[] = [
     number: "500+",
     title: "Powering PHYGITAL Stores",
     description:
-      "Transforming local stores into access points for global inventory. Experience limitless choice with neighborhood convenience.",
+      "Turning every local store into an unlimited choice destination.",
     accentClass: "from-techpay-primary via-techpay-pink to-techpay-primary/70",
     borderClass: "border-techpay-primary/18",
     surfaceClass: "bg-linear-to-b from-white to-[#fff3f7]",
@@ -41,7 +41,7 @@ const impactMetrics: FeaturesSectionDemoItem[] = [
     number: "2",
     title: "International Presence",
     description:
-      "Growing across markets where access, affordability, and trust matter most.",
+      "Growing across markets where access, affordability and trust matters most.",
     accentClass: "from-techpay-purple via-[#be73d0] to-techpay-primary/70",
     borderClass: "border-techpay-purple/18",
     surfaceClass: "bg-linear-to-b from-white to-[#faf3ff]",
@@ -74,9 +74,10 @@ export default function TechPayImpactNumbersSection() {
             Impact Numbers
           </p>
           <h2 className="mb-[18px] font-display text-[1.85rem] font-bold leading-[1.12] tracking-[-0.03em] text-[#111111] md:text-[clamp(2rem,4vw,3.25rem)]">
-            TechPay.ai is helping more people access technology through trusted
-            local retail relationships.
+           Making Technology Accessible
           </h2>
+          <p className="text-[1.05rem] leading-[1.7] text-[#555555] max-w-[620px]">  TechPay.ai is helping more people access technology through trusted
+          local retail relationships.</p>
         </div>
 
         <FeaturesSectionDemo1

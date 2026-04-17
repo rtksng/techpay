@@ -159,12 +159,12 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                Forget generic recommendations. Our AI avoids the broad lists to match hardware directly to your unique professional needs, whether you're building automated testing frameworks or writing technical whitepapers. We look at real-time inventory from both in-store shelves and global wholesalers to find the most budget-friendly options for your next gadget.
+                Forget generic recommendations. Our AI listens to how you actually use a computer and finds the one built for your world - not everyone else's.
 
                 </p>
                 <MarketAwareLinkButton
-                  kind="catalog"
-                  label="Get Your Tailored List Now"
+                  kind="recommendation"
+                  label="Get Recommendations"
                   loadingLabel="Finding nearest store..."
                   className="btn-primary relative inline-flex items-center justify-center rounded-none px-5 py-3 text-[0.84rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
                 />
@@ -196,11 +196,11 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                Whether you need your gear delivered directly to your doorstep or prefer the hands-on experience of a local pickup, we bridge the gap between digital browsing and physical availability. Our platform offers a seamless transition from screen to store, ensuring every device in our inventory is accessible exactly when and where you need it. 
+                Browse it online. Feel it in Store. Find your perfect device and we will deliver it to you.
                 </p>
                 <MarketAwareLinkButton
                   kind="catalog"
-                  label="Browse Online, Feel In-Store"
+                  label="Get Your Device Today"
                   loadingLabel="Loading..."
                   className="btn-primary relative inline-flex items-center justify-center rounded-none px-6 py-3.5 text-[0.88rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
                 />
@@ -239,9 +239,14 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                Our quick approval procedure means you may have the tech you need right away. It just takes a few minutes, not days. Our interactive plan calculator lets you see your payments and choose a way to complete ownership that suits your financial goals exactly.  
+               A better computer should not feel out of reach. Our flexible payment options make it easier to bring home what you need. Get fast approvals without delays!
                 </p>
-                
+                <MarketAwareLinkButton
+                  kind="eligibility"
+                  label="Check Eligibility"
+                  loadingLabel="Loading..."
+                  className="btn-primary relative inline-flex items-center justify-center rounded-none px-6 py-3.5 text-[0.88rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
+                />
               </div>
             </div>
           </div>
@@ -269,8 +274,15 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                Technology shouldn’t be a barrier to your productivity. From initial setups to troubleshooting Wi-Fi, printers, and the latest AI tools, we provide hands-on support for the hardware and software that keep your day running. By handing off the technical issues to us, you can stop fighting with your gear and get back to the work that actually matters.
+                From getting connected on day one to fixing everyday hiccups - we're here for it all. WiFi setup, printer installation, finding the best apps. 
+                Real support, for real life.
                 </p>
+                <MarketAwareLinkButton
+                  kind="helpdesk"
+                  label="Subscribe for Support"
+                  loadingLabel="Loading..."
+                  className="btn-primary relative inline-flex items-center justify-center rounded-none px-6 py-3.5 text-[0.88rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
+                />
               </div>
             </div>
             <div
