@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
+  
   --color-techpay-bg: #010101;
   --color-techpay-primary: #ed1d5f;
   --color-techpay-orange: #f26422;
