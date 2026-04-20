@@ -4,6 +4,8 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js";
 
+const resolvePublicAssetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 export function mountTechPayScene({
   canvasEl,
   laptopShadowEl,
@@ -67,7 +69,7 @@ export function mountTechPayScene({
 
   const modelLoader = new GLTFLoader();
   modelLoader.load(
-    "/models/mac-noUv.glb",
+    resolvePublicAssetPath("/models/mac-noUv.glb"),
     (glb) => {
       if (destroyed) {
         disposeImportedScene(glb.scene);
@@ -176,7 +178,7 @@ export function mountTechPayScene({
   function createMaterials() {
     const textureLoader = new THREE.TextureLoader();
 
-    screenImageTexture = textureLoader.load("/assets/inner-image-laptop3.png", (texture) => {
+    screenImageTexture = textureLoader.load(resolvePublicAssetPath("/assets/inner-image-laptop3.png"), (texture) => {
       texture.flipY = false;
       texture.colorSpace = THREE.SRGBColorSpace;
       fitScreenTextureCover(texture);
@@ -189,7 +191,7 @@ export function mountTechPayScene({
       side: THREE.BackSide,
     });
 
-    const keyboardTexture = textureLoader.load("/assets/keyboard-overlay.png");
+    const keyboardTexture = textureLoader.load(resolvePublicAssetPath("/assets/keyboard-overlay.png"));
     keyboardMaterial = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       alphaMap: keyboardTexture,

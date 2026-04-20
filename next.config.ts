@@ -1,12 +1,17 @@
 import path from "node:path";
 import type { NextConfig } from "next";
 
+const basePath = "/staging";
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
-basePath: '/staging',
-  assetPrefix: '/staging',
+  basePath,
+  assetPrefix: basePath,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   images: {
- unoptimized: true,
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
