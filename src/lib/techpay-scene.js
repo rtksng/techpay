@@ -176,7 +176,7 @@ export function mountTechPayScene({
   function createMaterials() {
     const textureLoader = new THREE.TextureLoader();
 
-    screenImageTexture = textureLoader.load("/assets/inner-image-laptop.jpg", (texture) => {
+    screenImageTexture = textureLoader.load("/assets/inner-image-laptop.png", (texture) => {
       texture.flipY = false;
       texture.colorSpace = THREE.SRGBColorSpace;
       fitScreenTextureCover(texture);
@@ -764,10 +764,11 @@ export function mountTechPayScene({
           y: () => screenTexturePan.endY,
           ease: "none",
           scrollTrigger: {
-            trigger: "#how-it-works",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.5,
+            trigger: "#hero",
+            start: "top top",
+            endTrigger: "#how-it-works",
+            end: "top 45%",
+            scrub: 0.55,
             invalidateOnRefresh: true,
             immediateRender: false,
           },
