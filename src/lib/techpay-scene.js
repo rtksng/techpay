@@ -176,7 +176,7 @@ export function mountTechPayScene({
   function createMaterials() {
     const textureLoader = new THREE.TextureLoader();
 
-    screenImageTexture = textureLoader.load("/assets/inner-image-laptop.png", (texture) => {
+    screenImageTexture = textureLoader.load("/assets/inner-image-laptop3.png", (texture) => {
       texture.flipY = false;
       texture.colorSpace = THREE.SRGBColorSpace;
       fitScreenTextureCover(texture);
