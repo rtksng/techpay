@@ -493,8 +493,8 @@ function BenefitsSection() {
 function QuoteSection() {
   return (
     <section className="relative overflow-hidden bg-techpay-bg px-5 py-16 md:px-10 md:py-24 lg:px-[60px]">
-      <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[minmax(0,0.58fr)_minmax(0,0.72fr)] lg:items-center">
-        <div className="relative aspect-[4/3] overflow-hidden border border-white/10 bg-white/5">
+      <div className="mx-auto  max-w-[1440px]  lg:items-center">
+        {/* <div className="relative aspect-[4/3] overflow-hidden border border-white/10 bg-white/5">
           <Image
             src={publicAsset("/members/praveen_sahai.png")}
             alt="Praveen Sahai"
@@ -502,7 +502,7 @@ function QuoteSection() {
             sizes="(max-width: 1024px) 100vw, 520px"
             className="object-cover"
           />
-        </div>
+        </div> */}
         <figure>
           <blockquote className="font-display text-[1.85rem] font-semibold leading-[1.12] text-white">
             TechPay.ai challenges the siloed nature of retail technology by

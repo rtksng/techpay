@@ -1,12 +1,10 @@
 import Image from "next/image";
 import {
-  Compass,
-  CreditCard,
+  BotMessageSquare,
   Globe2,
-  Headset,
-
-  PanelsTopLeft,
-  
+  HandCoins,
+  MonitorCog,
+  PackageSearch,
   Store,
 } from "lucide-react";
 import TechPayImpactNumbersSection from "@/app/_components/home/impact-numbers-section";
@@ -156,9 +154,9 @@ export default function HomePage() {
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
                     <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-primary/12 text-techpay-primary">
-                      <Compass size={22} strokeWidth={1.8} />
+                      <BotMessageSquare size={22} strokeWidth={1.8} />
                     </span>
-                    <span>Get expert guidance</span>
+                    <span>Get Recommendations</span>
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
@@ -193,7 +191,7 @@ export default function HomePage() {
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
                     <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-purple/14 text-techpay-purple">
-                      <PanelsTopLeft size={22} strokeWidth={1.8} />
+                      <PackageSearch size={22} strokeWidth={1.8} />
                     </span>
                     <span>Unlimited Choices</span>
                   </span>
@@ -236,7 +234,7 @@ export default function HomePage() {
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
                     <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
-                      <CreditCard size={22} strokeWidth={1.8} />
+                      <HandCoins size={22} strokeWidth={1.8} />
                     </span>
                     <span>Easy Installments</span>
                   </span>
@@ -271,9 +269,9 @@ export default function HomePage() {
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
                     <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
-                      <Headset size={22} strokeWidth={1.8} />
+                      <MonitorCog size={22} strokeWidth={1.8} />
                     </span>
-                    <span>Personalized IT Help Desk</span>
+                    <span>Personalized IT Helpdesk</span>
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">

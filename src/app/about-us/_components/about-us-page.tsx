@@ -1,6 +1,7 @@
 import FollowingPointerDemo from "./following-pointer-demo";
 import SplitText from "./split-text";
 import TechPayExperience from "@/components/techpay-experience";
+import { Building2, Globe2, Landmark, MapPinned } from "lucide-react";
 import FeaturesSectionDemo, {
   type FeatureSectionItem,
 } from "./offices-grid";
@@ -65,6 +66,7 @@ const officeLocations = [
       "Karnataka 560034",
     ],
     accent: "from-techpay-primary/30 to-techpay-orange/20",
+    Icon: Building2,
   },
   {
     title: "TechPay.ai Singapore",
@@ -73,6 +75,7 @@ const officeLocations = [
       "East Tower, Singapore 018936",
     ],
     accent: "from-techpay-purple/30 to-techpay-primary/15",
+    Icon: Landmark,
   },
   {
     title: "TechPay.ai SDN BHD Malaysia",
@@ -83,6 +86,7 @@ const officeLocations = [
       "WP Kuala Lumpur 6000, Malaysia",
     ],
     accent: "from-techpay-orange/30 to-techpay-primary/15",
+    Icon: MapPinned,
   },
   {
     title: "Coming Soon",
@@ -93,11 +97,13 @@ const officeLocations = [
       "Asia: UAE",
     ],
     accent: "from-white/14 to-techpay-primary/12",
+    Icon: Globe2,
   },
 ];
 
 const officeFeatures: FeatureSectionItem[] = officeLocations.map((office) => ({
   title: office.title,
+  icon: <office.Icon className="h-6 w-6" strokeWidth={1.8} />,
   description: (
     <div className="space-y-1.5">
       {office.lines.map((line) => (
