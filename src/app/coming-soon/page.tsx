@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ScrollReset from "@/app/coming-soon/scroll-reset";
+import { ButtonLink } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Coming Soon | TechPay.ai",
@@ -31,18 +31,23 @@ export default function ComingSoonPage() {
             This page is being built right now.
           </h1>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Link
+            <ButtonLink
               href="/"
-              className="btn-primary btn-pill relative isolate inline-flex justify-center overflow-hidden px-8 py-[16px] text-[1rem] font-bold text-white no-underline sm:w-auto"
+              className="sm:w-auto"
+              fullWidth
+              size="lg"
             >
               Back To Home
-            </Link>
-            <Link
+            </ButtonLink>
+            <ButtonLink
               href="/about-us"
-              className="inline-flex justify-center border border-white/12 px-8 py-[16px] text-[1rem] font-semibold text-techpay-heading no-underline transition hover:border-techpay-primary/45 hover:text-techpay-primary sm:w-auto"
+              className="sm:w-auto"
+              fullWidth
+              size="lg"
+              variant="secondary"
             >
               Learn About TechPay.ai
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </section>

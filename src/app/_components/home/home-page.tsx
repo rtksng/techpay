@@ -31,6 +31,12 @@ const storeFeature = {
   Icon: Store,
 };
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function publicAsset(path: `/${string}`) {
+  return `${publicBasePath}${path}`;
+}
+
 export default function HomePage() {
   const AvailabilityIcon = availabilityFeature.Icon;
   const StoreFeatureIcon = storeFeature.Icon;
@@ -91,7 +97,7 @@ export default function HomePage() {
 
       <div className="monitor-backdrop" aria-hidden="true">
         <Image
-          src="/parts/monitor1.png"
+          src={publicAsset("/parts/monitor1.png")}
           alt=""
           fill
           priority
@@ -102,7 +108,7 @@ export default function HomePage() {
 
       <div className="headphones-backdrop" aria-hidden="true">
         <Image
-          src="/parts/pri-head2.png"
+          src={publicAsset("/parts/pri-head2.png")}
           alt=""
           width={700}
           height={526}
@@ -123,10 +129,7 @@ export default function HomePage() {
           </div>
 
           <div className="hero-content relative z-[3] mx-auto max-w-[22rem] px-2 sm:max-w-[30rem] md:max-w-full md:px-0">
-            <p className="tag mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary">
-              {" "}
-              Welcome to TechPay.ai
-            </p>
+          
             <h1 className="mb-4 font-display text-[clamp(2.6rem,8vw,5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-techpay-heading">
               You Deserve a Computer
             </h1>
@@ -166,7 +169,7 @@ export default function HomePage() {
                   kind="recommendation"
                   label="Get Recommendations"
                   loadingLabel="Finding nearest store..."
-                  className="btn-primary relative inline-flex items-center justify-center rounded-none px-5 py-3 text-[0.84rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
+                  size="compact"
                 />
               </div>
             </div>
@@ -202,7 +205,7 @@ export default function HomePage() {
                   kind="catalog"
                   label="Get Your Device Today"
                   loadingLabel="Loading..."
-                  className="btn-primary relative inline-flex items-center justify-center rounded-none px-6 py-3.5 text-[0.88rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
+                  size="md"
                 />
               </div>
             </div>
@@ -245,7 +248,7 @@ export default function HomePage() {
                   kind="eligibility"
                   label="Check Eligibility"
                   loadingLabel="Loading..."
-                  className="btn-primary relative inline-flex items-center justify-center rounded-none px-6 py-3.5 text-[0.88rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
+                  size="md"
                 />
               </div>
             </div>
@@ -281,7 +284,7 @@ export default function HomePage() {
                   kind="helpdesk"
                   label="Subscribe for Support"
                   loadingLabel="Loading..."
-                  className="btn-primary relative inline-flex items-center justify-center rounded-none px-6 py-3.5 text-[0.88rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
+                  size="md"
                 />
               </div>
             </div>

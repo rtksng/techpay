@@ -17,6 +17,7 @@ export function mountTechPayScene({
   matchMediaInstances,
   enableScrollExperience = true,
   animateHeroContent = true,
+  onIntroComplete,
 }) {
   RectAreaLightUniformsLib.init();
 
@@ -99,7 +100,9 @@ export function mountTechPayScene({
       window.addEventListener("resize", updateSceneSize);
     },
     undefined,
-    () => {},
+    () => {
+      onIntroComplete?.();
+    },
   );
 
   return () => {
@@ -467,6 +470,15 @@ export function mountTechPayScene({
     const heroPose = getHeroLaptopPose();
     const heroContent = document.querySelector(".hero-content");
     const timeline = trackAnimation(gsap.timeline());
+    let hasCompletedIntro = false;
+    const completeIntro = () => {
+      if (hasCompletedIntro) {
+        return;
+      }
+
+      hasCompletedIntro = true;
+      onIntroComplete?.();
+    };
 
     if (heroContent && animateHeroContent) {
       gsap.set(heroContent, { autoAlpha: 0, y: 32 });
@@ -495,7 +507,8 @@ export function mountTechPayScene({
       .to(macGroup.scale, { duration: 2.2, x: heroPose.scale, y: heroPose.scale, z: heroPose.scale, ease: "power3.out" }, 0)
       .fromTo(lidGroup.rotation, { x: 0.5 * Math.PI }, { duration: 1.8, x: -0.2 * Math.PI, ease: "power2.inOut" }, 0.4)
       .to(screenMaterial, { duration: 0.15, opacity: 0.96 }, 1.3)
-      .to(screenLight, { duration: 0.15, intensity: 1.5 }, 1.3);
+      .to(screenLight, { duration: 0.15, intensity: 1.5 }, 1.3)
+      .call(completeIntro, undefined, 2.2);
 
     animatedBackdropEls.forEach((backdropEl) => {
       timeline.to(

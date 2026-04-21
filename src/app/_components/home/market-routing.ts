@@ -20,6 +20,11 @@ export const DEFAULT_MARKET: MarketCode = "IN";
 
 const MARKET_STORAGE_KEY = "techpayMarket";
 const STORE_ID_STORAGE_KEY_PREFIX = "techpayStoreId:";
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function publicAsset(path: `/${string}`) {
+  return `${publicBasePath}${path}`;
+}
 
 export const MARKET_LABELS: Record<MarketCode, string> = {
   IN: "India",
@@ -31,7 +36,7 @@ export const MARKET_CONFIG: Record<MarketCode, MarketConfig> = {
     dashboardApiUrl: "https://shop.techpay.ai/in/api/dashboard",
     geo: "in",
     dashboardUrl: "https://shop.techpay.ai/in/#/dashboard",
-    qrSrc: "/assets/india-qr.png",
+    qrSrc: publicAsset("/assets/india-qr.png"),
     qrWidth: 1024,
     qrHeight: 1024,
   },
@@ -39,7 +44,7 @@ export const MARKET_CONFIG: Record<MarketCode, MarketConfig> = {
     dashboardApiUrl: "https://shop.techpay.ai/my/api/dashboard",
     geo: "my",
     dashboardUrl: "https://shop.techpay.ai/my/#/dashboard",
-    qrSrc: "/assets/malaysia-qr.png",
+    qrSrc: publicAsset("/assets/malaysia-qr.png"),
     qrWidth: 1018,
     qrHeight: 1012,
   },

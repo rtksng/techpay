@@ -8,19 +8,30 @@ import {
   resolveMarket,
   resolveRecommendationUrl,
 } from "@/app/_components/home/market-routing";
+import {
+  ButtonAnchor,
+  type ButtonSize,
+  type ButtonVariant,
+} from "@/components/ui/button";
 
 type MarketAwareLinkButtonProps = {
-  className: string;
+  className?: string;
+  fullWidth?: boolean;
   kind: "catalog" | "recommendation" | "eligibility" | "helpdesk";
   label: string;
   loadingLabel?: string;
+  size?: ButtonSize;
+  variant?: ButtonVariant;
 };
 
 export default function MarketAwareLinkButton({
   className,
+  fullWidth,
   kind,
   label,
   loadingLabel = "Loading...",
+  size = "md",
+  variant = "primary",
 }: MarketAwareLinkButtonProps) {
   const [isResolving, setIsResolving] = useState(false);
   const defaultMarket = getPreferredMarket(DEFAULT_MARKET);
@@ -61,13 +72,17 @@ export default function MarketAwareLinkButton({
   };
 
   return (
-    <a
+    <ButtonAnchor
       href={defaultHref}
       onClick={handleClick}
-      aria-busy={isResolving}
       className={className}
+      fullWidth={fullWidth}
+      isLoading={isResolving}
+      loadingLabel={loadingLabel}
+      size={size}
+      variant={variant}
     >
-      {isResolving ? loadingLabel : label}
-    </a>
+      {label}
+    </ButtonAnchor>
   );
 }

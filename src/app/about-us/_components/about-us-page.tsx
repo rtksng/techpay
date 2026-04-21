@@ -87,7 +87,7 @@ const officeLocations = [
   {
     title: "Coming Soon",
     lines: [
-      "South East Asia: Singapore, Malaysia, Indonesia, Thailand, Vietnam, Philippines",
+      "South East Asia: Indonesia, Thailand, Vietnam, Philippines",
       "North East Asia: Japan, South Korea",
       "Oceania: Australia West",
       "Asia: UAE",

@@ -11,6 +11,12 @@ const aboutLink = {
   label: "About Us",
 } as const;
 
+const futureRetailLink = {
+  href: "/future-of-retail",
+  absoluteHref: "/future-of-retail",
+  label: "Future of Retail",
+} as const;
+
 const partnerChildLinks = [
   { href: "/oem", absoluteHref: "/oem", label: "OEM" },
   { href: "/distributors", absoluteHref: "/distributors", label: "Distributors" },
@@ -29,6 +35,9 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
   const onLandingPage = isLandingPage ?? pathname === "/";
   const homeHref = onLandingPage ? "#hero" : "/";
   const aboutResolvedHref = onLandingPage ? aboutLink.href : aboutLink.absoluteHref;
+  const futureRetailResolvedHref = onLandingPage
+    ? futureRetailLink.href
+    : futureRetailLink.absoluteHref;
   const partnerChildren = partnerChildLinks.map((link) => ({
     ...link,
     resolvedHref: onLandingPage ? link.href : link.absoluteHref,
@@ -37,7 +46,17 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
 
   useEffect(() => {
     if (pathIsUnderPartner(pathname)) {
-      setPartnerOpen(true);
+      let cancelled = false;
+
+      queueMicrotask(() => {
+        if (!cancelled) {
+          setPartnerOpen(true);
+        }
+      });
+
+      return () => {
+        cancelled = true;
+      };
     }
   }, [pathname]);
 
@@ -87,16 +106,22 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
             </p>
             <div className="menu-links grid gap-[14px] sm:gap-[18px]">
               <Link
-                className="menu-nav-enter w-fit text-[clamp(2.2rem,12vw,3.6rem)] font-extrabold leading-[0.98] tracking-[-0.05em] text-techpay-heading no-underline transition hover:text-techpay-primary md:text-[clamp(2.6rem,7vw,5.8rem)]"
+                className="menu-nav-enter w-fit text-[clamp(1.85rem,9vw,2.9rem)] font-extrabold leading-[1] tracking-[-0.04em] text-techpay-heading no-underline transition hover:text-techpay-primary md:text-[clamp(2.2rem,5.2vw,4.4rem)]"
                 href={aboutResolvedHref}
               >
                 {aboutLink.label}
+              </Link>
+              <Link
+                className="menu-nav-enter w-fit text-[clamp(1.85rem,9vw,2.9rem)] font-extrabold leading-[1] tracking-[-0.04em] text-techpay-heading no-underline transition hover:text-techpay-primary md:text-[clamp(2.2rem,5.2vw,4.4rem)]"
+                href={futureRetailResolvedHref}
+              >
+                {futureRetailLink.label}
               </Link>
 
               <div className="menu-nav-enter menu-partner-root grid gap-0">
                 <button
                   type="button"
-                  className="menu-partner-trigger group flex w-full max-w-full cursor-pointer items-center gap-3 rounded-xl border-0 bg-transparent py-1 text-left text-[clamp(2.2rem,12vw,3.6rem)] font-extrabold leading-[0.98] tracking-[-0.05em] text-techpay-heading transition hover:text-techpay-primary md:gap-4 md:text-[clamp(2.6rem,7vw,5.8rem)]"
+                  className="menu-partner-trigger group flex w-full max-w-full cursor-pointer items-center gap-3 rounded-xl border-0 bg-transparent py-1 text-left text-[clamp(1.85rem,9vw,2.9rem)] font-extrabold leading-[1] tracking-[-0.04em] text-techpay-heading transition hover:text-techpay-primary md:gap-4 md:text-[clamp(2.2rem,5.2vw,4.4rem)]"
                   aria-expanded={partnerOpen}
                   aria-controls={partnerPanelId}
                   id={`${partnerPanelId}-trigger`}

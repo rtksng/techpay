@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ButtonLink } from "@/components/ui/button";
 
 type JourneyStep = {
   stepLabel: string;
@@ -77,12 +78,14 @@ export default function TechPayHowItWorksSection() {
         </div>
 
         <div className="mt-10 md:mt-12">
-          <a
+          <ButtonLink
             href="#qr-section"
-            className="btn-primary btn-pill relative isolate inline-flex w-full justify-center overflow-hidden px-8 py-[16px] text-[1rem] font-bold text-white no-underline shadow-[0_18px_42px_rgba(237,29,95,0.24)] sm:w-auto"
+            className="sm:w-auto"
+            fullWidth
+            size="lg"
           >
             Find a Store or Scan the QR
-          </a>
+          </ButtonLink>
         </div>
       </div>
     </section>

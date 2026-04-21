@@ -12,6 +12,7 @@ import {
   setPreferredMarket,
   type MarketCode,
 } from "@/app/_components/home/market-routing";
+import { Button } from "@/components/ui/button";
 
 const MARKET_SLIDES: MarketCode[] = ["IN", "MY"];
 
@@ -77,43 +78,40 @@ export default function StoreAccessPanel() {
       </div>
 
       <div className="flex items-center gap-2">
-        <button
-          type="button"
+        <Button
           onClick={() => handleMove(-1)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/8 text-techpay-heading transition hover:border-techpay-orange/35 hover:bg-white/14"
           aria-label="Show previous QR code"
+          size="icon"
+          variant="darkIcon"
         >
           <ChevronLeft className="h-4 w-4" />
-        </button>
+        </Button>
 
         {MARKET_SLIDES.map((market, index) => {
           const isActive = index === activeIndex;
 
           return (
-            <button
+            <Button
               key={market}
-              type="button"
               onClick={() => handleSelectMarket(index)}
-              className={`inline-flex min-w-[90px] items-center justify-center border px-4 py-2 text-[0.76rem] font-semibold uppercase tracking-[0.08em] transition ${
-                isActive
-                  ? "border-techpay-orange/45 bg-techpay-orange/12 text-techpay-heading"
-                  : "border-white/12 bg-white/6 text-techpay-muted hover:border-white/20 hover:bg-white/10"
-              }`}
+              active={isActive}
               aria-pressed={isActive}
+              size="market"
+              variant="market"
             >
               {MARKET_LABELS[market]}
-            </button>
+            </Button>
           );
         })}
 
-        <button
-          type="button"
+        <Button
           onClick={() => handleMove(1)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/8 text-techpay-heading transition hover:border-techpay-orange/35 hover:bg-white/14"
           aria-label="Show next QR code"
+          size="icon"
+          variant="darkIcon"
         >
           <ChevronRight className="h-4 w-4" />
-        </button>
+        </Button>
       </div>
     </div>
   );

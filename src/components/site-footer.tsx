@@ -5,6 +5,7 @@ import {
   IconBrandX,
 } from "@tabler/icons-react";
 import LogoMark from "@/components/logo-mark";
+import { ButtonAnchor } from "@/components/ui/button";
 
 const socialLinks = [
   {
@@ -38,6 +39,9 @@ export default function SiteFooter() {
         </div>
         <div className="flex flex-col items-center gap-4 md:items-end">
           <div className="footer-links flex flex-col items-center gap-3 md:flex-row md:items-start md:gap-8">
+            <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/future-of-retail">
+              Future of Retail
+            </Link>
             <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
               Privacy Policy
             </Link>
@@ -54,16 +58,17 @@ export default function SiteFooter() {
               const isExternal = social.href.startsWith("http");
 
               return (
-                <a
+                <ButtonAnchor
                   key={social.label}
                   href={social.href}
                   aria-label={`TechPay.ai on ${social.label}`}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-techpay-muted/20 text-techpay-muted transition hover:border-techpay-primary/45 hover:bg-techpay-primary/8 hover:text-techpay-heading"
                   rel={isExternal ? "noreferrer" : undefined}
+                  size="socialIcon"
                   target={isExternal ? "_blank" : undefined}
+                  variant="socialIcon"
                 >
                   <Icon aria-hidden="true" size={19} stroke={1.8} />
-                </a>
+                </ButtonAnchor>
               );
             })}
           </div>

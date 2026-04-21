@@ -23,6 +23,12 @@ const accents = [
   "from-techpay-purple via-fuchsia-300 to-transparent",
 ];
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function resolveImageSrc(src: string) {
+  return src.startsWith("/") ? `${publicBasePath}${src}` : src;
+}
+
 export default function FollowingPointerDemo({
   leaders,
 }: {
@@ -53,7 +59,9 @@ export default function FollowingPointerDemo({
                   />
                   <div className="relative h-full w-full">
                     <Image
-                      src={leader.image ?? portraitImages[index % portraitImages.length]}
+                      src={resolveImageSrc(
+                        leader.image ?? portraitImages[index % portraitImages.length]
+                      )}
                       alt={`${leader.name} portrait`}
                       fill
                       quality={95}
