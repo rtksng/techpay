@@ -504,7 +504,7 @@ function QuoteSection() {
           />
         </div>
         <figure>
-          <blockquote className="font-display text-[1.85rem] font-semibold leading-[1.12] text-white md:text-[2.35rem] xl:text-[2.6rem]">
+          <blockquote className="font-display text-[1.85rem] font-semibold leading-[1.12] text-white">
             TechPay.ai challenges the siloed nature of retail technology by
             focusing on the customer experience as a single, continuous journey
             rather than fragmented layers. Built on principles of visibility,
