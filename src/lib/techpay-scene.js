@@ -44,7 +44,7 @@ export function mountTechPayScene({
 
   const screenSize = [29.4, 20];
   const screenTextureOverscan = 0.92;
-  const screenTextureTopTrim = 0.04;
+  const screenTextureTopTrim = 0;
   const introLaptopScale = 0.78;
   const heroLaptopScale = 1.1;
   const sectionLaptopY = -6;
@@ -781,8 +781,8 @@ export function mountTechPayScene({
           scrollTrigger: {
             trigger: "#hero",
             start: "top top",
-            endTrigger: "#how-it-works",
-            end: "top 45%",
+            endTrigger: "#infinite-shelf",
+            end: "top 27%",
             scrub: 0.55,
             invalidateOnRefresh: true,
             immediateRender: false,

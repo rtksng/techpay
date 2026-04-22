@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,9 +10,11 @@ const AUTO_ADVANCE_MS = 3200;
 
 export type StaggerTestimonialItem = {
   id: string;
+  persona?: string;
   testimonial: string;
   by: string;
-  imgSrc: string;
+  imgSrc?: string;
+  useCase?: string;
 };
 
 type StaggerTestimonialsProps = {
@@ -100,26 +101,38 @@ function TestimonialCard({
         }}
       />
 
-      <Image
-        src={testimonial.imgSrc}
-        alt={testimonial.by.split(",")[0]}
-        width={56}
-        height={56}
-        sizes="56px"
-        className={cn(
-          "mb-5 h-14 w-14 object-cover object-top",
-          isCenter ? "bg-slate-100" : "bg-white"
-        )}
-        style={{
-          boxShadow: isCenter
-            ? "3px 3px 0px rgba(17,17,17,0.08)"
-            : "3px 3px 0px rgba(15,23,42,0.08)",
-        }}
-      />
+      {testimonial.persona || testimonial.useCase ? (
+        <div className="mb-4 flex flex-col items-start gap-2">
+          {testimonial.persona ? (
+            <span
+              className={cn(
+                "inline-flex text-[0.66rem] font-bold uppercase tracking-[0.16em]",
+                isCenter
+                  ? "text-techpay-primary"
+                  : "text-slate-500"
+              )}
+            >
+              {testimonial.persona}
+            </span>
+          ) : null}
+          {testimonial.useCase ? (
+            <span
+              className={cn(
+                "inline-flex max-w-full border-l-2 px-3 py-1.5 text-[0.68rem] font-semibold leading-tight",
+                isCenter
+                  ? "border-techpay-purple bg-techpay-purple/8 text-slate-800"
+                  : "border-slate-400 bg-white/70 text-slate-600"
+              )}
+            >
+              {testimonial.useCase}
+            </span>
+          ) : null}
+        </div>
+      ) : null}
 
       <h3
         className={cn(
-          "pr-2 text-[0.98rem] font-medium leading-[1.5] md:text-[1.15rem]",
+          "pr-2 text-[0.82rem] font-medium leading-[1.5] md:text-[0.9rem]",
           isCenter ? "text-[#111111]" : "text-slate-900"
         )}
       >
@@ -143,7 +156,7 @@ export function StaggerTestimonials({
   className,
 }: StaggerTestimonialsProps) {
   const [cardWidth, setCardWidth] = useState(365);
-  const [cardHeight, setCardHeight] = useState(452);
+  const [cardHeight, setCardHeight] = useState(455);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPageVisible, setIsPageVisible] = useState(true);
 
@@ -151,18 +164,18 @@ export function StaggerTestimonials({
     const updateSize = () => {
       if (window.innerWidth >= 1280) {
         setCardWidth(365);
-        setCardHeight(452);
+        setCardHeight(455);
         return;
       }
 
       if (window.innerWidth >= 768) {
         setCardWidth(320);
-        setCardHeight(432);
+        setCardHeight(470);
         return;
       }
 
       setCardWidth(270);
-      setCardHeight(420);
+      setCardHeight(455);
     };
 
     updateSize();

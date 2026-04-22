@@ -5,84 +5,84 @@ import {
 
 const testimonials: StaggerTestimonialItem[] = [
   {
-    id: "arjun-sharma",
+    id: "student-coding-pune",
+    persona: "Student",
+    useCase: "Coding & Technical Projects",
     testimonial:
-      "I run an accounting practice and needed a reliable machine for GST filings and video calls. The honest comparison of models and the monthly plan meant I didn't have to drain my working capital in one shot.",
-    by: "Arjun Sharma, India",
-    imgSrc:
-      "https://images.pexels.com/photos/7529112/pexels-photo-7529112.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "I needed a laptop for a coding bootcamp and didn't want to guess on memory or storage specs. The retail store executive explained the hardware details like a friend would. The offers on TechPay.ai platform fit my budget perfectly, so I could focus on my bootcamp instead of the cost.",
+    by: "Rohan Mehta (Pune, India)",
   },
   {
-    id: "priya-nair",
+    id: "student-creative-penang",
+    persona: "Student",
+    useCase: "Creative & Digital Art",
     testimonial:
-      "I was unsure which laptop would suit my freelance projects. The team walked me through the specs without any pressure. Getting approved on the spot meant I could start my new contract the same week.",
-    by: "Priya Nair, India",
-    imgSrc:
-      "https://images.pexels.com/photos/13109152/pexels-photo-13109152.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "I am design student from Penang. I was worried about hidden fees & payment options before visiting a TechPay.ai powered Phygital store. The store was upfront about everything, and I walked out with a laptop that handles high-fidelity rendering and digital art like a 'piece of a cake'. The flexible payments & easy instalments took away all my worries.",
+    by: "Customer Name (Penang, Malaysia)",
   },
   {
-    id: "rohan-mehta",
+    id: "professional-office-mumbai",
+    persona: "Professional",
+    useCase: "Everyday Office Work",
     testimonial:
-      "This was my first laptop for a coding bootcamp. I didn’t want to guess on RAM or SSD specs, and the team explained everything like a friend would. The payment schedule fits my student budget perfectly.",
-    by: "Rohan Mehta, India",
-    imgSrc:
-      "https://images.pexels.com/photos/30109427/pexels-photo-30109427.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "Running an accounting practice requires a reliable machine. From Number crunching to GST filings & record keeping & what not. The recommendation tool gave me a real comparison, and the monthly plan meant I didn't have to drain my working capital to stay productive.",
+    by: "Arjun Sharma (Mumbai, India)",
   },
   {
-    id: "ananya-iyer",
+    id: "professional-engineering-shah-alam",
+    persona: "Professional",
+    useCase: "Development & Engineering",
     testimonial:
-      "I needed a high-performance machine for architecture classes, but was worried about the cost. TechPay.ai kept the terms clear, and I left with a laptop that can actually handle complex 3D rendering work.",
-    by: "Ananya Iyer, India",
-    imgSrc:
-      "https://images.pexels.com/photos/16499147/pexels-photo-16499147.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "Since my old device had broken down, I needed a new device urgently for work. A device that could handle design applications like Autodesk & also load large excel files. Buying a device on TechPay.ai was almost instantenous, giving me the speed I needed for my daily office work without any administrative delay.",
+    by: "Customer Name (Shah Alam, Malaysia)",
   },
   {
-    id: "vikram-malhotra",
+    id: "professional-sales-chennai",
+    persona: "Professional",
+    useCase: "Sales & Field Work",
     testimonial:
-      "Chennai heat and daily commute meant I wanted something light with strong battery life. The store let me test the keyboard and trackpad, then sorted TechPay.ai in one visit with no awkward follow-ups or surprises later.",
-    by: "Vikram Malhotra, India",
-    imgSrc:
-      "https://images.pexels.com/photos/7276199/pexels-photo-7276199.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "My daily commute in the Chennai heat meant I needed something light with strong battery life for field work. The store let me test the hardware, then sorted the financing in one visit with no awkward surprises later.",
+    by: "Vikram Iyer (Chennai, India)",
   },
   {
-    id: "juvita-majimbun",
+    id: "creative-video-bengaluru",
+    persona: "Creative",
+    useCase: "Design & Video Editing",
     testimonial:
-      "Working in finance, I needed speed for spreadsheets and dashboards. Approval took minutes in-store, and the staff gave me the time to compare hardware until the choice felt exactly right.",
-    by: "Juvita Majimbun, Malaysia",
-    imgSrc:
-      "https://images.pexels.com/photos/13763023/pexels-photo-13763023.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "I was unsure of which laptop to pick for my freelance design work. The AI tool on TechPay.ai gave me a personalized reommendation that amazed me. Getting finance approval on the spot made it possible to start my video editing work contract the same week.",
+    by: "Priya Nair (Bengaluru, India)",
   },
   {
-    id: "rogayah-singgon",
+    id: "creative-portfolio-malaka",
+    persona: "Creative",
+    useCase: "Portfolio Design & High Performance",
     testimonial:
-      "As a design student, I was worried about hidden fees. The store was upfront about everything, and I walked out with a laptop that actually handles my heavy software instead of just the cheapest model on the shelf.",
-    by: "Rogayah Singgon, Malaysia",
-    imgSrc:
-      "https://images.pexels.com/photos/30604887/pexels-photo-30604887.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "I needed a laptop for my architecture classes and was worried high-performance models may not available in my city. TechPay.ai platform was able to source my device from the distributor directly & ship it the store in my neighborhood.",
+    by: "Customer Name (Malaka, Malaysia)",
   },
   {
-    id: "welson-bujang",
+    id: "gamer-high-frame-rate-ipoh",
+    persona: "Gamer",
+    useCase: "Competitive & High Frame-Rate",
     testimonial:
-      "Paying upfront for a quality laptop felt out of reach for our family business. TechPay.ai explained the installments clearly, and we left with a machine we could use for orders and accounts immediately.",
-    by: "Welson Bujang, Malaysia",
-    imgSrc:
-      "https://images.pexels.com/photos/16737552/pexels-photo-16737552.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "I am an amature gamer. I needed a device that supports high frame-rate gaming & streaming. I also wanted to use the device for my project work in school. The store manager explained the technical differences & helped me pick a device that actually fits for my school work and gaming needs.",
+    by: "Customer Name (Ipoh, Malaysia)",
   },
   {
-    id: "linsay-ganyun",
+    id: "home-office-johor-bahru",
+    persona: "Home User",
+    useCase: "Home Office & Remote Work",
     testimonial:
-      "We bought through a partner store for our home-based business. Splitting the payments made it easy to buy a proper, long-lasting machine now instead of compromising on something we’d have to replace in a year.",
-    by: "Linsay Ganyun, Malaysia",
-    imgSrc:
-      "https://images.pexels.com/photos/3197569/pexels-photo-3197569.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "Paying upfront for a quality laptop felt out of reach for our family business in Johor Bahru. We needed it for accounts and accessing our partner sites. The easy instalments on TechPay.ai provided us with the cash flow relief so we did not have to worry about upfront capex investment for our home office.",
+    by: "Customer Name (Johor Bahru, Malaysia)",
   },
   {
-    id: "rayner-jinggut",
+    id: "home-learning-delhi",
+    persona: "Home User",
+    useCase: "Learning & Family Hobbies",
     testimonial:
-      "I wanted a serious upgrade for coursework and high-end performance, but I didn't want a rushed sales pitch. The team explained the technical differences clearly so I could pick the machine that actually fits how I play and work.",
-    by: "Rayner Jinggut, Malaysia",
-    imgSrc:
-      "https://images.pexels.com/photos/2751061/pexels-photo-2751061.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "We bought a budget friendly desktop through a TechPay.ai partner store for our kids to self-learn from educational apps & AI tools. Having a personalized help-desk support as part of the purchase was the best decision we made.",
+    by: "Neha Gupta (Delhi, India)",
   },
 ];
 
@@ -95,7 +95,6 @@ export default function TechPayTestimonialsSection() {
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute left-[-6%] top-10 h-64 w-64 rounded-full bg-techpay-primary/8 blur-3xl" />
         <div className="absolute right-[-8%] top-1/4 h-72 w-72 rounded-full bg-techpay-purple/8 blur-3xl" />
-        {/* <div className="absolute bottom-[-4rem] left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-techpay-orange/6 blur-3xl" /> */}
       </div>
 
       <div className="relative mx-auto max-w-[1440px] px-5 md:px-[60px]">
@@ -104,10 +103,13 @@ export default function TechPayTestimonialsSection() {
             FROM FIRST STEPS TO BIG WINS
           </p>
           <h2 className="mb-[18px] font-display text-[1.85rem] font-bold leading-[1.12] tracking-[-0.03em] text-[#111111] md:text-[clamp(2rem,4vw,3.25rem)]">
-         Real Stories Real Progress
+            Real Stories Real Progress
           </h2>
-          <p className="text-[1.05rem] leading-[1.7] text-[#555555] max-w-[620px]"> Families, students, workers, and small business owners are  using TechPay.ai to take the next step.</p>
-        </div>  
+          <p className="max-w-[620px] text-[1.05rem] leading-[1.7] text-[#555555]">
+            Families, students, workers, and small business owners are using
+            TechPay.ai to take the next step.
+          </p>
+        </div>
       </div>
 
       <StaggerTestimonials items={testimonials} />

@@ -17,7 +17,11 @@ import {
   UsersRound,
   WalletCards,
 } from "lucide-react";
+import HeroFeatureStackEnhancer from "@/app/future-of-retail/_components/hero-feature-stack-enhancer";
 import MarketAwareLinkButton from "@/app/_components/home/market-aware-link-button";
+import FeaturesSectionDemo1, {
+  type FeaturesSectionDemoItem,
+} from "@/components/ui/features-section-demo-1";
 import { ButtonLink } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -39,20 +43,20 @@ const comparisonRows = [
   {
     feature: "Product Range",
     traditional: "Limited to shelf space",
-    ecommerce: "Unlimited catalogue",
+    ecommerce: "Extended catalogue",
     phygital: "In-store + endless aisle",
   },
   {
     feature: "Personalisation",
     traditional: "Depends on staff",
-    ecommerce: "Algorithm-based",
+    ecommerce: "Customer interaction & Algorithm-based",
     phygital: "Real-time AI profiling",
   },
   {
     feature: "Financing",
     traditional: "In-store EMI only",
-    ecommerce: "Online payment options",
-    phygital: "Integrated at any touchpoint",
+    ecommerce: "Online with flexible payment options",
+    phygital: " Online with flexible payment options. Integrated at any touchpoint",
   },
   {
     feature: "After-sales Support",
@@ -74,53 +78,54 @@ const comparisonRows = [
   },
 ] as const;
 
-const benefits: Array<{
-  title: string;
-  description: string;
-  Icon: IconComponent;
-  accentClass: string;
-}> = [
+const benefits: FeaturesSectionDemoItem[] = [
   {
     title: "Always Connected",
     description:
       "Digital capabilities available on the shop floor - AI, live inventory, and real-time pricing at every touchpoint.",
-    Icon: PanelsTopLeft,
-    accentClass: "text-techpay-primary bg-techpay-primary/10 border-techpay-primary/20",
+    icon: <PanelsTopLeft className="h-6 w-6" aria-hidden="true" />,
+    accentClass: "from-techpay-primary via-techpay-pink to-techpay-purple/75",
+    glowClass: "bg-techpay-primary/12",
   },
   {
     title: "Every Persona Served",
     description:
       "From the tech-savvy gamer to the first-time laptop buyer - every visitor gets a tailored journey.",
-    Icon: UsersRound,
-    accentClass: "text-techpay-orange bg-techpay-orange/10 border-techpay-orange/20",
+    icon: <UsersRound className="h-6 w-6" aria-hidden="true" />,
+    accentClass: "from-techpay-orange via-techpay-primary to-techpay-purple/75",
+    glowClass: "bg-techpay-orange/12",
   },
   {
     title: "Zero Lost Sales",
     description:
       "If a product isn't on the shelf, endless aisle instantly surfaces it from the nearest warehouse.",
-    Icon: PackageCheck,
-    accentClass: "text-techpay-purple bg-techpay-purple/10 border-techpay-purple/20",
+    icon: <PackageCheck className="h-6 w-6" aria-hidden="true" />,
+    accentClass: "from-techpay-purple via-techpay-primary to-techpay-orange/75",
+    glowClass: "bg-techpay-purple/12",
   },
   {
     title: "Faster Purchase Cycle",
     description:
       "AI cuts product discovery from hours to minutes, shortening the path from interest to invoice.",
-    Icon: SearchCheck,
-    accentClass: "text-techpay-primary bg-techpay-primary/10 border-techpay-primary/20",
+    icon: <SearchCheck className="h-6 w-6" aria-hidden="true" />,
+    accentClass: "from-techpay-primary via-techpay-pink to-techpay-orange/75",
+    glowClass: "bg-techpay-primary/12",
   },
   {
     title: "Premium Experience",
     description:
       "Customers feel understood, not just sold to. Personalised recommendations build brand trust.",
-    Icon: Sparkles,
-    accentClass: "text-techpay-orange bg-techpay-orange/10 border-techpay-orange/20",
+    icon: <Sparkles className="h-6 w-6" aria-hidden="true" />,
+    accentClass: "from-techpay-orange via-techpay-pink to-techpay-purple/75",
+    glowClass: "bg-techpay-orange/12",
   },
   {
     title: "Data-Driven Retail",
     description:
       "Every interaction generates insights - footfall intent, popular configs, and lead quality - all in one dashboard.",
-    Icon: ChartNoAxesCombined,
-    accentClass: "text-techpay-purple bg-techpay-purple/10 border-techpay-purple/20",
+    icon: <ChartNoAxesCombined className="h-6 w-6" aria-hidden="true" />,
+    accentClass: "from-techpay-purple via-techpay-primary to-techpay-pink/75",
+    glowClass: "bg-techpay-purple/12",
   },
 ];
 
@@ -130,6 +135,8 @@ const heroFeatures: Array<{
   description: string;
   bullets: string[];
   ctaLabel: string;
+  imageAlt: string;
+  imageSrc: `/${string}`;
   loadingLabel: string;
   kind: ActionKind;
   Icon: IconComponent;
@@ -139,14 +146,16 @@ const heroFeatures: Array<{
     eyebrow: "AI Recommendations",
     title: "Right product. First time. Every time.",
     description:
-      "Our conversational AI advisor profiles each shopper - student, professional, gamer, or family - and recommends the perfect HP product in under 3 minutes. Supports 6+ Indian languages including Hindi, Tamil, and Telugu.",
+      "Our conversational AI advisor profiles each shopper — student, professional, gamer, or family — and recommends the perfect product.",
     bullets: [
       "Persona-aware conversation flow",
       "Multi-language support",
       "Voice & text input",
     ],
-    ctaLabel: "Try the AI Advisor",
-    loadingLabel: "Try the AI Advisor",
+    ctaLabel: "Get Recommendations",
+    imageAlt: "AI recommendation experience preview",
+    imageSrc: "/future-of-retail/AI-Recommendations.png",
+    loadingLabel: "Get Recommendations",
     kind: "recommendation",
     Icon: Bot,
     accent: "primary",
@@ -155,13 +164,15 @@ const heroFeatures: Array<{
     eyebrow: "Endless Aisle Catalog",
     title: "Sell beyond the shelf.",
     description:
-      "When a product isn't in store, TechPay surfaces real-time stock from Redington and Savex warehouses instantly. Retailers never lose a sale to an empty shelf again.",
+      "When a product isn't in store, TechPay surfaces real-time stock from distributor(s) warehouses instantly. Retailers never lose a sale to an empty shelf again.",
     bullets: [
       "Live dual-warehouse visibility",
       "54+ HP SKUs always available",
       "In-store & warehouse filters",
     ],
     ctaLabel: "Browse the Catalog",
+    imageAlt: "Endless aisle catalog experience preview",
+    imageSrc: "/future-of-retail/Endless-Aisle-Catalog.png",
     loadingLabel: "Browse the Catalog",
     kind: "catalog",
     Icon: Boxes,
@@ -178,6 +189,8 @@ const heroFeatures: Array<{
       "Seamless checkout integration",
     ],
     ctaLabel: "Check Eligibility",
+    imageAlt: "Financing options experience preview",
+    imageSrc: "/future-of-retail/Financing-Options.png",
     loadingLabel: "Check Eligibility",
     kind: "eligibility",
     Icon: WalletCards,
@@ -194,6 +207,8 @@ const heroFeatures: Array<{
       "Proactive service alerts",
     ],
     ctaLabel: "Subscribe to Support",
+    imageAlt: "Personalised IT helpdesk experience preview",
+    imageSrc: "/future-of-retail/Personalised-IT-Helpdesk.png",
     loadingLabel: "Subscribe to Support",
     kind: "helpdesk",
     Icon: Headset,
@@ -250,7 +265,7 @@ function publicAsset(path: `/${string}`) {
 
 export default function FutureOfRetailPage() {
   return (
-    <main className="relative overflow-hidden bg-techpay-bg text-techpay-text">
+    <main className="relative overflow-x-clip bg-techpay-bg text-techpay-text">
       <FutureRetailHero />
       <PhygitalDefinitionSection />
       <ComparisonSection />
@@ -464,27 +479,15 @@ function BenefitsSection() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {benefits.map((benefit) => (
-            <article
-              key={benefit.title}
-              className="group relative min-h-[250px] overflow-hidden border border-slate-200 bg-white p-6 shadow-[0_20px_58px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_72px_rgba(15,23,42,0.12)] md:p-7"
-            >
-              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-techpay-primary via-techpay-pink to-techpay-orange" />
-              <span
-                className={`inline-flex h-13 w-13 items-center justify-center border ${benefit.accentClass}`}
-              >
-                <benefit.Icon className="h-6 w-6" aria-hidden="true" />
-              </span>
-              <h3 className="mt-6 font-display text-[1.35rem] font-bold leading-tight text-slate-950 md:text-2xl">
-                {benefit.title}
-              </h3>
-              <p className="mt-3 text-base leading-7 text-slate-600">
-                {benefit.description}
-              </p>
-            </article>
-          ))}
-        </div>
+        <FeaturesSectionDemo1
+          items={benefits}
+          className="mt-10"
+          columnsClassName="md:grid-cols-2 xl:grid-cols-3"
+          cardClassName="h-full min-h-[250px]"
+          contentClassName="min-h-[190px]"
+          iconPlacement="top"
+          numberPlacement="corner"
+        />
       </div>
     </section>
   );
@@ -540,62 +543,88 @@ function HeroFeaturesSection() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          {heroFeatures.map((feature) => (
-            <FeatureCard key={feature.eyebrow} feature={feature} />
+        <div className="mt-12 grid gap-8 md:pb-[26vh] lg:gap-10">
+          {heroFeatures.map((feature, index) => (
+            <FeatureCard key={feature.eyebrow} feature={feature} index={index} />
           ))}
         </div>
+        <HeroFeatureStackEnhancer />
       </div>
     </section>
   );
 }
 
-function FeatureCard({ feature }: { feature: (typeof heroFeatures)[number] }) {
+function FeatureCard({
+  feature,
+  index,
+}: {
+  feature: (typeof heroFeatures)[number];
+  index: number;
+}) {
   const classes = accentClasses[feature.accent];
 
   return (
     <article
-      className={`relative overflow-hidden border border-slate-200 bg-[#fbfbff] p-6 transition duration-300 hover:-translate-y-1 md:p-8 ${classes.glow}`}
+      data-hero-feature-card
+      className={`hero-feature-card relative self-start overflow-hidden border border-slate-200 bg-[#fbfbff] md:sticky ${classes.glow}`}
+      style={{
+        top: `calc(5.5rem + ${index * 0.85}rem)`,
+        zIndex: index + 1,
+      }}
     >
-      <div className={`absolute inset-x-0 top-0 h-1 bg-linear-to-r ${classes.line}`} />
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-        <span
-          className={`inline-flex h-14 w-14 shrink-0 items-center justify-center border ${classes.icon}`}
-        >
-          <feature.Icon className="h-6 w-6" aria-hidden="true" />
-        </span>
-        <div>
-          <p className="text-sm font-semibold uppercase text-techpay-primary">
-            {feature.eyebrow}
-          </p>
-          <h3 className="mt-2 font-display text-[1.55rem] font-bold leading-tight text-slate-950 md:text-[1.85rem]">
-            {feature.title}
-          </h3>
-          <p className="mt-4 text-base leading-8 text-slate-600">
-            {feature.description}
-          </p>
+      <div className={`absolute inset-x-0 top-0 z-10 h-1 bg-linear-to-r ${classes.line}`} />
+      <div className="grid md:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)]">
+        <div className="relative min-h-[240px] overflow-hidden bg-slate-100 sm:min-h-[320px] md:min-h-[520px]">
+          <Image
+            src={publicAsset(feature.imageSrc)}
+            alt={feature.imageAlt}
+            fill
+            sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1024px) 44vw, 620px"
+            className="object-cover"
+          />
+        </div>
+
+        <div className="flex flex-col justify-center p-6 md:p-8 lg:p-10">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+            <span
+              className={`inline-flex h-14 w-14 shrink-0 items-center justify-center border ${classes.icon}`}
+            >
+              <feature.Icon className="h-6 w-6" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold uppercase text-techpay-primary">
+                {feature.eyebrow}
+              </p>
+              <h3 className="mt-2 font-display text-[1.55rem] font-bold leading-tight text-slate-950 md:text-[1.85rem]">
+                {feature.title}
+              </h3>
+              <p className="mt-4 text-base leading-8 text-slate-600">
+                {feature.description}
+              </p>
+            </div>
+          </div>
+
+          <ul className="mt-7 grid gap-3">
+            {feature.bullets.map((bullet) => (
+              <li key={bullet} className="flex gap-3 text-sm leading-6 text-slate-700">
+                <CheckCircle2
+                  className="mt-0.5 h-5 w-5 shrink-0 text-techpay-primary"
+                  aria-hidden="true"
+                />
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+
+          <MarketAwareLinkButton
+            kind={feature.kind}
+            label={feature.ctaLabel}
+            loadingLabel={feature.loadingLabel}
+            className="mt-8 w-fit text-white!"
+            size="md"
+          />
         </div>
       </div>
-
-      <ul className="mt-7 grid gap-3">
-        {feature.bullets.map((bullet) => (
-          <li key={bullet} className="flex gap-3 text-sm leading-6 text-slate-700">
-            <CheckCircle2
-              className="mt-0.5 h-5 w-5 shrink-0 text-techpay-primary"
-              aria-hidden="true"
-            />
-            <span>{bullet}</span>
-          </li>
-        ))}
-      </ul>
-
-      <MarketAwareLinkButton
-        kind={feature.kind}
-        label={feature.ctaLabel}
-        loadingLabel={feature.loadingLabel}
-        className="mt-8"
-        size="md"
-      />
     </article>
   );
 }
@@ -616,7 +645,7 @@ function FinalCtaSection() {
 
       <div className="relative z-10 mx-auto max-w-[1440px]">
         <div className="max-w-4xl">
-          <p className="mb-4 text-sm font-semibold uppercase text-techpay-primary">
+          <p className="mb-4 text-sm font-semibold uppercase text-techpay-primary mt-10 md:mt-0">
             Experience All Four Features Today
           </p>
           <h2 className="font-display text-[2.05rem] font-bold leading-[1.1] text-white md:text-[2.65rem] xl:text-[3rem]">
@@ -634,25 +663,46 @@ function FinalCtaSection() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-          {heroFeatures.map((feature) => (
+        <div className="relative z-10 mt-10 mx-auto grid grid-cols-1 overflow-hidden border border-white/10 bg-white/6 backdrop-blur-xl md:grid-cols-2 xl:grid-cols-4">
+          {heroFeatures.map((feature, index) => (
             <div
               key={feature.eyebrow}
-              className="border border-white/10 bg-white/6 p-5 text-white backdrop-blur-xl"
+              className={`group/feature relative flex h-full min-h-[260px] flex-col py-10 ${
+                index % 2 === 0 ? "md:border-r md:border-white/10" : ""
+              } ${index < 2 ? "md:border-b md:border-white/10" : ""} ${
+                index < heroFeatures.length - 1 ? "xl:border-r xl:border-white/10" : ""
+              } xl:border-b-0`}
             >
-              <feature.Icon
-                className="h-6 w-6 text-techpay-primary"
+              <div
+                className="pointer-events-none absolute inset-0 h-full w-full bg-linear-to-t from-techpay-primary/16 via-techpay-purple/10 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100"
                 aria-hidden="true"
               />
-              <p className="mt-4 font-display text-[1.1rem] font-semibold md:text-xl">
-                {feature.eyebrow}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-white/68">
+
+              <div className="relative z-10 mb-4 px-8 text-techpay-primary">
+                <feature.Icon className="h-6 w-6" aria-hidden="true" />
+              </div>
+
+              <div className="relative z-10 mb-3 px-8 font-display text-lg font-bold text-white">
+                <div className="absolute inset-y-0 left-0 h-6 w-1 rounded-tr-full rounded-br-full bg-white/25 transition-all duration-200 origin-center group-hover/feature:h-8 group-hover/feature:bg-techpay-primary" />
+                <span className="inline-block transition duration-200 group-hover/feature:translate-x-2">
+                  {feature.eyebrow}
+                </span>
+              </div>
+
+              <p className="relative z-10 px-8 text-sm leading-6 text-white/68">
                 {feature.title}
               </p>
-              <p className="mt-4 text-sm font-semibold text-techpay-primary">
-                {feature.ctaLabel}
-              </p>
+
+              <div className="relative z-10 mt-auto px-8 pt-6">
+                <MarketAwareLinkButton
+                  kind={feature.kind}
+                  label={feature.ctaLabel}
+                  loadingLabel={feature.loadingLabel}
+                  fullWidth
+                  size="compact"
+                  variant="secondary"
+                />
+              </div>
             </div>
           ))}
         </div>
