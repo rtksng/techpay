@@ -75,7 +75,7 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className="footer-bottom mx-auto max-w-[1100px] pt-6 text-center md:text-left">
-        <p className="text-[0.85rem] text-techpay-muted">&copy; 2026 TechPay.ai. All rights reserved.</p>
+        <p className="text-[0.85rem] text-techpay-muted">&copy; 2026 TECHPAY.ai. All rights reserved.</p>
       </div>
     </footer>
   );

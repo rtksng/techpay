@@ -519,7 +519,7 @@ function QuoteSection() {
             <p className="font-display text-xl font-semibold text-white">
               Praveen Sahai
             </p>
-            <p className="text-sm text-techpay-muted">CEO, TechPay.ai</p>
+            <p className="text-sm text-techpay-muted">Founder & CEO, TechPay.ai</p>
           </figcaption>
         </figure>
       </div>
