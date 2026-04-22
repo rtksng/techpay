@@ -128,8 +128,8 @@ export default function HomePage() {
 
           <div className="hero-content relative z-[3] mx-auto max-w-[22rem] px-2 sm:max-w-[30rem] md:max-w-full md:px-0">
           
-            <h1 className="mb-4 font-display text-[clamp(0.6rem,6vw,3rem)] font-bold leading-[1.3] tracking-[-0.03em] text-techpay-heading max-w-5xl">
-             The Right Laptop For You. Paid Your Way. With AI Powered Guidance & Real Human Support
+            <h1 className="mb-4 font-display text-[clamp(0.6rem,6vw,2.4rem)] font-bold leading-[1.3] tracking-[-0.03em] text-techpay-heading max-w-5xl">
+             The Right Laptop For You. Paid Your Way. <span className="hidden lg:inline"><br/></span> With AI Powered Guidance & Personlized Support
             </h1>
           </div>
         </section>

@@ -42,8 +42,8 @@ const comparisonRows = [
   },
   {
     feature: "Product Range",
-    traditional: "Limited to shelf space",
-    ecommerce: "Extended catalogue",
+    traditional: "All payment options integrated",
+    ecommerce: "Wider stock availability",
     phygital: "In-store + endless aisle",
   },
   {
@@ -68,7 +68,7 @@ const comparisonRows = [
     feature: "Availability Check",
     traditional: "Ask a store associate",
     ecommerce: "Stock listed on site",
-    phygital: "Live multi-warehouse visibility",
+    phygital: "Endless Aisle through distributor network",
   },
   {
     feature: "Experience",
@@ -538,7 +538,7 @@ function HeroFeaturesSection() {
             </p>
             <h2 className="font-display text-[2.05rem] font-bold leading-[1.1] text-slate-950 md:text-[2.65rem] xl:text-[3rem]">
               Four capabilities that make TechPay the most complete phygital
-              platform for HP retail.
+              platform.
             </h2>
           </div>
         </div>
@@ -573,40 +573,40 @@ function FeatureCard({
       }}
     >
       <div className={`absolute inset-x-0 top-0 z-10 h-1 bg-linear-to-r ${classes.line}`} />
-      <div className="grid md:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)]">
-        <div className="relative min-h-[240px] overflow-hidden bg-slate-100 sm:min-h-[320px] md:min-h-[520px]">
+      <div className="grid md:grid-cols-[minmax(0,0.54fr)_minmax(0,1fr)]">
+        <div className="relative min-h-[170px] overflow-hidden bg-slate-100 sm:min-h-[200px] md:min-h-full">
           <Image
             src={publicAsset(feature.imageSrc)}
             alt={feature.imageAlt}
             fill
-            sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1024px) 44vw, 620px"
+            sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1024px) 38vw, 480px"
             className="object-cover"
           />
         </div>
 
-        <div className="flex flex-col justify-center p-6 md:p-8 lg:p-10">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+        <div className="flex flex-col justify-center p-5 md:p-6 lg:p-7">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
             <span
-              className={`inline-flex h-14 w-14 shrink-0 items-center justify-center border ${classes.icon}`}
+              className={`inline-flex h-12 w-12 shrink-0 items-center justify-center border ${classes.icon}`}
             >
-              <feature.Icon className="h-6 w-6" aria-hidden="true" />
+              <feature.Icon className="h-5 w-5" aria-hidden="true" />
             </span>
             <div>
               <p className="text-sm font-semibold uppercase text-techpay-primary">
                 {feature.eyebrow}
               </p>
-              <h3 className="mt-2 font-display text-[1.55rem] font-bold leading-tight text-slate-950 md:text-[1.85rem]">
+              <h3 className="mt-2 font-display text-[1.4rem] font-bold leading-tight text-slate-950 md:text-[1.65rem]">
                 {feature.title}
               </h3>
-              <p className="mt-4 text-base leading-8 text-slate-600">
+              <p className="mt-3 text-[0.95rem] leading-7 text-slate-600">
                 {feature.description}
               </p>
             </div>
           </div>
 
-          <ul className="mt-7 grid gap-3">
+          <ul className="mt-5 grid gap-2">
             {feature.bullets.map((bullet) => (
-              <li key={bullet} className="flex gap-3 text-sm leading-6 text-slate-700">
+              <li key={bullet} className="flex gap-3 text-sm leading-5 text-slate-700">
                 <CheckCircle2
                   className="mt-0.5 h-5 w-5 shrink-0 text-techpay-primary"
                   aria-hidden="true"
@@ -620,8 +620,8 @@ function FeatureCard({
             kind={feature.kind}
             label={feature.ctaLabel}
             loadingLabel={feature.loadingLabel}
-            className="mt-8 w-fit text-white!"
-            size="md"
+            className="mt-6 w-fit text-white!"
+            size="compact"
           />
         </div>
       </div>
