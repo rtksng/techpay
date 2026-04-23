@@ -4,6 +4,8 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js";
 
+const resolvePublicAssetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 export function mountTechPayScene({
   canvasEl,
   laptopShadowEl,
@@ -15,6 +17,7 @@ export function mountTechPayScene({
   matchMediaInstances,
   enableScrollExperience = true,
   animateHeroContent = true,
+  onIntroComplete,
 }) {
   RectAreaLightUniformsLib.init();
 
@@ -41,7 +44,7 @@ export function mountTechPayScene({
 
   const screenSize = [29.4, 20];
   const screenTextureOverscan = 0.92;
-  const screenTextureTopTrim = 0.04;
+  const screenTextureTopTrim = 0;
   const introLaptopScale = 0.78;
   const heroLaptopScale = 1.1;
   const sectionLaptopY = -6;
@@ -67,7 +70,7 @@ export function mountTechPayScene({
 
   const modelLoader = new GLTFLoader();
   modelLoader.load(
-    "/models/mac-noUv.glb",
+    resolvePublicAssetPath("/models/mac-noUv.glb"),
     (glb) => {
       if (destroyed) {
         disposeImportedScene(glb.scene);
@@ -97,7 +100,9 @@ export function mountTechPayScene({
       window.addEventListener("resize", updateSceneSize);
     },
     undefined,
-    () => {},
+    () => {
+      onIntroComplete?.();
+    },
   );
 
   return () => {
@@ -176,7 +181,7 @@ export function mountTechPayScene({
   function createMaterials() {
     const textureLoader = new THREE.TextureLoader();
 
-    screenImageTexture = textureLoader.load("/assets/inner-image-laptop.jpg", (texture) => {
+    screenImageTexture = textureLoader.load(resolvePublicAssetPath("/assets/inner-image-laptop3.webp"), (texture) => {
       texture.flipY = false;
       texture.colorSpace = THREE.SRGBColorSpace;
       fitScreenTextureCover(texture);
@@ -189,7 +194,7 @@ export function mountTechPayScene({
       side: THREE.BackSide,
     });
 
-    const keyboardTexture = textureLoader.load("/assets/keyboard-overlay.png");
+    const keyboardTexture = textureLoader.load(resolvePublicAssetPath("/assets/keyboard-overlay.webp"));
     keyboardMaterial = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       alphaMap: keyboardTexture,
@@ -465,6 +470,15 @@ export function mountTechPayScene({
     const heroPose = getHeroLaptopPose();
     const heroContent = document.querySelector(".hero-content");
     const timeline = trackAnimation(gsap.timeline());
+    let hasCompletedIntro = false;
+    const completeIntro = () => {
+      if (hasCompletedIntro) {
+        return;
+      }
+
+      hasCompletedIntro = true;
+      onIntroComplete?.();
+    };
 
     if (heroContent && animateHeroContent) {
       gsap.set(heroContent, { autoAlpha: 0, y: 32 });
@@ -493,7 +507,8 @@ export function mountTechPayScene({
       .to(macGroup.scale, { duration: 2.2, x: heroPose.scale, y: heroPose.scale, z: heroPose.scale, ease: "power3.out" }, 0)
       .fromTo(lidGroup.rotation, { x: 0.5 * Math.PI }, { duration: 1.8, x: -0.2 * Math.PI, ease: "power2.inOut" }, 0.4)
       .to(screenMaterial, { duration: 0.15, opacity: 0.96 }, 1.3)
-      .to(screenLight, { duration: 0.15, intensity: 1.5 }, 1.3);
+      .to(screenLight, { duration: 0.15, intensity: 1.5 }, 1.3)
+      .call(completeIntro, undefined, 2.2);
 
     animatedBackdropEls.forEach((backdropEl) => {
       timeline.to(
@@ -764,10 +779,11 @@ export function mountTechPayScene({
           y: () => screenTexturePan.endY,
           ease: "none",
           scrollTrigger: {
-            trigger: "#how-it-works",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.5,
+            trigger: "#hero",
+            start: "top top",
+            endTrigger: "#infinite-shelf",
+            end: "top 24%",
+            scrub: 0.55,
             invalidateOnRefresh: true,
             immediateRender: false,
           },

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import DotBackgroundDemo from "@/components/ui/dot-background-demo";
+import { ButtonLink } from "@/components/ui/button";
 
 const eligibilityBenefits = [
   {
@@ -84,12 +84,14 @@ export default function TechPayEligibilitySection() {
             </div>
 
             <div className="mt-8 text-center md:mt-10">
-              <Link
+              <ButtonLink
                 href="/coming-soon"
-                className="btn-primary btn-pill relative isolate inline-flex w-full justify-center overflow-hidden px-8 py-[16px] text-[1rem] font-bold text-white no-underline shadow-[0_18px_42px_rgba(237,29,95,0.24)] sm:w-auto"
+                className="sm:w-auto"
+                fullWidth
+                size="lg"
               >
                 Check Your Eligibility
-              </Link>
+              </ButtonLink>
             </div>
           </div>
         </div>

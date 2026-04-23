@@ -1,10 +1,10 @@
 import Image from "next/image";
 import {
-  Compass,
-  CreditCard,
+  BotMessageSquare,
   Globe2,
-  Headset,
-  PanelsTopLeft,
+  HandCoins,
+  MonitorCog,
+  PackageSearch,
   Store,
 } from "lucide-react";
 import TechPayImpactNumbersSection from "@/app/_components/home/impact-numbers-section";
@@ -28,6 +28,12 @@ const storeFeature = {
     "Scan the TechPay QR or open the right dashboard for your location to start with a nearby partner store.",
   Icon: Store,
 };
+
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function publicAsset(path: `/${string}`) {
+  return `${publicBasePath}${path}`;
+}
 
 export default function HomePage() {
   const AvailabilityIcon = availabilityFeature.Icon;
@@ -89,7 +95,7 @@ export default function HomePage() {
 
       <div className="monitor-backdrop" aria-hidden="true">
         <Image
-          src="/parts/monitor1.png"
+          src={publicAsset("/parts/monitor1.webp")}
           alt=""
           fill
           priority
@@ -100,7 +106,7 @@ export default function HomePage() {
 
       <div className="headphones-backdrop" aria-hidden="true">
         <Image
-          src="/parts/pri-head2.png"
+          src={publicAsset("/parts/pri-head2.webp")}
           alt=""
           width={700}
           height={526}
@@ -121,12 +127,9 @@ export default function HomePage() {
           </div>
 
           <div className="hero-content relative z-[3] mx-auto max-w-[22rem] px-2 sm:max-w-[30rem] md:max-w-full md:px-0">
-            <p className="tag mb-4 inline-block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-techpay-primary">
-              {" "}
-              Welcome to TechPay.ai
-            </p>
-            <h1 className="mb-4 font-display text-[clamp(2.6rem,8vw,5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-techpay-heading">
-              You Deserve a Computer
+          
+            <h1 className="mb-4 font-display text-[clamp(0.6rem,6vw,2.4rem)] font-bold leading-[1.3] tracking-[-0.03em] text-techpay-heading max-w-5xl">
+             The Right Laptop For You. Paid Your Way. <span className="hidden lg:inline"><br/></span> With AI Powered Guidance & Personlized Support
             </h1>
           </div>
         </section>
@@ -151,21 +154,20 @@ export default function HomePage() {
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
                     <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-primary/12 text-techpay-primary">
-                      <Compass size={22} strokeWidth={1.8} />
+                      <BotMessageSquare size={22} strokeWidth={1.8} />
                     </span>
-                    <span>Get expert guidance</span>
+                    <span>Get Recommendations</span>
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  Forget generic recommendations. Our AI listens to how you
-                  actually use a computer and finds the one built for your world
-                  - not everyone else&apos;s.
+                Forget generic recommendations. Our AI listens to how you actually use a computer and finds the one built for your world - not everyone else's.
+
                 </p>
                 <MarketAwareLinkButton
                   kind="recommendation"
                   label="Get Recommendations"
                   loadingLabel="Finding nearest store..."
-                  className="btn-primary relative inline-flex items-center justify-center rounded-none px-5 py-3 text-[0.84rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
+                  size="compact"
                 />
               </div>
             </div>
@@ -185,24 +187,23 @@ export default function HomePage() {
               <div className="content-block relative z-[1] w-full max-w-full overflow-hidden border border-white/10 bg-black/[0.72] px-[22px] py-7 backdrop-blur-[28px] md:px-9 md:py-9 lg:px-10 lg:py-11">
                 <div className="card-accent accent-orange" />
 
+                
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
-                      <CreditCard size={22} strokeWidth={1.8} />
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-purple/14 text-techpay-purple">
+                      <PackageSearch size={22} strokeWidth={1.8} />
                     </span>
-                    <span>Easy Installments</span>
+                    <span>Unlimited Choices</span>
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  A better computer should not feel out of reach. Our flexible
-                  payment options make it easier to bring home what you need
-                  without the pressure of paying everything upfront.
+                Browse it online. Feel it in Store. Find your perfect device and we will deliver it to you.
                 </p>
                 <MarketAwareLinkButton
                   kind="catalog"
-                  label="Browse Catelog"
+                  label="Get Your Device Today"
                   loadingLabel="Loading..."
-                  className="btn-primary relative inline-flex items-center justify-center rounded-none px-6 py-3.5 text-[0.88rem] font-semibold text-white no-underline shadow-[0_16px_36px_rgba(237,29,95,0.24)]"
+                  size="md"
                 />
               </div>
             </div>
@@ -232,16 +233,21 @@ export default function HomePage() {
 
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-purple/14 text-techpay-purple">
-                      <PanelsTopLeft size={22} strokeWidth={1.8} />
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
+                      <HandCoins size={22} strokeWidth={1.8} />
                     </span>
-                    <span>Choose behind the shelf</span>
+                    <span>Easy Installments</span>
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  Whatever you need, we&apos;ll find it and bring it to you -
-                  delivered to your door or ready at your local store.
+               A better computer should not feel out of reach. Our flexible payment options make it easier to bring home what you need. Get fast approvals without delays!
                 </p>
+                <MarketAwareLinkButton
+                  kind="eligibility"
+                  label="Check Eligibility"
+                  loadingLabel="Loading..."
+                  size="md"
+                />
               </div>
             </div>
           </div>
@@ -263,17 +269,21 @@ export default function HomePage() {
                 <h2 className="mb-[14px] font-display text-[1.6rem] font-bold leading-[1.2] tracking-[-0.02em] text-techpay-heading md:text-[1.8rem] lg:text-[1.85rem]">
                   <span className="inline-flex flex-col items-start gap-3">
                     <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-techpay-orange/12 text-techpay-orange">
-                      <Headset size={22} strokeWidth={1.8} />
+                      <MonitorCog size={22} strokeWidth={1.8} />
                     </span>
-                    <span>Support for Life</span>
+                    <span>Personalized IT Helpdesk</span>
                   </span>
                 </h2>
                 <p className="mb-4 text-[0.95rem] leading-[1.75] tracking-[0.01em] text-techpay-muted">
-                  From getting connected on day one to fixing everyday hiccups -
-                  we&apos;re here for it all. WiFi setup, printer installation,
-                  finding the best apps, even help writing your resume with AI.
-                  Real support, for real life.
+                From getting connected on day one to fixing everyday hiccups - we're here for it all. WiFi setup, printer installation, finding the best apps. 
+                Real support, for real life.
                 </p>
+                <MarketAwareLinkButton
+                  kind="helpdesk"
+                  label="Subscribe for Support"
+                  loadingLabel="Loading..."
+                  size="md"
+                />
               </div>
             </div>
             <div
@@ -312,25 +322,7 @@ export default function HomePage() {
                   <StoreAccessPanel />
                 </div>
 
-                <div className="h-px w-full bg-white/10" aria-hidden="true" />
-
-                <div className=" border border-white/10 bg-black/22 px-5 py-5 md:px-6 md:py-6">
-                  <div className="grid gap-4 md:grid-cols-[auto_minmax(0,1fr)] md:items-center">
-                    <div
-                      className={`feature-icon flex h-16 w-16 items-center justify-center rounded-2xl ${availabilityFeature.iconClass}`}
-                    >
-                      <AvailabilityIcon size={32} strokeWidth={1.8} />
-                    </div>
-                    <div className="text-left">
-                      <h3 className="mb-[8px] font-display text-[clamp(1rem,2vw,1.65rem)] font-semibold text-techpay-heading">
-                        {availabilityFeature.title}
-                      </h3>
-                      <p className="text-[0.95rem] leading-[1.65] text-techpay-muted">
-                        {availabilityFeature.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>

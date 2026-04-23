@@ -1,0 +1,162 @@
+name: Manual Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to roll back"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+      tag:
+        description: "Stable rollback tag, for example staging-success-20260423120000-abc1234"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  rollback-staging:
+    if: inputs.environment == 'staging'
+    runs-on: ubuntu-latest
+    env:
+      HEALTHCHECK_URL: ${{ secrets.STAGING_HEALTHCHECK_URL }}
+      ROLLBACK_TAG: ${{ inputs.tag }}
+    steps:
+      - name: Checkout repository metadata
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Manual rollback only accepts an existing stable tag.
+      - name: Validate staging rollback tag
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch --tags --force --prune
+
+          if [[ ! "$ROLLBACK_TAG" =~ ^staging-success-[0-9]{14}-[0-9a-f]{7}$ ]]; then
+            echo "Staging rollback tag must match staging-success-YYYYMMDDHHMMSS-sha7."
+            exit 1
+          fi
+
+          if ! git rev-parse -q --verify "refs/tags/${ROLLBACK_TAG}" > /dev/null; then
+            echo "Rollback tag does not exist: ${ROLLBACK_TAG}"
+            exit 1
+          fi
+
+      # Redeploy the selected known-good tag to the staging server.
+      - name: Roll back staging
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: ROLLBACK_TAG
+          script: |
+            set -euo pipefail
+            cd /home/azureuser/techpay-staging
+            git fetch origin staging --tags --force
+            git checkout --force "$ROLLBACK_TAG"
+            npm install
+            npm run build
+            pm2 restart techpay-staging
+
+      - name: Health check staging rollback
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -z "$HEALTHCHECK_URL" ]; then
+            echo "STAGING_HEALTHCHECK_URL secret is required for rollback health checks."
+            exit 1
+          fi
+
+          for attempt in {1..12}; do
+            echo "Staging rollback health check attempt ${attempt}/12: ${HEALTHCHECK_URL}"
+
+            if curl --fail --silent --show-error --max-time 10 "$HEALTHCHECK_URL" > /dev/null; then
+              echo "Staging rollback health check passed."
+              exit 0
+            fi
+
+            sleep 10
+          done
+
+          echo "Staging rollback health check failed. Manual intervention required."
+          exit 1
+
+  rollback-production:
+    if: inputs.environment == 'production'
+    runs-on: ubuntu-latest
+    env:
+      HEALTHCHECK_URL: ${{ secrets.PRODUCTION_HEALTHCHECK_URL }}
+      ROLLBACK_TAG: ${{ inputs.tag }}
+    steps:
+      - name: Checkout repository metadata
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Manual rollback only accepts an existing stable tag.
+      - name: Validate production rollback tag
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch --tags --force --prune
+
+          if [[ ! "$ROLLBACK_TAG" =~ ^production-success-[0-9]{14}-[0-9a-f]{7}$ ]]; then
+            echo "Production rollback tag must match production-success-YYYYMMDDHHMMSS-sha7."
+            exit 1
+          fi
+
+          if ! git rev-parse -q --verify "refs/tags/${ROLLBACK_TAG}" > /dev/null; then
+            echo "Rollback tag does not exist: ${ROLLBACK_TAG}"
+            exit 1
+          fi
+
+      # Redeploy the selected known-good tag to the production server.
+      - name: Roll back production
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: ROLLBACK_TAG
+          script: |
+            set -euo pipefail
+            cd /home/azureuser/techpay-website
+            git fetch origin main --tags --force
+            git checkout --force "$ROLLBACK_TAG"
+            npm install
+            npm run build
+            pm2 restart techpay
+
+      - name: Health check production rollback
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -z "$HEALTHCHECK_URL" ]; then
+            echo "PRODUCTION_HEALTHCHECK_URL secret is required for rollback health checks."
+            exit 1
+          fi
+
+          for attempt in {1..12}; do
+            echo "Production rollback health check attempt ${attempt}/12: ${HEALTHCHECK_URL}"
+
+            if curl --fail --silent --show-error --max-time 10 "$HEALTHCHECK_URL" > /dev/null; then
+              echo "Production rollback health check passed."
+              exit 0
+            fi
+
+            sleep 10
+          done
+
+          echo "Production rollback health check failed. Manual intervention required."
+          exit 1

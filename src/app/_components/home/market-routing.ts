@@ -18,6 +18,14 @@ type MarketConfig = {
 
 export const DEFAULT_MARKET: MarketCode = "IN";
 
+const MARKET_STORAGE_KEY = "techpayMarket";
+const STORE_ID_STORAGE_KEY_PREFIX = "techpayStoreId:";
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function publicAsset(path: `/${string}`) {
+  return `${publicBasePath}${path}`;
+}
+
 export const MARKET_LABELS: Record<MarketCode, string> = {
   IN: "India",
   MY: "Malaysia",
@@ -28,7 +36,7 @@ export const MARKET_CONFIG: Record<MarketCode, MarketConfig> = {
     dashboardApiUrl: "https://shop.techpay.ai/in/api/dashboard",
     geo: "in",
     dashboardUrl: "https://shop.techpay.ai/in/#/dashboard",
-    qrSrc: "/assets/india-qr.png",
+    qrSrc: publicAsset("/assets/india-qr.webp"),
     qrWidth: 1024,
     qrHeight: 1024,
   },
@@ -36,7 +44,7 @@ export const MARKET_CONFIG: Record<MarketCode, MarketConfig> = {
     dashboardApiUrl: "https://shop.techpay.ai/my/api/dashboard",
     geo: "my",
     dashboardUrl: "https://shop.techpay.ai/my/#/dashboard",
-    qrSrc: "/assets/malaysia-qr.png",
+    qrSrc: publicAsset("/assets/malaysia-qr.webp"),
     qrWidth: 1018,
     qrHeight: 1012,
   },
@@ -189,6 +197,92 @@ function getCurrentHashParams() {
   return new URLSearchParams(window.location.hash.slice(queryIndex + 1));
 }
 
+function getStoredValue(key: string, storage: Storage) {
+  try {
+    const value = storage.getItem(key);
+    return value && value.trim().length > 0 ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+function setStoredValue(key: string, value: string) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  try {
+    window.sessionStorage.setItem(key, value);
+  } catch {
+    // Ignore storage write failures.
+  }
+
+  try {
+    window.localStorage.setItem(key, value);
+  } catch {
+    // Ignore storage write failures.
+  }
+}
+
+function getMarketFromPathname() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  const segments = window.location.pathname
+    .toLowerCase()
+    .split("/")
+    .filter(Boolean);
+
+  for (const segment of segments) {
+    const market = getMarketFromValue(segment);
+
+    if (market) {
+      return market;
+    }
+  }
+
+  return null;
+}
+
+function getPersistedMarket() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  return (
+    getMarketFromValue(
+      getStoredValue(MARKET_STORAGE_KEY, window.sessionStorage)
+    ) ??
+    getMarketFromValue(
+      getStoredValue(MARKET_STORAGE_KEY, window.localStorage)
+    )
+  );
+}
+
+function persistMarket(market: MarketCode) {
+  setStoredValue(MARKET_STORAGE_KEY, market);
+}
+
+function getStoreIdStorageKey(market: MarketCode) {
+  return `${STORE_ID_STORAGE_KEY_PREFIX}${market}`;
+}
+
+function getPersistedStoreId(market: MarketCode) {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  return (
+    getStoredValue(getStoreIdStorageKey(market), window.sessionStorage) ??
+    getStoredValue(getStoreIdStorageKey(market), window.localStorage)
+  );
+}
+
+function persistStoreId(market: MarketCode, storeId: string) {
+  setStoredValue(getStoreIdStorageKey(market), storeId);
+}
+
 function getFirstDefinedParam(
   params: URLSearchParams,
   keys: string[]
@@ -218,6 +312,20 @@ export function getMarketFromCurrentUrl() {
   );
 }
 
+export function getPreferredMarket(initialMarket = DEFAULT_MARKET) {
+  return (
+    getMarketFromCurrentUrl() ??
+    getMarketFromPathname() ??
+    getPersistedMarket() ??
+    getMarketFromBrowser() ??
+    initialMarket
+  );
+}
+
+export function setPreferredMarket(market: MarketCode) {
+  persistMarket(market);
+}
+
 export function getStoreIdFromCurrentUrl() {
   if (typeof window === "undefined") {
     return null;
@@ -230,6 +338,10 @@ export function getStoreIdFromCurrentUrl() {
     getFirstDefinedParam(params, ["store_id", "storeId", "id"]) ||
     getFirstDefinedParam(hashParams, ["store_id", "storeId", "id"])
   );
+}
+
+function getKnownStoreId(market: MarketCode) {
+  return getStoreIdFromCurrentUrl() ?? getPersistedStoreId(market);
 }
 
 export function getRecommendationUrl(
@@ -277,54 +389,70 @@ async function getNearestStoreIdFromCoordinates(
   return typeof storeId === "string" && storeId.length > 0 ? storeId : null;
 }
 
+export type RecommendationResolution =
+  | {
+      href: string;
+      market: MarketCode;
+      reason: null;
+    }
+  | {
+      href: null;
+      market: MarketCode;
+      reason: "location_unavailable" | "store_unavailable";
+    };
+
 export async function resolveRecommendationUrl(
   initialMarket = DEFAULT_MARKET
-) {
-  const existingStoreId = getStoreIdFromCurrentUrl();
-  const currentMarket = getMarketFromCurrentUrl() ?? getMarketFromBrowser();
+) : Promise<RecommendationResolution> {
+  const currentMarket = getPreferredMarket(initialMarket);
+  const existingStoreId = getKnownStoreId(currentMarket);
 
   if (existingStoreId) {
-    return getRecommendationUrl(
-      currentMarket ?? initialMarket,
-      existingStoreId
-    );
+    persistMarket(currentMarket);
+    persistStoreId(currentMarket, existingStoreId);
+
+    return {
+      href: getRecommendationUrl(currentMarket, existingStoreId),
+      market: currentMarket,
+      reason: null,
+    };
+  }
+
+  if (typeof window === "undefined" || !window.isSecureContext) {
+    return {
+      href: null,
+      market: currentMarket,
+      reason: "location_unavailable",
+    };
   }
 
   const position = await getCurrentPosition();
-  const detectedMarket =
-    getMarketFromCoordinates(
-      position.coords.latitude,
-      position.coords.longitude
-    ) ??
-    currentMarket ??
-    initialMarket;
+  persistMarket(currentMarket);
   const storeId = await getNearestStoreIdFromCoordinates(
-    detectedMarket,
+    currentMarket,
     position.coords.latitude,
     position.coords.longitude
   );
 
-  return storeId
-    ? getRecommendationUrl(detectedMarket, storeId)
-    : null;
+  if (!storeId) {
+    return {
+      href: null,
+      market: currentMarket,
+      reason: "store_unavailable",
+    };
+  }
+
+  persistStoreId(currentMarket, storeId);
+
+  return {
+    href: getRecommendationUrl(currentMarket, storeId),
+    market: currentMarket,
+    reason: null,
+  };
 }
 
 export async function resolveMarket(initialMarket = DEFAULT_MARKET) {
-  let nextMarket = getMarketFromBrowser() ?? initialMarket;
-
-  try {
-    const position = await getCurrentPosition();
-    const detectedMarket = getMarketFromCoordinates(
-      position.coords.latitude,
-      position.coords.longitude
-    );
-
-    if (detectedMarket) {
-      nextMarket = detectedMarket;
-    }
-  } catch {
-    // Fall back to browser/default market if geolocation is unavailable.
-  }
-
+  const nextMarket = getPreferredMarket(initialMarket);
+  persistMarket(nextMarket);
   return nextMarket;
 }

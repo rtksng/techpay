@@ -1,11 +1,12 @@
 import { useId } from "react";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export type FeaturesSectionDemoItem = {
-  number: string;
+  number?: string;
   title: string;
   description: string;
+  icon?: ReactNode;
   accentClass?: string;
   borderClass?: string;
   surfaceClass?: string;
@@ -22,6 +23,7 @@ type FeaturesSectionDemoProps = {
   titleClassName?: string;
   descriptionClassName?: string;
   numberPlacement?: "inline" | "corner";
+  iconPlacement?: "corner" | "top";
 };
 
 const fallbackPatterns = [
@@ -64,6 +66,7 @@ export default function FeaturesSectionDemo1({
   titleClassName,
   descriptionClassName,
   numberPlacement = "inline",
+  iconPlacement = "corner",
 }: FeaturesSectionDemoProps) {
   return (
     <div
@@ -75,7 +78,7 @@ export default function FeaturesSectionDemo1({
     >
       {items.map((feature, index) => (
         <div
-          key={`${feature.number}-${feature.title}`}
+          key={`${feature.number ?? feature.title}-${feature.title}`}
           className={cn(
             "group relative overflow-hidden border p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_34px_86px_rgba(15,23,42,0.12)] md:p-8",
             "bg-linear-to-b from-white to-[#fff7fb]",
@@ -114,24 +117,43 @@ export default function FeaturesSectionDemo1({
           >
             {numberPlacement === "corner" ? (
               <>
+                {feature.icon && iconPlacement === "top" ? (
+                  <span
+                    className={cn(
+                      "mb-5 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-[18px] border border-white/70 bg-linear-to-r text-white shadow-[0_16px_36px_rgba(15,23,42,0.14)]",
+                      "from-techpay-primary via-techpay-pink to-techpay-purple/75",
+                      feature.accentClass
+                    )}
+                  >
+                    {feature.icon}
+                  </span>
+                ) : null}
                 <div className="mb-5 flex items-start justify-between gap-4">
                   <h3
                     className={cn(
-                      "max-w-[calc(100%-6rem)] font-display text-[1.28rem] font-bold leading-[1.15] tracking-[-0.03em] text-[#111111] md:text-[1.45rem]",
+                      "font-display text-[1.28rem] font-bold leading-[1.15] tracking-[-0.03em] text-[#111111] md:text-[1.45rem]",
+                      ((iconPlacement === "corner" && feature.icon) || feature.number)
+                        ? "max-w-[calc(100%-5rem)]"
+                        : "max-w-full",
                       titleClassName
                     )}
                   >
                     {feature.title}
                   </h3>
-                  <span
-                    className={cn(
-                      "inline-flex min-w-[84px] shrink-0 items-center justify-center self-start rounded-[18px] border border-white/70 bg-linear-to-r px-3 py-2 text-right font-display text-[1.2rem] font-bold leading-none tracking-[-0.03em] text-white shadow-[0_16px_36px_rgba(15,23,42,0.14)] md:text-[1.35rem]",
-                      "from-techpay-primary via-techpay-pink to-techpay-purple/75",
-                      feature.accentClass
-                    )}
-                  >
-                    {feature.number}
-                  </span>
+                  {(iconPlacement === "corner" && feature.icon) || feature.number ? (
+                    <span
+                      className={cn(
+                        "inline-flex shrink-0 items-center justify-center self-start rounded-[18px] border border-white/70 bg-linear-to-r text-white shadow-[0_16px_36px_rgba(15,23,42,0.14)]",
+                        iconPlacement === "corner" && feature.icon
+                          ? "h-14 w-14"
+                          : "min-w-[84px] px-3 py-2 text-right font-display text-[1.2rem] font-bold leading-none tracking-[-0.03em] md:text-[1.35rem]",
+                        "from-techpay-primary via-techpay-pink to-techpay-purple/75",
+                        feature.accentClass
+                      )}
+                    >
+                      {feature.icon ?? feature.number}
+                    </span>
+                  ) : null}
                 </div>
               </>
             ) : (
@@ -141,8 +163,17 @@ export default function FeaturesSectionDemo1({
                   titleClassName
                 )}
               >
-                <span className="text-techpay-primary">{feature.number}</span>
-                <span className="mx-2 text-slate-300">/</span>
+                {feature.icon ? (
+                  <span className="mr-3 inline-flex align-middle text-techpay-primary">
+                    {feature.icon}
+                  </span>
+                ) : null}
+                {feature.number ? (
+                  <>
+                    <span className="text-techpay-primary">{feature.number}</span>
+                    <span className="mx-2 text-slate-300">/</span>
+                  </>
+                ) : null}
                 <span>{feature.title}</span>
               </h3>
             )}

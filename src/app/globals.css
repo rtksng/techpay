@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
+  
   --color-techpay-bg: #010101;
   --color-techpay-primary: #ed1d5f;
   --color-techpay-orange: #f26422;
@@ -434,6 +435,40 @@ a {
 
 .btn-primary:active {
   transform: translateY(0);
+}
+
+.hero-feature-card {
+  --feature-card-y: 0px;
+  --feature-card-scale: 1;
+  --feature-card-blur: 0px;
+  --feature-card-opacity: 1;
+  transform: translate3d(0, var(--feature-card-y), 0) scale(var(--feature-card-scale));
+  transform-origin: top center;
+  filter: blur(var(--feature-card-blur));
+  opacity: var(--feature-card-opacity);
+  transition:
+    transform 180ms ease-out,
+    filter 180ms ease-out,
+    opacity 180ms ease-out,
+    box-shadow 240ms ease;
+  will-change: transform, filter, opacity;
+}
+
+.hero-feature-card:focus-within {
+  --feature-card-y: 0px;
+  --feature-card-scale: 1;
+  --feature-card-blur: 0px;
+  --feature-card-opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-feature-card {
+    transform: none;
+    filter: none;
+    opacity: 1;
+    transition: none;
+    will-change: auto;
+  }
 }
 
 .btn-pill::before {

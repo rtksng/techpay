@@ -18,6 +18,18 @@ export function mountTechPayExperience() {
   const animations = [];
   const matchMediaInstances = [];
   const cleanups = [];
+  const scrollLockKeys = new Set([
+    " ",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowUp",
+    "End",
+    "Home",
+    "PageDown",
+    "PageUp",
+    "Space",
+  ]);
 
   const trackAnimation = (animation) => {
     animations.push(animation);
@@ -28,11 +40,66 @@ export function mountTechPayExperience() {
   let lenisTick;
   let resizeObserver;
   let refreshFrame = 0;
+  let unlockIntroScroll;
   const canMountScene = typeof window !== "undefined";
   const hasDesktopScrollExperience = canMountScene && window.innerWidth >= 1280;
 
+  const lockIntroScroll = () => {
+    if (!canMountScene || unlockIntroScroll) {
+      return unlockIntroScroll;
+    }
+
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const previousHtmlOverflow = htmlEl.style.overflow;
+    const previousHtmlOverscrollBehavior = htmlEl.style.overscrollBehavior;
+    const previousBodyOverflow = bodyEl.style.overflow;
+    const previousBodyOverscrollBehavior = bodyEl.style.overscrollBehavior;
+    const previousBodyTouchAction = bodyEl.style.touchAction;
+
+    const preventScroll = (event) => {
+      event.preventDefault();
+    };
+
+    const preventScrollKey = (event) => {
+      if (scrollLockKeys.has(event.key) || scrollLockKeys.has(event.code)) {
+        event.preventDefault();
+      }
+    };
+
+    htmlEl.style.overflow = "hidden";
+    htmlEl.style.overscrollBehavior = "none";
+    bodyEl.style.overflow = "hidden";
+    bodyEl.style.overscrollBehavior = "none";
+    bodyEl.style.touchAction = "none";
+    bodyEl.classList.add("intro-scroll-locked");
+    lenis?.stop?.();
+
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("keydown", preventScrollKey, true);
+
+    unlockIntroScroll = () => {
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventScrollKey, true);
+      htmlEl.style.overflow = previousHtmlOverflow;
+      htmlEl.style.overscrollBehavior = previousHtmlOverscrollBehavior;
+      bodyEl.style.overflow = previousBodyOverflow;
+      bodyEl.style.overscrollBehavior = previousBodyOverscrollBehavior;
+      bodyEl.style.touchAction = previousBodyTouchAction;
+      bodyEl.classList.remove("intro-scroll-locked");
+      lenis?.start?.();
+      scheduleScrollRefresh();
+      unlockIntroScroll = undefined;
+    };
+
+    return unlockIntroScroll;
+  };
+
   const scheduleScrollRefresh = () => {
     if (!lenis) {
+      ScrollTrigger.refresh();
       return;
     }
 
@@ -90,6 +157,10 @@ export function mountTechPayExperience() {
       }
     }
 
+    if (!window.location.hash && window.scrollY < window.innerHeight * 0.25) {
+      lockIntroScroll();
+    }
+
     cleanups.push(
       mountTechPayScene({
         canvasEl,
@@ -102,6 +173,9 @@ export function mountTechPayExperience() {
         matchMediaInstances,
         enableScrollExperience: hasDesktopScrollExperience,
         animateHeroContent: hasDesktopScrollExperience,
+        onIntroComplete: () => {
+          unlockIntroScroll?.();
+        },
       }),
     );
   } else if (canvasEl instanceof HTMLCanvasElement || heroContent instanceof HTMLElement) {
@@ -118,6 +192,7 @@ export function mountTechPayExperience() {
 
   return () => {
     document.body.classList.remove("menu-open");
+    unlockIntroScroll?.();
     cleanups.slice().reverse().forEach((cleanup) => cleanup?.());
     matchMediaInstances.forEach((mm) => mm.revert());
     animations.forEach((animation) => animation.kill?.());

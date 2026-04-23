@@ -15,7 +15,7 @@ type ProblemCard = {
 
 export default function TechPayProblemsSection() {
   const kicker = "TechPay.ai Solution";
-  const heading = "One Platform. Four Promises.";
+  const heading = "One Platform Four Promises";
   const intro =
     "TechPay.ai brings together clarity, wider product choice, flexible payments, and dependable support through the local store people already trust.";
 
@@ -83,7 +83,7 @@ export default function TechPayProblemsSection() {
       number: "04",
       title: "Support for Life",
       body:
-        "Your journey does not end at checkout. If you need help getting started, setting something up, or solving a problem later, TechPay.ai connects you with real support through your trusted local store.",
+        "Your journey does not end at checkout. If you need help getting started, setting something up, or solving a problem later, TechPay.ai empowers you with real support.",
       accentClass: "from-techpay-pink via-techpay-primary to-techpay-purple/70",
       borderClass: "border-techpay-pink/25",
       surfaceClass: "bg-linear-to-b from-white to-[#fff5fb]",

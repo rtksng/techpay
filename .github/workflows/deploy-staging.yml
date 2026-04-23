@@ -5,10 +5,49 @@ on:
     branches:
       - staging
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      STABLE_TAG_PREFIX: staging-success
+      HEALTHCHECK_URL: ${{ secrets.STAGING_HEALTHCHECK_URL }}
     steps:
+      - name: Checkout repository metadata
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Rollback uses the latest tag created only after a successful staging
+      # deploy and health check. This is safer than rolling back to HEAD~1.
+      - name: Resolve last successful staging version
+        id: last_successful
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch --tags --force --prune
+
+          LAST_SUCCESSFUL_TAG="$(
+            git tag --list "${STABLE_TAG_PREFIX}-*" --sort=-creatordate | head -n 1
+          )"
+
+          if [ -z "$LAST_SUCCESSFUL_TAG" ]; then
+            echo "No previous successful staging tag found."
+            echo "tag=" >> "$GITHUB_OUTPUT"
+            echo "sha=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          LAST_SUCCESSFUL_SHA="$(git rev-list -n 1 "$LAST_SUCCESSFUL_TAG")"
+
+          echo "Last successful staging tag: $LAST_SUCCESSFUL_TAG"
+          echo "Last successful staging SHA: $LAST_SUCCESSFUL_SHA"
+          echo "tag=$LAST_SUCCESSFUL_TAG" >> "$GITHUB_OUTPUT"
+          echo "sha=$LAST_SUCCESSFUL_SHA" >> "$GITHUB_OUTPUT"
+
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
@@ -16,8 +55,93 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            set -euo pipefail
             cd /home/azureuser/techpay-staging
-            git pull origin staging
+            git fetch origin staging --tags --force
+            git checkout --force "${{ github.sha }}"
             npm install
             npm run build
             pm2 restart techpay-staging
+
+      # The deployment is considered successful only after this endpoint returns 2xx.
+      # Configure STAGING_HEALTHCHECK_URL as a repository/environment secret.
+      - name: Health check staging deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -z "$HEALTHCHECK_URL" ]; then
+            echo "STAGING_HEALTHCHECK_URL secret is required for rollback-safe deploys."
+            exit 1
+          fi
+
+          for attempt in {1..12}; do
+            echo "Staging health check attempt ${attempt}/12: ${HEALTHCHECK_URL}"
+
+            if curl --fail --silent --show-error --max-time 10 "$HEALTHCHECK_URL" > /dev/null; then
+              echo "Staging health check passed."
+              exit 0
+            fi
+
+            sleep 10
+          done
+
+          echo "Staging health check failed after all retries."
+          exit 1
+
+      # Mark this exact commit as staging-stable only after deploy + health check pass.
+      - name: Mark current deployment as successful staging version
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          STABLE_TAG="${STABLE_TAG_PREFIX}-$(date -u +'%Y%m%d%H%M%S')-${GITHUB_SHA::7}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$STABLE_TAG" "$GITHUB_SHA" -m "Successful staging deployment: $GITHUB_SHA"
+          git push origin "$STABLE_TAG"
+
+          echo "Created stable staging tag: $STABLE_TAG"
+
+      # If deployment or health check fails, redeploy the last known-good tag.
+      - name: Roll back staging to last successful version
+        if: failure() && steps.last_successful.outputs.tag != ''
+        uses: appleboy/ssh-action@master
+        env:
+          ROLLBACK_TAG: ${{ steps.last_successful.outputs.tag }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: ROLLBACK_TAG
+          script: |
+            set -euo pipefail
+            cd /home/azureuser/techpay-staging
+            git fetch origin staging --tags --force
+            git checkout --force "$ROLLBACK_TAG"
+            npm install
+            npm run build
+            pm2 restart techpay-staging
+
+      # Verify rollback health as well. The workflow remains failed so the bad deploy is visible.
+      - name: Health check staging rollback
+        if: failure() && steps.last_successful.outputs.tag != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for attempt in {1..12}; do
+            echo "Staging rollback health check attempt ${attempt}/12: ${HEALTHCHECK_URL}"
+
+            if curl --fail --silent --show-error --max-time 10 "$HEALTHCHECK_URL" > /dev/null; then
+              echo "Staging rollback health check passed."
+              exit 0
+            fi
+
+            sleep 10
+          done
+
+          echo "Staging rollback health check failed. Manual intervention required."
+          exit 1

@@ -1,18 +1,20 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const SQRT_5000 = Math.sqrt(5000);
 const AUTO_ADVANCE_MS = 3200;
 
 export type StaggerTestimonialItem = {
   id: string;
+  persona?: string;
   testimonial: string;
   by: string;
-  imgSrc: string;
+  imgSrc?: string;
+  useCase?: string;
 };
 
 type StaggerTestimonialsProps = {
@@ -67,7 +69,7 @@ function TestimonialCard({
     <article
       aria-current={isCenter}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer overflow-hidden border p-6 text-left transition-[transform,box-shadow,opacity,border-color,background-color,color] duration-500 ease-in-out md:p-8",
+        "absolute left-1/2 top-1/2 flex cursor-pointer flex-col overflow-hidden border p-6 text-left transition-[transform,box-shadow,opacity,border-color,background-color,color] duration-500 ease-in-out md:p-8",
         isCenter
           ? "border-white bg-white text-[#111111]"
           : "border-slate-200 bg-[#eceff3] text-slate-900 hover:border-slate-300"
@@ -99,26 +101,38 @@ function TestimonialCard({
         }}
       />
 
-      <Image
-        src={testimonial.imgSrc}
-        alt={testimonial.by.split(",")[0]}
-        width={56}
-        height={56}
-        sizes="56px"
-        className={cn(
-          "mb-5 h-14 w-14 object-cover object-top",
-          isCenter ? "bg-slate-100" : "bg-white"
-        )}
-        style={{
-          boxShadow: isCenter
-            ? "3px 3px 0px rgba(17,17,17,0.08)"
-            : "3px 3px 0px rgba(15,23,42,0.08)",
-        }}
-      />
+      {testimonial.persona || testimonial.useCase ? (
+        <div className="mb-4 flex flex-col items-start gap-2">
+          {testimonial.persona ? (
+            <span
+              className={cn(
+                "inline-flex text-[0.66rem] font-bold uppercase tracking-[0.16em]",
+                isCenter
+                  ? "text-techpay-primary"
+                  : "text-slate-500"
+              )}
+            >
+              {testimonial.persona}
+            </span>
+          ) : null}
+          {testimonial.useCase ? (
+            <span
+              className={cn(
+                "inline-flex max-w-full border-l-2 px-3 py-1.5 text-[0.68rem] font-semibold leading-tight",
+                isCenter
+                  ? "border-techpay-purple bg-techpay-purple/8 text-slate-800"
+                  : "border-slate-400 bg-white/70 text-slate-600"
+              )}
+            >
+              {testimonial.useCase}
+            </span>
+          ) : null}
+        </div>
+      ) : null}
 
       <h3
         className={cn(
-          "pr-2 text-[1rem] font-medium leading-[1.45] md:text-[1.15rem]",
+          "pr-2 text-[0.82rem] font-medium leading-[1.5] md:text-[0.9rem]",
           isCenter ? "text-[#111111]" : "text-slate-900"
         )}
       >
@@ -127,7 +141,7 @@ function TestimonialCard({
 
       <p
         className={cn(
-          "absolute bottom-6 left-6 right-6 mt-2 text-[0.78rem] italic md:bottom-8 md:left-8 md:right-8 md:text-sm",
+          "mt-auto pt-4 text-[0.78rem] italic md:pt-5 md:text-sm",
           isCenter ? "text-[#4b4b4b]" : "text-slate-500"
         )}
       >
@@ -142,6 +156,7 @@ export function StaggerTestimonials({
   className,
 }: StaggerTestimonialsProps) {
   const [cardWidth, setCardWidth] = useState(365);
+  const [cardHeight, setCardHeight] = useState(455);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPageVisible, setIsPageVisible] = useState(true);
 
@@ -149,15 +164,18 @@ export function StaggerTestimonials({
     const updateSize = () => {
       if (window.innerWidth >= 1280) {
         setCardWidth(365);
+        setCardHeight(455);
         return;
       }
 
       if (window.innerWidth >= 768) {
         setCardWidth(320);
+        setCardHeight(470);
         return;
       }
 
       setCardWidth(270);
+      setCardHeight(455);
     };
 
     updateSize();
@@ -175,8 +193,6 @@ export function StaggerTestimonials({
       return ((nextIndex % items.length) + items.length) % items.length;
     });
   };
-
-  const cardHeight = Math.round(cardWidth * 1.24);
 
   useEffect(() => {
     const updateVisibility = () => {
@@ -225,20 +241,22 @@ export function StaggerTestimonials({
       })}
 
       <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 md:bottom-6">
-        <button
+        <Button
           onClick={() => handleMove(-1)}
-          className="flex h-10 w-10 items-center justify-center border border-slate-200 bg-white text-slate-900 transition-colors hover:border-slate-300 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 md:h-11 md:w-11"
           aria-label="Previous testimonial"
+          size="iconLg"
+          variant="lightIcon"
         >
           <ChevronLeft className="h-4 w-4" />
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => handleMove(1)}
-          className="flex h-10 w-10 items-center justify-center border border-slate-200 bg-white text-slate-900 transition-colors hover:border-slate-300 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 md:h-11 md:w-11"
           aria-label="Next testimonial"
+          size="iconLg"
+          variant="lightIcon"
         >
           <ChevronRight className="h-4 w-4" />
-        </button>
+        </Button>
       </div>
     </div>
   );

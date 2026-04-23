@@ -1,6 +1,7 @@
 import FollowingPointerDemo from "./following-pointer-demo";
 import SplitText from "./split-text";
 import TechPayExperience from "@/components/techpay-experience";
+import { Building2, Globe2, Landmark, MapPinned } from "lucide-react";
 import FeaturesSectionDemo, {
   type FeatureSectionItem,
 } from "./offices-grid";
@@ -26,32 +27,38 @@ const leadershipTeam = [
   {
     name: "Praveen Sahai",
     title: "Founder & CEO",
-    image: "/members/praveen_sahai.png",
+    image: "/members/praveen_sahai.webp",
+    linkedinUrl: "https://www.linkedin.com/in/praveensahai/",
   },
   {
     name: "Ajay Mohan",
     title: "GTM Advisor & Chief Growth Officer",
-    image: "/members/ajay_mohan.png",
+    image: "/members/ajay_mohan.webp",
+    linkedinUrl: "https://www.linkedin.com/in/theajaymohan/",
   },
   {
     name: "Arunava Chakrabarty",
     title: "Chief Operating Officer",
-    image: "/members/arunava.png",
+    image: "/members/arunava.webp",
+    linkedinUrl: "https://www.linkedin.com/in/arunava-chakrabarty-2b4b77/",
   },
   {
     name: "Dilip Sundaram",
     title: "CFO",
-    image: "/members/dilip_sundaram.png",
+    image: "/members/dilip_sundaram.webp",
+    linkedinUrl: "https://www.linkedin.com/in/dilip-sundaram-7986671/",
   },
   {
-    name: "Hemant Thathod",
+    name: "Hemant Tathod",
     title: "Chief Business Officer, Consumer Div.",
-    image: "/members/hemant.png",
+    image: "/members/hemant.webp",
+    linkedinUrl: "https://www.linkedin.com/in/hemanttathod/",
   },
   {
     name: "Asif Bhat",
     title: "Chief AI Officer - TechPay.ai CEO & Co Founder - Getafix Technologies",
-    image: "/members/asif.png",
+    image: "/members/asif.webp",
+    linkedinUrl: "https://www.linkedin.com/in/asifbhat/",
   },
 ];
 
@@ -65,6 +72,7 @@ const officeLocations = [
       "Karnataka 560034",
     ],
     accent: "from-techpay-primary/30 to-techpay-orange/20",
+    Icon: Building2,
   },
   {
     title: "TechPay.ai Singapore",
@@ -73,6 +81,7 @@ const officeLocations = [
       "East Tower, Singapore 018936",
     ],
     accent: "from-techpay-purple/30 to-techpay-primary/15",
+    Icon: Landmark,
   },
   {
     title: "TechPay.ai SDN BHD Malaysia",
@@ -83,18 +92,24 @@ const officeLocations = [
       "WP Kuala Lumpur 6000, Malaysia",
     ],
     accent: "from-techpay-orange/30 to-techpay-primary/15",
+    Icon: MapPinned,
   },
   {
     title: "Coming Soon",
     lines: [
-      "South East Asia - Indonesia, Philippines, Thailand, Vietnam, Japan, South Korea, Australia, Dubai",
+      "South East Asia: Indonesia, Thailand, Vietnam, Philippines",
+      "North East Asia: Japan, South Korea",
+      "Oceania: Australia West",
+      "Asia: UAE",
     ],
     accent: "from-white/14 to-techpay-primary/12",
+    Icon: Globe2,
   },
 ];
 
 const officeFeatures: FeatureSectionItem[] = officeLocations.map((office) => ({
   title: office.title,
+  icon: <office.Icon className="h-6 w-6" strokeWidth={1.8} />,
   description: (
     <div className="space-y-1.5">
       {office.lines.map((line) => (
@@ -128,7 +143,7 @@ export default function AboutUsPageContent() {
                 {missionVision.map((item, index) => (
                   <article
                     key={item.label}
-                    className="group relative overflow-hidden border border-white/55 bg-white/58 p-7 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-2xl dark:border-white/12 dark:bg-white/7 dark:shadow-[0_24px_80px_rgba(2,6,23,0.42)] md:p-12"
+                    className="group relative overflow-hidden border p-7 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-2xl border-white/12 bg-white/7 dark:shadow-[0_24px_80px_rgba(2,6,23,0.42)] md:p-12"
                   >
                     <div
                       className={`absolute inset-x-0 top-0 h-1 ${
