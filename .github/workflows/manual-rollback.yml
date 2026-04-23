@@ -25,6 +25,7 @@ jobs:
     env:
       HEALTHCHECK_URL: ${{ secrets.STAGING_HEALTHCHECK_URL }}
       ROLLBACK_TAG: ${{ inputs.tag }}
+      APP_BASE_PATH: /staging
     steps:
       - name: Checkout repository metadata
         uses: actions/checkout@v4
@@ -62,9 +63,10 @@ jobs:
             cd /home/azureuser/techpay-staging
             git fetch origin staging --tags --force
             git checkout --force "$ROLLBACK_TAG"
+            export NEXT_PUBLIC_BASE_PATH="/staging"
             npm install
             npm run build
-            pm2 restart techpay-staging
+            pm2 restart techpay-staging --update-env
 
       - name: Health check staging rollback
         shell: bash
@@ -76,13 +78,19 @@ jobs:
             exit 1
           fi
 
-          for attempt in {1..12}; do
-            echo "Staging rollback health check attempt ${attempt}/12: ${HEALTHCHECK_URL}"
+          mapfile -t HEALTHCHECK_CANDIDATES < <(node .github/scripts/healthcheck-candidates.mjs)
 
-            if curl --fail --silent --show-error --max-time 10 "$HEALTHCHECK_URL" > /dev/null; then
-              echo "Staging rollback health check passed."
-              exit 0
-            fi
+          for attempt in {1..12}; do
+            for index in "${!HEALTHCHECK_CANDIDATES[@]}"; do
+              candidate_number=$((index + 1))
+
+              echo "Staging rollback health check attempt ${attempt}/12, candidate ${candidate_number}/${#HEALTHCHECK_CANDIDATES[@]}"
+
+              if curl --fail --silent --show-error --max-time 10 "${HEALTHCHECK_CANDIDATES[$index]}" > /dev/null; then
+                echo "Staging rollback health check passed."
+                exit 0
+              fi
+            done
 
             sleep 10
           done
@@ -96,6 +104,7 @@ jobs:
     env:
       HEALTHCHECK_URL: ${{ secrets.PRODUCTION_HEALTHCHECK_URL }}
       ROLLBACK_TAG: ${{ inputs.tag }}
+      APP_BASE_PATH: ""
     steps:
       - name: Checkout repository metadata
         uses: actions/checkout@v4
@@ -133,9 +142,10 @@ jobs:
             cd /home/azureuser/techpay-website
             git fetch origin main --tags --force
             git checkout --force "$ROLLBACK_TAG"
+            export NEXT_PUBLIC_BASE_PATH=""
             npm install
             npm run build
-            pm2 restart techpay
+            pm2 restart techpay --update-env
 
       - name: Health check production rollback
         shell: bash
@@ -147,13 +157,19 @@ jobs:
             exit 1
           fi
 
-          for attempt in {1..12}; do
-            echo "Production rollback health check attempt ${attempt}/12: ${HEALTHCHECK_URL}"
+          mapfile -t HEALTHCHECK_CANDIDATES < <(node .github/scripts/healthcheck-candidates.mjs)
 
-            if curl --fail --silent --show-error --max-time 10 "$HEALTHCHECK_URL" > /dev/null; then
-              echo "Production rollback health check passed."
-              exit 0
-            fi
+          for attempt in {1..12}; do
+            for index in "${!HEALTHCHECK_CANDIDATES[@]}"; do
+              candidate_number=$((index + 1))
+
+              echo "Production rollback health check attempt ${attempt}/12, candidate ${candidate_number}/${#HEALTHCHECK_CANDIDATES[@]}"
+
+              if curl --fail --silent --show-error --max-time 10 "${HEALTHCHECK_CANDIDATES[$index]}" > /dev/null; then
+                echo "Production rollback health check passed."
+                exit 0
+              fi
+            done
 
             sleep 10
           done

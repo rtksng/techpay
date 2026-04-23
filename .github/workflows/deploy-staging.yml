@@ -60,13 +60,13 @@ jobs:
             cd /home/azureuser/techpay-staging
             git fetch origin staging --tags --force
             git checkout --force "${{ github.sha }}"
+            export NEXT_PUBLIC_BASE_PATH="/staging"
             npm install
             npm run build
-            pm2 restart techpay-staging
+            pm2 restart techpay-staging --update-env
 
       # The deployment is considered successful only after a health endpoint returns 2xx.
-      # The configured URL is tried first; because this app is served under /staging,
-      # fallback checks also try /staging/health and /staging/api/health on the same origin.
+      # The configured URL is tried first; fallback checks use APP_BASE_PATH on the same origin.
       - name: Health check staging deployment
         shell: bash
         run: |
@@ -129,9 +129,10 @@ jobs:
             cd /home/azureuser/techpay-staging
             git fetch origin staging --tags --force
             git checkout --force "$ROLLBACK_TAG"
+            export NEXT_PUBLIC_BASE_PATH="/staging"
             npm install
             npm run build
-            pm2 restart techpay-staging
+            pm2 restart techpay-staging --update-env
 
       # Verify rollback health as well. The workflow remains failed so the bad deploy is visible.
       - name: Health check staging rollback
