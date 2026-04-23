@@ -782,7 +782,7 @@ export function mountTechPayScene({
             trigger: "#hero",
             start: "top top",
             endTrigger: "#infinite-shelf",
-            end: "top 27%",
+            end: "top 24%",
             scrub: 0.55,
             invalidateOnRefresh: true,
             immediateRender: false,
