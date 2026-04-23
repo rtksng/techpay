@@ -181,7 +181,7 @@ export function mountTechPayScene({
   function createMaterials() {
     const textureLoader = new THREE.TextureLoader();
 
-    screenImageTexture = textureLoader.load(resolvePublicAssetPath("/assets/inner-image-laptop3.png"), (texture) => {
+    screenImageTexture = textureLoader.load(resolvePublicAssetPath("/assets/inner-image-laptop3.webp"), (texture) => {
       texture.flipY = false;
       texture.colorSpace = THREE.SRGBColorSpace;
       fitScreenTextureCover(texture);
@@ -194,7 +194,7 @@ export function mountTechPayScene({
       side: THREE.BackSide,
     });
 
-    const keyboardTexture = textureLoader.load(resolvePublicAssetPath("/assets/keyboard-overlay.png"));
+    const keyboardTexture = textureLoader.load(resolvePublicAssetPath("/assets/keyboard-overlay.webp"));
     keyboardMaterial = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       alphaMap: keyboardTexture,

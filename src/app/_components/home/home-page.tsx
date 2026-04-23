@@ -95,7 +95,7 @@ export default function HomePage() {
 
       <div className="monitor-backdrop" aria-hidden="true">
         <Image
-          src={publicAsset("/parts/monitor1.png")}
+          src={publicAsset("/parts/monitor1.webp")}
           alt=""
           fill
           priority
@@ -106,7 +106,7 @@ export default function HomePage() {
 
       <div className="headphones-backdrop" aria-hidden="true">
         <Image
-          src={publicAsset("/parts/pri-head2.png")}
+          src={publicAsset("/parts/pri-head2.webp")}
           alt=""
           width={700}
           height={526}

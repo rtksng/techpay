@@ -19,10 +19,44 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const publicAsset = (path: string) => `${publicBasePath}${path}`;
+
 export const metadata: Metadata = {
   title: "TechPay.ai | You Deserve a Computer",
   description:
     "Flexible payments, local store discovery, and guided laptop recommendations with a polished 3D landing experience.",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: publicAsset("/favicon.ico"), sizes: "any" },
+      { url: publicAsset("/favicon-16x16.png"), sizes: "16x16", type: "image/png" },
+      { url: publicAsset("/favicon-32x32.png"), sizes: "32x32", type: "image/png" },
+      {
+        url: publicAsset("/android-chrome-192x192.png"),
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: publicAsset("/android-chrome-512x512.png"),
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    shortcut: [{ url: publicAsset("/favicon.ico") }],
+    apple: [
+      {
+        url: publicAsset("/apple-touch-icon.png"),
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
+  appleWebApp: {
+    capable: true,
+    title: "TechPay.ai",
+    statusBarStyle: "default",
+  },
 };
 
 export default function RootLayout({

@@ -154,7 +154,7 @@ const heroFeatures: Array<{
     ],
     ctaLabel: "Get Recommendations",
     imageAlt: "AI recommendation experience preview",
-    imageSrc: "/future-of-retail/AI-Recommendations.png",
+    imageSrc: "/future-of-retail/AI-Recommendations.webp",
     loadingLabel: "Get Recommendations",
     kind: "recommendation",
     Icon: Bot,
@@ -172,7 +172,7 @@ const heroFeatures: Array<{
     ],
     ctaLabel: "Browse the Catalog",
     imageAlt: "Endless aisle catalog experience preview",
-    imageSrc: "/future-of-retail/Endless-Aisle-Catalog.png",
+    imageSrc: "/future-of-retail/Endless-Aisle-Catalog.webp",
     loadingLabel: "Browse the Catalog",
     kind: "catalog",
     Icon: Boxes,
@@ -190,7 +190,7 @@ const heroFeatures: Array<{
     ],
     ctaLabel: "Check Eligibility",
     imageAlt: "Financing options experience preview",
-    imageSrc: "/future-of-retail/Financing-Options.png",
+    imageSrc: "/future-of-retail/Financing-Options.webp",
     loadingLabel: "Check Eligibility",
     kind: "eligibility",
     Icon: WalletCards,
@@ -208,7 +208,7 @@ const heroFeatures: Array<{
     ],
     ctaLabel: "Subscribe to Support",
     imageAlt: "Personalised IT helpdesk experience preview",
-    imageSrc: "/future-of-retail/Personalised-IT-Helpdesk.png",
+    imageSrc: "/future-of-retail/Personalised-IT-Helpdesk.webp",
     loadingLabel: "Subscribe to Support",
     kind: "helpdesk",
     Icon: Headset,
@@ -499,7 +499,7 @@ function QuoteSection() {
       <div className="mx-auto  max-w-[1440px]  lg:items-center">
         {/* <div className="relative aspect-[4/3] overflow-hidden border border-white/10 bg-white/5">
           <Image
-            src={publicAsset("/members/praveen_sahai.png")}
+            src={publicAsset("/members/praveen_sahai.webp")}
             alt="Praveen Sahai"
             fill
             sizes="(max-width: 1024px) 100vw, 520px"
@@ -634,7 +634,7 @@ function FinalCtaSection() {
     <section className="relative overflow-hidden bg-techpay-bg px-5 py-16 md:px-10 md:py-24 lg:px-[60px]">
       <div className="absolute inset-0 opacity-25" aria-hidden="true">
         <Image
-          src={publicAsset("/assets/inner-image-laptop2.jpg")}
+          src={publicAsset("/assets/inner-image-laptop2.webp")}
           alt=""
           fill
           sizes="100vw"
