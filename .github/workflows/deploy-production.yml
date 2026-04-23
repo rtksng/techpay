@@ -14,6 +14,7 @@ jobs:
     env:
       STABLE_TAG_PREFIX: production-success
       HEALTHCHECK_URL: ${{ secrets.PRODUCTION_HEALTHCHECK_URL }}
+      APP_BASE_PATH: /staging
     steps:
       - name: Checkout repository metadata
         uses: actions/checkout@v4
@@ -63,8 +64,9 @@ jobs:
             npm run build
             pm2 restart techpay
 
-      # The deployment is considered successful only after this endpoint returns 2xx.
-      # Configure PRODUCTION_HEALTHCHECK_URL as a repository/environment secret.
+      # The deployment is considered successful only after a health endpoint returns 2xx.
+      # The configured URL is tried first; because this app is served under /staging,
+      # fallback checks also try /staging/health and /staging/api/health on the same origin.
       - name: Health check production deployment
         shell: bash
         run: |
@@ -75,13 +77,19 @@ jobs:
             exit 1
           fi
 
-          for attempt in {1..12}; do
-            echo "Production health check attempt ${attempt}/12: ${HEALTHCHECK_URL}"
+          mapfile -t HEALTHCHECK_CANDIDATES < <(node .github/scripts/healthcheck-candidates.mjs)
 
-            if curl --fail --silent --show-error --max-time 10 "$HEALTHCHECK_URL" > /dev/null; then
-              echo "Production health check passed."
-              exit 0
-            fi
+          for attempt in {1..12}; do
+            for index in "${!HEALTHCHECK_CANDIDATES[@]}"; do
+              candidate_number=$((index + 1))
+
+              echo "Production health check attempt ${attempt}/12, candidate ${candidate_number}/${#HEALTHCHECK_CANDIDATES[@]}"
+
+              if curl --fail --silent --show-error --max-time 10 "${HEALTHCHECK_CANDIDATES[$index]}" > /dev/null; then
+                echo "Production health check passed."
+                exit 0
+              fi
+            done
 
             sleep 10
           done
@@ -132,13 +140,19 @@ jobs:
         run: |
           set -euo pipefail
 
-          for attempt in {1..12}; do
-            echo "Production rollback health check attempt ${attempt}/12: ${HEALTHCHECK_URL}"
+          mapfile -t HEALTHCHECK_CANDIDATES < <(node .github/scripts/healthcheck-candidates.mjs)
 
-            if curl --fail --silent --show-error --max-time 10 "$HEALTHCHECK_URL" > /dev/null; then
-              echo "Production rollback health check passed."
-              exit 0
-            fi
+          for attempt in {1..12}; do
+            for index in "${!HEALTHCHECK_CANDIDATES[@]}"; do
+              candidate_number=$((index + 1))
+
+              echo "Production rollback health check attempt ${attempt}/12, candidate ${candidate_number}/${#HEALTHCHECK_CANDIDATES[@]}"
+
+              if curl --fail --silent --show-error --max-time 10 "${HEALTHCHECK_CANDIDATES[$index]}" > /dev/null; then
+                echo "Production rollback health check passed."
+                exit 0
+              fi
+            done
 
             sleep 10
           done
