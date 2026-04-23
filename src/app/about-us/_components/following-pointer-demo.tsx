@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { IconBrandLinkedin } from "@tabler/icons-react";
 
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 
@@ -6,6 +7,7 @@ type Leader = {
   name: string;
   title: string;
   image?: string;
+  linkedinUrl: string;
 };
 
 const portraitImages = [
@@ -78,6 +80,16 @@ export default function FollowingPointerDemo({
                   <p className="mt-1 text-[0.9rem] leading-[1.5] text-slate-600 md:text-[0.94rem]">
                     {leader.title}
                   </p>
+                  <a
+                    href={leader.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${leader.name}'s LinkedIn profile`}
+                    className="relative z-10 mt-3 inline-flex h-7 items-center gap-1.5 border border-[#0a66c2] bg-[#0a66c2] px-2.5 text-xs font-semibold text-white no-underline shadow-[0_8px_16px_rgba(10,102,194,0.18)] outline-none transition hover:border-[#084f96] hover:bg-[#084f96] focus-visible:ring-2 focus-visible:ring-[#0a66c2] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                  >
+                    <IconBrandLinkedin size={14} stroke={2} aria-hidden="true" />
+                    LinkedIn
+                  </a>
                 </div>
               </div>
             </article>

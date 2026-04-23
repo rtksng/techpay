@@ -42,7 +42,7 @@ export default function SiteFooter() {
             <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/future-of-retail">
               Future of Retail
             </Link>
-            <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">
+            <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/privacy-policy">
               Privacy Policy
             </Link>
             <Link className="text-[0.9rem] text-techpay-muted no-underline transition hover:text-techpay-heading" href="/coming-soon">

@@ -28,31 +28,37 @@ const leadershipTeam = [
     name: "Praveen Sahai",
     title: "Founder & CEO",
     image: "/members/praveen_sahai.webp",
+    linkedinUrl: "https://www.linkedin.com/in/praveensahai/",
   },
   {
     name: "Ajay Mohan",
     title: "GTM Advisor & Chief Growth Officer",
     image: "/members/ajay_mohan.webp",
+    linkedinUrl: "https://www.linkedin.com/in/theajaymohan/",
   },
   {
     name: "Arunava Chakrabarty",
     title: "Chief Operating Officer",
     image: "/members/arunava.webp",
+    linkedinUrl: "https://www.linkedin.com/in/arunava-chakrabarty-2b4b77/",
   },
   {
     name: "Dilip Sundaram",
     title: "CFO",
     image: "/members/dilip_sundaram.webp",
+    linkedinUrl: "https://www.linkedin.com/in/dilip-sundaram-7986671/",
   },
   {
-    name: "Hemant Thathod",
+    name: "Hemant Tathod",
     title: "Chief Business Officer, Consumer Div.",
     image: "/members/hemant.webp",
+    linkedinUrl: "https://www.linkedin.com/in/hemanttathod/",
   },
   {
     name: "Asif Bhat",
     title: "Chief AI Officer - TechPay.ai CEO & Co Founder - Getafix Technologies",
     image: "/members/asif.webp",
+    linkedinUrl: "https://www.linkedin.com/in/asifbhat/",
   },
 ];
 
