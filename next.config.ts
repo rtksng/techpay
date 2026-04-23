@@ -1,12 +1,19 @@
 import path from "node:path";
 import type { NextConfig } from "next";
 
-const basePath = "/staging";
+const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim() ?? "";
+const basePath = configuredBasePath
+  ? `/${configuredBasePath.replace(/^\/+|\/+$/g, "")}`
+  : "";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  basePath,
-  assetPrefix: basePath,
+  ...(basePath
+    ? {
+        basePath,
+        assetPrefix: basePath,
+      }
+    : {}),
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
