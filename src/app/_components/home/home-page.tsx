@@ -132,7 +132,7 @@ export default function HomePage() {
                 Buy smarter. Own sooner. Pay your way.
               </span>
               <span className="max-w-4xl text-[clamp(1rem,3vw,1.7rem)] font-medium italic leading-[1.35]">
-                The world&apos;s first PhyGital retail platform.
+                The world&apos;s first <span className="text-[#b32849] font-bold">PhyGital</span> retail platform.
               </span>
             </h1>
           </div>
