@@ -27,7 +27,6 @@ export function mountTechPayScene({
   let darkPlasticMaterial;
   let cameraMaterial;
   let baseMetalMaterial;
-  let logoMaterial;
   let screenMaterial;
   let keyboardMaterial;
   let macGroup;
@@ -139,7 +138,6 @@ export function mountTechPayScene({
     disposeMaterial(darkPlasticMaterial);
     disposeMaterial(cameraMaterial);
     disposeMaterial(baseMetalMaterial);
-    disposeMaterial(logoMaterial);
     disposeImportedScene(scene);
   };
 
@@ -212,7 +210,6 @@ export function mountTechPayScene({
       clearcoat: 0.8,
       clearcoatRoughness: 0.16,
     });
-    logoMaterial = new THREE.MeshStandardMaterial({ color: 0x95a0af, roughness: 0.55, metalness: 0.3 });
   }
 
   function fitScreenTextureCover(texture) {
@@ -247,7 +244,7 @@ export function mountTechPayScene({
         lidGroup.add(child);
         [...child.children].forEach((mesh) => {
           if (mesh.name === "lid") mesh.material = baseMetalMaterial;
-          else if (mesh.name === "logo") mesh.material = logoMaterial;
+          else if (mesh.name === "logo") mesh.visible = false;
           else if (mesh.name === "screen-frame") mesh.material = darkPlasticMaterial;
           else if (mesh.name === "camera") mesh.material = cameraMaterial;
         });
