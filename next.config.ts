@@ -1,7 +1,12 @@
 import path from "node:path";
 import type { NextConfig } from "next";
 
-const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim() ?? "";
+const defaultBasePath =
+  process.env.NODE_ENV === "development" ? "/staging" : "";
+const configuredBasePath =
+  process.env.NEXT_PUBLIC_BASE_PATH === undefined
+    ? defaultBasePath
+    : process.env.NEXT_PUBLIC_BASE_PATH.trim();
 const basePath = configuredBasePath
   ? `/${configuredBasePath.replace(/^\/+|\/+$/g, "")}`
   : "";

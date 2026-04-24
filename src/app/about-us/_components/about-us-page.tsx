@@ -56,7 +56,7 @@ const leadershipTeam = [
   },
   {
     name: "Asif Bhat",
-    title: "Chief AI Officer - TechPay.ai CEO & Co Founder - Getafix Technologies",
+    title: "Chief AI Officer",
     image: "/members/asif.webp",
     linkedinUrl: "https://www.linkedin.com/in/asifbhat/",
   },
