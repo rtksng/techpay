@@ -6,6 +6,7 @@ import { FollowerPointerCard } from "@/components/ui/following-pointer";
 type Leader = {
   name: string;
   title: string;
+  description?: string;
   image?: string;
   linkedinUrl: string;
 };
@@ -50,7 +51,7 @@ export default function FollowingPointerDemo({
             }
           >
             <article className="group relative flex h-full flex-col overflow-hidden border border-slate-200 bg-white shadow-[0_20px_45px_rgba(15,23,42,0.08)] transition duration-300">
-              <div className="flex h-full items-center gap-4 p-4 md:gap-5 md:p-5">
+              <div className="flex h-full items-start gap-4 p-4 md:gap-5 md:p-5">
                 <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border border-slate-200 bg-slate-50 md:h-28 md:w-28">
                   <div className="absolute inset-0 bg-linear-to-br from-slate-100 via-white to-slate-100" />
                   <div
@@ -80,6 +81,11 @@ export default function FollowingPointerDemo({
                   <p className="mt-1 text-[0.9rem] leading-[1.5] text-slate-600 md:text-[0.94rem]">
                     {leader.title}
                   </p>
+                  {leader.description ? (
+                    <p className="mt-3 text-[0.82rem] leading-5 text-slate-500 md:text-[0.86rem] md:leading-6">
+                      {leader.description}
+                    </p>
+                  ) : null}
                   <a
                     href={leader.linkedinUrl}
                     target="_blank"

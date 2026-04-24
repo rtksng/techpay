@@ -13,7 +13,6 @@ export default function MenuSetup() {
       const menuToggleButton = document.querySelector(".menu-toggle");
       const menuCloseButton = document.querySelector(".menu-close");
       const menuOverlay = document.querySelector(".menu-overlay");
-      const menuOverlayLinks = document.querySelectorAll(".menu-overlay a");
 
       const animations: Array<{ kill?: () => void }> = [];
       const trackAnimation = <T,>(animation: T): T => {
@@ -25,7 +24,6 @@ export default function MenuSetup() {
         menuToggleButton,
         menuCloseButton,
         menuOverlay,
-        menuOverlayLinks,
         trackAnimation,
       });
     });

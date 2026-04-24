@@ -4,7 +4,6 @@ export function setupMenuOverlay({
   menuToggleButton,
   menuCloseButton,
   menuOverlay,
-  menuOverlayLinks,
   trackAnimation,
 }) {
   if (!menuToggleButton || !menuCloseButton || !menuOverlay) {
@@ -78,19 +77,23 @@ export function setupMenuOverlay({
     menuTimeline.play();
   };
 
-  const closeMenu = () => {
+  const closeMenu = ({ restoreScroll = true } = {}) => {
     const isMenuOpen = menuOverlay.classList.contains("is-open");
 
     menuToggleButton.setAttribute("aria-expanded", "false");
     menuToggleButton.classList.remove("is-active");
 
     if (isMenuOpen) {
-      unlockBodyScroll();
+      unlockBodyScroll({ restoreScroll });
     } else {
       unlockBodyScroll({ restoreScroll: false });
     }
 
     menuTimeline.reverse();
+  };
+
+  const closeMenuForNavigation = () => {
+    closeMenu({ restoreScroll: false });
   };
 
   const onToggleClick = () => {
@@ -103,6 +106,13 @@ export function setupMenuOverlay({
   };
 
   const onOverlayClick = (event) => {
+    const clickedLink = event.target.closest?.("a");
+
+    if (clickedLink && menuOverlay.contains(clickedLink)) {
+      closeMenuForNavigation();
+      return;
+    }
+
     if (event.target === menuOverlay) {
       closeMenu();
     }
@@ -117,14 +127,12 @@ export function setupMenuOverlay({
   menuToggleButton.addEventListener("click", onToggleClick);
   menuCloseButton.addEventListener("click", closeMenu);
   menuOverlay.addEventListener("click", onOverlayClick);
-  menuOverlayLinks.forEach((link) => link.addEventListener("click", closeMenu));
   window.addEventListener("keydown", onKeyDown);
 
   return () => {
     menuToggleButton.removeEventListener("click", onToggleClick);
     menuCloseButton.removeEventListener("click", closeMenu);
     menuOverlay.removeEventListener("click", onOverlayClick);
-    menuOverlayLinks.forEach((link) => link.removeEventListener("click", closeMenu));
     window.removeEventListener("keydown", onKeyDown);
     closeMenu();
   };
