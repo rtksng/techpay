@@ -33,9 +33,19 @@ const partnerChildLinks = [
   { href: "/oem", absoluteHref: "/oem", label: "OEM" },
   { href: "/distributors", absoluteHref: "/distributors", label: "Distributors" },
   { href: "/retailers", absoluteHref: "/retailers", label: "Retailers" },
+  {
+    href: "/associate-retailer",
+    absoluteHref: "/associate-retailer",
+    label: "Associate Retailer",
+  },
 ] as const;
 
-const partnerPathPrefixes = ["/oem", "/distributors", "/retailers"] as const;
+const partnerPathPrefixes = [
+  "/oem",
+  "/distributors",
+  "/retailers",
+  "/associate-retailer",
+] as const;
 
 function pathIsUnderPartner(pathname: string) {
   return partnerPathPrefixes.some((p) => pathname === p || pathname.startsWith(`${p}/`));
@@ -87,6 +97,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
             aria-controls="menu-overlay"
             aria-label="Open navigation menu"
           >
+            MENU
             <span className="menu-toggle-icon flex flex-col gap-[5px]" aria-hidden="true">
               <span className="block h-[2px] w-[22px] rounded-full bg-current" />
               <span className="block h-[2px] w-[22px] rounded-full bg-current" />
@@ -114,9 +125,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
             </button>
           </div>
           <div className="menu-overlay-content grid flex-1 content-center gap-5 py-10 sm:gap-[22px] md:gap-7">
-            <p className="menu-kicker text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-techpay-primary">
-              Navigation
-            </p>
+            
             <div className="menu-links grid gap-[14px] sm:gap-[18px]">
               <Link
                 className={mainMenuLinkClassName}
@@ -177,7 +186,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
                       {partnerChildren.map((link) => (
                         <Link
                           key={link.label}
-                          className="menu-partner-sublink w-fit text-xl font-extrabold leading-[1.05] text-techpay-heading no-underline transition hover:text-techpay-primary sm:text-2xl md:text-3xl"
+                          className="menu-partner-sublink w-fit text-xl! font-medium leading-[1.05] text-techpay-heading no-underline transition hover:text-techpay-primary sm:text-2xl! "
                           href={link.resolvedHref}
                         >
                           {link.label}
@@ -188,9 +197,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
                 </div>
               </div>
             </div>
-            <p className="menu-meta max-w-[520px] text-[0.95rem] leading-[1.8] text-techpay-muted md:text-[1rem]">
-              Flexible payments. Real human support. Smarter laptop recommendations.
-            </p>
+           
           </div>
         </div>
       </div>

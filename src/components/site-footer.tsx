@@ -24,6 +24,7 @@ const footerGroups = [
       { label: "OEM", href: "/oem" },
       { label: "Distributors", href: "/distributors" },
       { label: "Retailers", href: "/retailers" },
+      { label: "Associate Retailer", href: "/associate-retailer" },
     ],
   },
   {
@@ -78,23 +79,7 @@ export default function SiteFooter() {
               support for a better technology buying journey.
             </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <ButtonAnchor
-                href="/contact"
-                rightIcon={<IconChevronRight aria-hidden="true" size={16} stroke={1.8} />}
-                size="compact"
-                variant="primary"
-              >
-                Contact Us
-              </ButtonAnchor>
-              <a
-                className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-techpay-muted no-underline transition hover:text-techpay-heading"
-                href="mailto:contact@techpay.ai"
-              >
-                <IconMail aria-hidden="true" size={17} stroke={1.8} />
-                contact@techpay.ai
-              </a>
-            </div>
+            
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
