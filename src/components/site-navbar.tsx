@@ -17,6 +17,18 @@ const futureRetailLink = {
   label: "Future of Retail",
 } as const;
 
+const contactLink = {
+  href: "/contact",
+  absoluteHref: "/contact",
+  label: "Contact",
+} as const;
+
+const mainMenuLinkClassName =
+  "menu-nav-enter w-fit text-3xl font-extrabold leading-[1] text-techpay-heading no-underline transition hover:text-techpay-primary sm:text-4xl md:text-5xl";
+
+const partnerTriggerClassName =
+  "menu-partner-trigger group flex w-full max-w-full cursor-pointer items-center gap-3 rounded-xl border-0 bg-transparent py-1 text-left text-3xl font-extrabold leading-[1] text-techpay-heading transition hover:text-techpay-primary sm:text-4xl md:gap-4 md:text-5xl";
+
 const partnerChildLinks = [
   { href: "/oem", absoluteHref: "/oem", label: "OEM" },
   { href: "/distributors", absoluteHref: "/distributors", label: "Distributors" },
@@ -38,6 +50,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
   const futureRetailResolvedHref = onLandingPage
     ? futureRetailLink.href
     : futureRetailLink.absoluteHref;
+  const contactResolvedHref = onLandingPage ? contactLink.href : contactLink.absoluteHref;
   const partnerChildren = partnerChildLinks.map((link) => ({
     ...link,
     resolvedHref: onLandingPage ? link.href : link.absoluteHref,
@@ -65,7 +78,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
       <nav className="navbar fixed left-2 right-2 top-2 z-100 mx-auto w-auto rounded-full border border-white/10 bg-black/40 px-3 py-2.5 backdrop-blur-3xl sm:left-3 sm:right-3 sm:top-3 sm:px-4 sm:py-3 md:left-6 md:right-6 md:top-[18px] md:px-[26px] md:py-[14px]">
         <div className="nav-inner mx-auto flex max-w-full items-center justify-between">
           <Link href={homeHref} className="logo inline-flex items-center no-underline">
-            <LogoMark priority={isLandingPage} />
+            <LogoMark eager />
           </Link>
           <button
             className="menu-toggle inline-flex cursor-pointer items-center gap-2 rounded-full border-0 bg-white/4 px-3 py-2.5 text-techpay-heading transition hover:bg-white/8 md:gap-[14px] md:px-[18px] md:py-[10px]"
@@ -74,6 +87,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
             aria-controls="menu-overlay"
             aria-label="Open navigation menu"
           >
+            MENU
             <span className="menu-toggle-icon flex flex-col gap-[5px]" aria-hidden="true">
               <span className="block h-[2px] w-[22px] rounded-full bg-current" />
               <span className="block h-[2px] w-[22px] rounded-full bg-current" />
@@ -106,22 +120,28 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
             </p>
             <div className="menu-links grid gap-[14px] sm:gap-[18px]">
               <Link
-                className="menu-nav-enter w-fit text-[clamp(1.85rem,9vw,2.9rem)] font-extrabold leading-[1] tracking-[-0.04em] text-techpay-heading no-underline transition hover:text-techpay-primary md:text-[clamp(2.2rem,5.2vw,4.4rem)]"
+                className={mainMenuLinkClassName}
                 href={aboutResolvedHref}
               >
                 {aboutLink.label}
               </Link>
               <Link
-                className="menu-nav-enter w-fit text-[clamp(1.85rem,9vw,2.9rem)] font-extrabold leading-[1] tracking-[-0.04em] text-techpay-heading no-underline transition hover:text-techpay-primary md:text-[clamp(2.2rem,5.2vw,4.4rem)]"
+                className={mainMenuLinkClassName}
                 href={futureRetailResolvedHref}
               >
                 {futureRetailLink.label}
+              </Link>
+              <Link
+                className={mainMenuLinkClassName}
+                href={contactResolvedHref}
+              >
+                {contactLink.label}
               </Link>
 
               <div className="menu-nav-enter menu-partner-root grid gap-0">
                 <button
                   type="button"
-                  className="menu-partner-trigger group flex w-full max-w-full cursor-pointer items-center gap-3 rounded-xl border-0 bg-transparent py-1 text-left text-[clamp(1.85rem,9vw,2.9rem)] font-extrabold leading-[1] tracking-[-0.04em] text-techpay-heading transition hover:text-techpay-primary md:gap-4 md:text-[clamp(2.2rem,5.2vw,4.4rem)]"
+                  className={partnerTriggerClassName}
                   aria-expanded={partnerOpen}
                   aria-controls={partnerPanelId}
                   id={`${partnerPanelId}-trigger`}
@@ -158,7 +178,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
                       {partnerChildren.map((link) => (
                         <Link
                           key={link.label}
-                          className="menu-partner-sublink w-fit font-extrabold leading-[1.05] tracking-[-0.04em] text-techpay-heading no-underline transition hover:text-techpay-primary"
+                          className="menu-partner-sublink w-fit text-xl font-extrabold leading-[1.05] text-techpay-heading no-underline transition hover:text-techpay-primary sm:text-2xl md:text-3xl"
                           href={link.resolvedHref}
                         >
                           {link.label}

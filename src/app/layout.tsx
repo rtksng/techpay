@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   title: "TechPay.ai | You Deserve a Computer",
   description:
     "Flexible payments, local store discovery, and guided laptop recommendations with a polished 3D landing experience.",
-  manifest: "/manifest.webmanifest",
+  manifest: publicAsset("/manifest.webmanifest"),
   icons: {
     icon: [
       { url: publicAsset("/favicon.ico"), sizes: "any" },
@@ -69,7 +69,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-techpay-bg">
+      <body
+        className="min-h-full flex flex-col bg-techpay-bg"
+        suppressHydrationWarning
+      >
         <LenisProvider />
         <SiteNavbar />
         {children}

@@ -1,0 +1,257 @@
+import type { Metadata } from "next";
+import LegalPolicyDocument, {
+  type LegalPolicy,
+} from "@/app/_components/legal/legal-policy-document";
+import MarketPolicyTabs from "@/app/_components/legal/market-policy-tabs";
+
+export const metadata: Metadata = {
+  title: "Refund Policy | TechPay.ai",
+  description:
+    "Refund and Cancellation Policy for TechPay.ai, with India placeholder content and Malaysia policy content.",
+};
+
+export const dynamic = "force-static";
+
+const indiaRefundPolicy: LegalPolicy = {
+  title: "Refund and Cancellation Policy - TechPay.ai India",
+  meta: [
+    { label: "Effective Date", value: "To be updated" },
+    { label: "Entity", value: "TechPay.ai India" },
+  ],
+  summary:
+    "This India Refund and Cancellation Policy is placeholder content and will be updated with the final country-specific policy.",
+  sections: [
+    {
+      title: "1. Cancellations",
+      blocks: [
+        {
+          type: "paragraph",
+          text:
+            "Orders may be cancelled before dispatch, subject to the applicable retail partner, lender, and product terms shown during purchase.",
+        },
+      ],
+    },
+    {
+      title: "2. Returns and Refunds",
+      blocks: [
+        {
+          type: "paragraph",
+          text:
+            "Returns and refunds may be processed after product inspection and will follow the retail partner's return policy, payment provider rules, and applicable law.",
+        },
+      ],
+    },
+    {
+      title: "3. Contact",
+      blocks: [
+        {
+          type: "paragraph",
+          text:
+            "For refund or cancellation assistance, please contact TechPay.ai at contact@techpay.ai.",
+        },
+      ],
+    },
+  ],
+};
+
+const malaysiaRefundPolicy: LegalPolicy = {
+  title: "Refund and Cancellation Policy",
+  meta: [{ label: "Entity", value: "TECHPAYAI SDN BHD" }],
+  sections: [
+    {
+      title: "1. Direct Sales from Retail Partner to End-Customer",
+      blocks: [
+        {
+          type: "subheading",
+          title: "1.1 Can I cancel my order?",
+        },
+        {
+          type: "paragraph",
+          text:
+            "Before Dispatch: You may cancel your order any time before it is dispatched. Once dispatched, the order cannot be cancelled.",
+        },
+        {
+          type: "paragraph",
+          text:
+            "Cancellation Fee: A cancellation fee as prescribed on the TECHPAY.ai APP may apply if the order is cancelled after the specified time window and such request and fee will be at the sole desertion of the facilitating partner.",
+        },
+        {
+          type: "subheading",
+          title: "1.2 How do I exercise the Right to Cancel?",
+        },
+        {
+          type: "paragraph",
+          text:
+            "To cancel, inform us of your decision by contacting Customer Support Number mentioned on the website.",
+        },
+        {
+          type: "subheading",
+          title: "1.3 Cancellation by Retail Partner",
+        },
+        {
+          type: "paragraph",
+          text:
+            "In cases where the Retail Partner cancels the order due to unforeseen circumstances, a full refund will be initiated for prepaid orders.",
+        },
+        {
+          type: "subheading",
+          title: "1.4 Effects of Cancellation, Refunds, and Returns",
+        },
+        {
+          type: "list",
+          items: [
+            "Refunds will be processed within 30 calendar days of your cancellation notification.",
+            "You must return products in their original condition within 14 days of cancellation.",
+            "A cancellation fee as mentioned on the TECHPAY.ai APP will be deducted from your refund.",
+            "All payments will be refunded only upon return and inspection of the purchased product.",
+          ],
+        },
+        {
+          type: "subheading",
+          title: "1.5 Payment Processing",
+        },
+        {
+          type: "paragraph",
+          text:
+            "If your order was processed through a third-party financial scheme (lender), refunds will be processed based on the terms and conditions outlined by the lender.",
+        },
+        {
+          type: "paragraph",
+          text:
+            "The refund process may take additional time for funds to reflect in your account depending on the lender's policy.",
+        },
+      ],
+    },
+    {
+      title: "2. General Provisions",
+      blocks: [
+        {
+          type: "subheading",
+          title: "2.1 Delivery",
+        },
+        {
+          type: "paragraph",
+          text:
+            "Order will be delivered by the Retail Partner or its designated party within timeline communicated or informed at the time of accepting the order by the Retail Partner.",
+        },
+        {
+          type: "subheading",
+          title: "2.2 Invoice Generation",
+        },
+        {
+          type: "paragraph",
+          text:
+            "Invoice will be generated by the Retail Partner or its designated party.",
+        },
+        {
+          type: "subheading",
+          title: "2.3 Returns Policy",
+        },
+        {
+          type: "paragraph",
+          text:
+            "Returns are subject to the Retail Partner's specific return policy, which may vary by product category. The return policy displayed on the product page will prevail.",
+        },
+        {
+          type: "paragraph",
+          text: "Conditions for returns include:",
+        },
+        {
+          type: "list",
+          items: [
+            "The product must be unused, undamaged, and in original packaging.",
+            "All accompanying accessories, manuals, and warranty cards must be returned.",
+          ],
+        },
+        {
+          type: "subheading",
+          title: "2.4 Returns Pick-Up and Processing",
+        },
+        {
+          type: "paragraph",
+          text: "During pick-up, the product will be checked for:",
+        },
+        {
+          type: "list",
+          items: [
+            "Correct product",
+            "Complete product (including accessories and manuals)",
+            "Unused condition",
+            "Undamaged packaging",
+          ],
+        },
+        {
+          type: "paragraph",
+          text:
+            "If any conditions are not met, the field executive has the right to refuse the return.",
+        },
+        {
+          type: "subheading",
+          title: "2.5 General Rules for Returns",
+        },
+        {
+          type: "paragraph",
+          text:
+            "If a product accessory is missing or damaged, the Retail Partner may either replace the accessory or issue a credit, subject to the lender and brand policy and explicit consent of the brand.",
+        },
+        {
+          type: "paragraph",
+          text:
+            "Returns for damaged or defective products will be honoured only if reported within 24 hours of delivery.",
+        },
+        {
+          type: "subheading",
+          title: "2.6 Brand Warranty and Service",
+        },
+        {
+          type: "paragraph",
+          text:
+            "For products requiring installation, returns will only be accepted if installed by authorized personnel.",
+        },
+        {
+          type: "paragraph",
+          text:
+            "Warranty claims will be subject to the brand's terms and conditions.",
+        },
+        {
+          type: "subheading",
+          title: "2.7 Refund Processing",
+        },
+        {
+          type: "list",
+          items: [
+            "Refunds for cancelled orders will be processed within 30 days.",
+            "Refunds will be remitted only to the original payment account.",
+          ],
+        },
+        {
+          type: "subheading",
+          title: "2.8 Disputes",
+        },
+        {
+          type: "paragraph",
+          text:
+            "Any disputes arising out of cancellations or returns will be subject to the exclusive jurisdiction of the courts in KL, Malaysia.",
+        },
+        {
+          type: "paragraph",
+          text:
+            "For further assistance, please email us at Contact@techpay.ai.",
+        },
+      ],
+    },
+  ],
+};
+
+export default function RefundPolicyPage() {
+  return (
+    <main className="min-h-screen bg-techpay-bg px-5 pb-20 pt-32 text-techpay-text md:px-10 md:pb-28 md:pt-40 lg:px-[60px]">
+      <MarketPolicyTabs
+        ariaLabel="Refund policy country"
+        panelIdPrefix="refund-policy"
+        india={<LegalPolicyDocument policy={indiaRefundPolicy} />}
+        malaysia={<LegalPolicyDocument policy={malaysiaRefundPolicy} />}
+      />
+    </main>
+  );
+}

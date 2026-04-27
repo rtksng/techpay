@@ -656,7 +656,7 @@ function FinalCtaSection() {
             <ButtonLink
               href="/coming-soon"
               size="md"
-              variant="secondary"
+              variant="primary"
             >
               Contact Us
             </ButtonLink>
