@@ -73,7 +73,7 @@ const malaysiaRefundPolicy: LegalPolicy = {
         {
           type: "paragraph",
           text:
-            "Cancellation Fee: A cancellation fee as prescribed on the Techpay APP may apply if the order is cancelled after the specified time window and such request and fee will be at the sole desertion of the facilitating partner.",
+            "Cancellation Fee: A cancellation fee as prescribed on the TECHPAY.ai APP may apply if the order is cancelled after the specified time window and such request and fee will be at the sole desertion of the facilitating partner.",
         },
         {
           type: "subheading",
@@ -102,7 +102,7 @@ const malaysiaRefundPolicy: LegalPolicy = {
           items: [
             "Refunds will be processed within 30 calendar days of your cancellation notification.",
             "You must return products in their original condition within 14 days of cancellation.",
-            "A cancellation fee as mentioned on the Techpay APP will be deducted from your refund.",
+            "A cancellation fee as mentioned on the TECHPAY.ai APP will be deducted from your refund.",
             "All payments will be refunded only upon return and inspection of the purchased product.",
           ],
         },

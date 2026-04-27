@@ -75,7 +75,7 @@ const leadershipTeam = [
   },
   {
     name: "Dilip Sundaram",
-    title: "CFO",
+    title: "Chief Financial Officer",
     description:
       "25+ years across APJC, EMEA, and global finance, with Fortune 500 leadership in sales strategy, operations, cloud strategy, and transformation.",
     image: "/members/dilip_sundaram.webp",
@@ -171,7 +171,7 @@ export default function AboutUsPageContent() {
           <div className="mx-auto min-h-screen w-full max-w-[1440px] px-4 py-14 md:px-6 md:py-18 lg:px-10 lg:py-24">
             <div className="relative z-10 flex min-h-[calc(100vh-7rem)] flex-col justify-center gap-9">
               <div className="mx-auto max-w-5xl text-center">
-                <p className="mb-4 text-sm font-semibold uppercase text-techpay-orange md:text-base">
+                <p className="mb-4 text-sm font-semibold uppercase text-techpay-primary md:text-base">
                   About TechPay.ai
                 </p>
                 <h1 className="sr-only font-display text-5xl font-bold leading-[0.95] text-white md:text-7xl xl:text-8xl">

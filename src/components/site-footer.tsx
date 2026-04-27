@@ -13,8 +13,17 @@ const footerGroups = [
   {
     title: "Explore",
     links: [
+      { label: "About Us", href: "/about-us" },
       { label: "Future of Retail", href: "/future-of-retail" },
-      { label: "Contact Us", href: "/contact" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    title: "Partner",
+    links: [
+      { label: "OEM", href: "/oem" },
+      { label: "Distributors", href: "/distributors" },
+      { label: "Retailers", href: "/retailers" },
     ],
   },
   {
@@ -88,7 +97,7 @@ export default function SiteFooter() {
             </div>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[0.8fr_1fr]">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {footerGroups.map((group) => (
               <nav key={group.title} aria-label={group.title}>
                 <h3 className="mb-4 text-xs font-semibold uppercase text-techpay-heading">
