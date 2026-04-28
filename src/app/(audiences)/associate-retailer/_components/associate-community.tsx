@@ -1,7 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
+import type { LucideIcon } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  BookOpen,
+  Building2,
+  CalendarDays,
+  CheckCircle2,
+  CircleHelp,
+  ClipboardList,
+  Flame,
+  Gem,
+  Globe2,
+  Heart,
+  Image as ImageIcon,
+  Lightbulb,
+  ListChecks,
+  MapPin,
+  Medal,
+  Megaphone,
+  MessageCircle,
+  Mic2,
+  PlayCircle,
+  Radio,
+  Repeat2,
+  Rocket,
+  Trophy,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const posts = [
   {
@@ -10,11 +39,11 @@ const posts = [
     avatarClass: "bg-techpay-primary",
     author: "Rajesh Singh",
     badge: "Silver Partner",
-    detail: "Patna, Bihar · 2 hours ago",
-    body: "Just crossed ₹20,000 in commissions this month! The secret? I started placing my QR code printout on my service desk. Every customer who comes in for repair sees it. Half of them ask about it. Closed 3 sales from repair walk-ins alone this week 🔥",
+    detail: "Patna, Bihar - 2 hours ago",
+    body: "Just crossed \u20b920,000 in commissions this month. The secret? I started placing my QR code printout on my service desk. Every customer who comes in for repair sees it. Half of them ask about it. Closed 3 sales from repair walk-ins alone this week.",
     tags: ["#tip", "#win"],
     earnings: {
-      value: "₹20,400",
+      value: "\u20b920,400",
       label: "this month's earnings",
       detail: "12 devices sold",
     },
@@ -28,8 +57,8 @@ const posts = [
     avatarClass: "bg-techpay-purple",
     author: "Meena Krishnan",
     badge: "Gold Partner",
-    detail: "Coimbatore, Tamil Nadu · 5 hours ago",
-    body: 'Question for the community — has anyone tried creating a WhatsApp broadcast for their TechPay referrals? I\'m thinking of doing a "Tech Tuesday" where I share one device recommendation every week to my customer list. Anyone done this?',
+    detail: "Coimbatore, Tamil Nadu - 5 hours ago",
+    body: 'Question for the community - has anyone tried creating a WhatsApp broadcast for their TechPay referrals? I\'m thinking of doing a "Tech Tuesday" where I share one device recommendation every week to my customer list. Anyone done this?',
     tags: ["#question", "#marketing"],
     likes: 23,
     comments: "8 Comments",
@@ -42,16 +71,19 @@ const posts = [
     author: "TechPay Team",
     badge: "Official",
     official: true,
-    detail: "Yesterday · Pinned",
+    detail: "Yesterday - Pinned",
     body: (
       <>
-        <strong>🎙 Monthly Partner Webinar — This Saturday, 11 AM IST</strong>
+        <strong className="inline-flex items-center gap-2 text-slate-950">
+          <Mic2 aria-hidden="true" className="h-4 w-4 text-techpay-primary" />
+          Monthly Partner Webinar - This Saturday, 11 AM IST
+        </strong>
         <br />
         <br />
         Topic: &quot;How to convert your repair customers into PC buyers.&quot; Tips on
         using TechPay&apos;s AI recommendations tool, handling EMI objections, and
         doubling your conversion rate. Register via the link below. All
-        registered partners get a ₹500 bonus for attending!
+        registered partners get a \u20b9500 bonus for attending.
       </>
     ),
     tags: ["#official", "#training"],
@@ -63,8 +95,8 @@ const posts = [
     initials: "AV",
     avatarClass: "bg-techpay-pink",
     author: "Amit Verma",
-    detail: "Meerut, Uttar Pradesh · Yesterday",
-    body: "Tip for T3/T4 city partners: Students are your goldmine. College admission season = laptop buying season. Partner with your local coaching centres or colleges. Put your QR on their notice boards. I got 6 sales from one hostel in Meerut this month alone. Go hyperlocal! 📍",
+    detail: "Meerut, Uttar Pradesh - Yesterday",
+    body: "Tip for T3/T4 city partners: Students are your goldmine. College admission season = laptop buying season. Partner with your local coaching centres or colleges. Put your QR on their notice boards. I got 6 sales from one hostel in Meerut this month alone. Go hyperlocal.",
     tags: ["#tip", "#T3cities", "#students"],
     likes: 89,
     comments: "31 Comments",
@@ -73,79 +105,99 @@ const posts = [
 ] as const;
 
 const topEarners = [
-  { rank: "🥇", name: "Meena K.", city: "Coimbatore, TN", earn: "₹31,200" },
-  { rank: "🥈", name: "Suresh P.", city: "Hyderabad, TS", earn: "₹26,800" },
-  { rank: "🥉", name: "Rajesh S.", city: "Patna, BR", earn: "₹20,400" },
-  { rank: "4", name: "Priya M.", city: "Jaipur, RJ", earn: "₹18,750" },
-  { rank: "5", name: "Amit V.", city: "Meerut, UP", earn: "₹15,900" },
+  { rank: 1, name: "Meena K.", city: "Coimbatore, TN", earn: "\u20b931,200" },
+  { rank: 2, name: "Suresh P.", city: "Hyderabad, TS", earn: "\u20b926,800" },
+  { rank: 3, name: "Rajesh S.", city: "Patna, BR", earn: "\u20b920,400" },
+  { rank: 4, name: "Priya M.", city: "Jaipur, RJ", earn: "\u20b918,750" },
+  { rank: 5, name: "Amit V.", city: "Meerut, UP", earn: "\u20b915,900" },
 ] as const;
 
 const events = [
   {
     date: "Sat, 2 Nov",
     title: "Monthly Partner Webinar",
-    type: "Online · 11:00 AM IST",
+    type: "Online - 11:00 AM IST",
   },
   {
     date: "Tue, 5 Nov",
     title: "Product Training: New OEM Lineup",
-    type: "Online · 6:00 PM IST",
+    type: "Online - 6:00 PM IST",
   },
   {
     date: "Sat, 9 Nov",
     title: "Karnataka Partner Meetup",
-    type: "Bengaluru · In-person",
+    type: "Bengaluru - In-person",
   },
   {
     date: "Thu, 14 Nov",
     title: "EMI & Financing Deep Dive",
-    type: "Online · 7:00 PM IST",
+    type: "Online - 7:00 PM IST",
   },
 ] as const;
 
-const resources = [
+const resources: Array<{
+  Icon: LucideIcon;
+  title: string;
+  desc: string;
+  className: string;
+}> = [
   {
-    icon: "📊",
+    Icon: BarChart3,
     title: "Sales Pitch Guide (PDF)",
     desc: "How to present TechPay to customers",
-    className: "bg-techpay-primary/10",
+    className: "bg-techpay-primary/10 text-techpay-primary",
   },
   {
-    icon: "🎬",
+    Icon: PlayCircle,
     title: "Demo Video: AI Recommender",
     desc: "Show customers how it works",
-    className: "bg-techpay-purple/10",
+    className: "bg-techpay-purple/10 text-techpay-purple",
   },
   {
-    icon: "🖼️",
+    Icon: ImageIcon,
     title: "WhatsApp Status Pack",
     desc: "Ready-made creatives for your status",
-    className: "bg-techpay-pink/10",
+    className: "bg-techpay-pink/10 text-techpay-pink",
   },
   {
-    icon: "📋",
+    Icon: ClipboardList,
     title: "Commission Rate Card",
     desc: "Earnings per OEM & device category",
-    className: "bg-techpay-primary/10",
+    className: "bg-techpay-primary/10 text-techpay-primary",
   },
   {
-    icon: "❓",
+    Icon: CircleHelp,
     title: "FAQ for Customers",
     desc: "Answer any question with confidence",
-    className: "bg-techpay-purple/10",
+    className: "bg-techpay-purple/10 text-techpay-purple",
   },
-] as const;
+];
 
-const achievements = [
-  { icon: "🚀", name: "First Sale" },
-  { icon: "🔟", name: "10 Sales" },
-  { icon: "💎", name: "Gold Partner", locked: true },
-  { icon: "🌍", name: "City Champion", locked: true },
-  { icon: "📣", name: "Community Star", locked: true },
-  { icon: "🏙️", name: "10 PIN Codes", locked: true },
-] as const;
+const achievements: Array<{
+  Icon: LucideIcon;
+  name: string;
+  locked?: boolean;
+}> = [
+  { Icon: Rocket, name: "First Sale" },
+  { Icon: ListChecks, name: "10 Sales" },
+  { Icon: Gem, name: "Gold Partner", locked: true },
+  { Icon: Globe2, name: "City Champion", locked: true },
+  { Icon: Megaphone, name: "Community Star", locked: true },
+  { Icon: Building2, name: "10 PIN Codes", locked: true },
+];
 
-const tagLabels = ["💡 Tip", "🏆 Win", "❓ Question", "📍 My City"] as const;
+const tagLabels: Array<{ Icon: LucideIcon; label: string }> = [
+  { Icon: Lightbulb, label: "Tip" },
+  { Icon: Trophy, label: "Win" },
+  { Icon: CircleHelp, label: "Question" },
+  { Icon: MapPin, label: "My City" },
+];
+
+const rankClassNames: Partial<Record<number, string>> = {
+  1: "border-amber-200 bg-amber-100 text-amber-700",
+  2: "border-slate-200 bg-slate-100 text-slate-600",
+  3: "border-orange-200 bg-orange-100 text-orange-700",
+};
 
 export default function AssociateCommunity() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -203,7 +255,15 @@ export default function AssociateCommunity() {
           <div className="grid grid-cols-3 gap-4 rounded-[22px] border border-slate-200 bg-white p-4 text-center shadow-[0_18px_48px_rgba(15,23,42,0.06)]">
             <CommunityStat label="Members" value="2,847" />
             <CommunityStat label="Cities" value="184" />
-            <CommunityStat label="Active now" value="🟢 Live" />
+            <CommunityStat
+              label="Active now"
+              value={
+                <span className="inline-flex items-center justify-center gap-1.5">
+                  <Radio aria-hidden="true" className="h-4 w-4" />
+                  Live
+                </span>
+              }
+            />
           </div>
         </div>
 
@@ -219,7 +279,7 @@ export default function AssociateCommunity() {
               </div>
               <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div className="flex flex-wrap gap-2">
-                  {tagLabels.map((label) => {
+                  {tagLabels.map(({ Icon, label }) => {
                     const selected = selectedTags.includes(label);
 
                     return (
@@ -230,6 +290,7 @@ export default function AssociateCommunity() {
                             ? "!border-techpay-primary/30 !bg-techpay-primary/10 !text-techpay-primary [&_span]:!text-current"
                             : "!border-slate-200 !bg-white !text-slate-700 hover:!bg-slate-50 [&_span]:!text-current"
                         }`}
+                        leftIcon={<Icon aria-hidden="true" className="h-3.5 w-3.5" />}
                         onClick={() => toggleTag(label)}
                         size="compact"
                         type="button"
@@ -242,6 +303,7 @@ export default function AssociateCommunity() {
                 </div>
                 <Button
                   className="!text-white [&_span]:!text-white"
+                  rightIcon={<ArrowRight aria-hidden="true" className="h-4 w-4" />}
                   size="compact"
                   type="button"
                   variant="primary"
@@ -291,6 +353,9 @@ export default function AssociateCommunity() {
 
                   {"earnings" in post ? (
                     <div className="mt-4 flex items-center gap-3 rounded-2xl border border-techpay-primary/20 bg-techpay-primary/8 p-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-techpay-primary/10 text-techpay-primary">
+                        <Flame aria-hidden="true" className="h-5 w-5" />
+                      </div>
                       <p className="text-2xl font-bold text-techpay-primary">
                         {post.earnings.value}
                       </p>
@@ -311,48 +376,61 @@ export default function AssociateCommunity() {
                             ? "!text-techpay-primary"
                             : "!text-slate-600 hover:!text-techpay-primary"
                         }`}
+                        leftIcon={
+                          <Heart
+                            aria-hidden="true"
+                            className="h-4 w-4"
+                            fill={likes[post.id]?.liked ? "currentColor" : "none"}
+                          />
+                        }
                         onClick={() => toggleLike(post.id)}
                         size="compact"
                         type="button"
                         variant="lightIcon"
                       >
-                        ❤️ <span>{likes[post.id]?.count ?? post.likes}</span> Likes
+                        <span>{likes[post.id]?.count ?? post.likes}</span> Likes
                       </Button>
                     ) : (
                       <Button
                         className="min-h-0 !border-0 !bg-transparent px-0 py-0 text-sm !text-slate-600 shadow-none hover:!bg-transparent [&_span]:!text-current"
+                        leftIcon={
+                          <CheckCircle2 aria-hidden="true" className="h-4 w-4" />
+                        }
                         size="compact"
                         type="button"
                         variant="lightIcon"
                       >
-                        ✅ {post.attending}
+                        {post.attending}
                       </Button>
                     )}
                     <Button
                       className="min-h-0 !border-0 !bg-transparent px-0 py-0 text-sm !text-slate-600 shadow-none hover:!bg-transparent [&_span]:!text-current"
+                      leftIcon={<MessageCircle aria-hidden="true" className="h-4 w-4" />}
                       size="compact"
                       type="button"
                       variant="lightIcon"
                     >
-                      💬 {post.comments}
+                      {post.comments}
                     </Button>
                     {"attending" in post ? (
                       <Button
                         className="!text-white [&_span]:!text-white"
+                        rightIcon={<ArrowRight aria-hidden="true" className="h-4 w-4" />}
                         size="compact"
                         type="button"
                         variant="primary"
                       >
-                        Register →
+                        Register
                       </Button>
                     ) : (
                       <Button
                         className="min-h-0 !border-0 !bg-transparent px-0 py-0 text-sm !text-slate-600 shadow-none hover:!bg-transparent [&_span]:!text-current"
+                        leftIcon={<Repeat2 aria-hidden="true" className="h-4 w-4" />}
                         size="compact"
                         type="button"
                         variant="lightIcon"
                       >
-                        🔁 Share
+                        Share
                       </Button>
                     )}
                   </div>
@@ -361,16 +439,29 @@ export default function AssociateCommunity() {
             </div>
           </div>
 
-          <aside className="grid gap-5 lg:content-start">
-            <SidebarCard title="🏆 Top Earners This Month">
+          <aside className="grid gap-5 lg:sticky lg:top-28 lg:max-h-[calc(100vh-7rem)] lg:content-start lg:overflow-y-auto lg:overscroll-contain lg:pr-1">
+            <SidebarCard
+              icon={<Trophy aria-hidden="true" className="h-4 w-4" />}
+              title="Top Earners This Month"
+            >
               <div className="grid gap-1">
                 {topEarners.map((earner) => (
                   <div
                     key={`${earner.rank}-${earner.name}`}
-                    className="grid grid-cols-[32px_1fr_auto] items-center gap-3 border-b border-slate-200 py-3 last:border-b-0"
+                    className="grid grid-cols-[36px_1fr_auto] items-center gap-3 border-b border-slate-200 py-3 last:border-b-0"
                   >
-                    <span className="text-center text-sm font-bold text-slate-400">
-                      {earner.rank}
+                    <span
+                      className={cn(
+                        "flex h-8 w-8 items-center justify-center rounded-xl border text-xs font-bold",
+                        rankClassNames[earner.rank] ??
+                          "border-slate-200 bg-white text-slate-500"
+                      )}
+                    >
+                      {earner.rank <= 3 ? (
+                        <Medal aria-hidden="true" className="h-4 w-4" />
+                      ) : (
+                        earner.rank
+                      )}
                     </span>
                     <span>
                       <span className="block text-sm font-bold text-slate-800">
@@ -386,7 +477,10 @@ export default function AssociateCommunity() {
               </div>
             </SidebarCard>
 
-            <SidebarCard title="📅 Upcoming Events">
+            <SidebarCard
+              icon={<CalendarDays aria-hidden="true" className="h-4 w-4" />}
+              title="Upcoming Events"
+            >
               <div className="grid gap-1">
                 {events.map((event) => (
                   <div
@@ -403,9 +497,12 @@ export default function AssociateCommunity() {
               </div>
             </SidebarCard>
 
-            <SidebarCard title="📚 Resources">
+            <SidebarCard
+              icon={<BookOpen aria-hidden="true" className="h-4 w-4" />}
+              title="Resources"
+            >
               <div className="grid gap-1">
-                {resources.map((resource) => (
+                {resources.map(({ Icon, ...resource }) => (
                   <div
                     key={resource.title}
                     className="flex gap-3 border-b border-slate-200 py-3 last:border-b-0"
@@ -413,7 +510,7 @@ export default function AssociateCommunity() {
                     <span
                       className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${resource.className}`}
                     >
-                      {resource.icon}
+                      <Icon aria-hidden="true" className="h-4 w-4" />
                     </span>
                     <span>
                       <span className="block text-sm font-bold text-slate-800">
@@ -426,17 +523,22 @@ export default function AssociateCommunity() {
               </div>
             </SidebarCard>
 
-            <SidebarCard title="🎖️ Your Achievements">
+            <SidebarCard
+              icon={<Medal aria-hidden="true" className="h-4 w-4" />}
+              title="Your Achievements"
+            >
               <div className="grid grid-cols-2 gap-2">
-                {achievements.map((achievement) => (
+                {achievements.map(({ Icon, ...achievement }) => (
                   <div
                     key={achievement.name}
                     className={`rounded-xl bg-slate-50 p-3 text-center ${
-                      "locked" in achievement ? "opacity-45" : ""
+                      achievement.locked ? "opacity-45" : ""
                     }`}
                   >
-                    <p className="text-2xl">{achievement.icon}</p>
-                    <p className="mt-1 text-xs font-bold text-slate-700">
+                    <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-xl bg-white text-techpay-primary shadow-[0_8px_20px_rgba(15,23,42,0.06)]">
+                      <Icon aria-hidden="true" className="h-4 w-4" />
+                    </div>
+                    <p className="mt-2 text-xs font-bold text-slate-700">
                       {achievement.name}
                     </p>
                   </div>
@@ -450,7 +552,7 @@ export default function AssociateCommunity() {
   );
 }
 
-function CommunityStat({ label, value }: { label: string; value: string }) {
+function CommunityStat({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div>
       <p className="text-lg font-bold text-techpay-primary">{value}</p>
@@ -469,7 +571,7 @@ function Avatar({ className, initials }: { className: string; initials: string }
   );
 }
 
-function Badge({ children }: { children: React.ReactNode }) {
+function Badge({ children }: { children: ReactNode }) {
   return (
     <span className="rounded-full border border-techpay-primary/20 bg-techpay-primary/8 px-3 py-1 text-xs font-semibold text-techpay-primary">
       {children}
@@ -479,14 +581,30 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 function SidebarCard({
   children,
+  className,
+  icon,
   title,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
+  className?: string;
+  icon?: ReactNode;
   title: string;
 }) {
   return (
-    <section className="rounded-[22px] border border-slate-200 bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)]">
-      <h3 className="text-sm font-bold text-slate-950">{title}</h3>
+    <section
+      className={cn(
+        "rounded-[22px] border border-slate-200 bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)]",
+        className
+      )}
+    >
+      <h3 className="flex items-center gap-2 text-sm font-bold text-slate-950">
+        {icon ? (
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-techpay-primary/10 text-techpay-primary">
+            {icon}
+          </span>
+        ) : null}
+        {title}
+      </h3>
       <div className="mt-3">{children}</div>
     </section>
   );

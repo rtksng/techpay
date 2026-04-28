@@ -57,7 +57,10 @@ export default function AssociateEarningsCalculator() {
   }, [conversion, customers, price]);
 
   return (
-    <section className="relative overflow-hidden bg-techpay-bg px-5 py-20 text-white md:px-[60px] md:py-24">
+    <section
+      id="earnings-calculator"
+      className="relative overflow-hidden bg-techpay-bg px-5 py-20 text-white md:px-[60px] md:py-24"
+    >
       <EarningsGridBackground />
       <div className="relative z-10 mx-auto max-w-[960px]">
         <div className="mb-10 text-left">

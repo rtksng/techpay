@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   BadgeCheck,
@@ -34,48 +35,48 @@ const benefits: Array<{
   {
     title: "Earn on Every Sale",
     description:
-      "Get a commission on every device sold through your TechPay QR code or referral link. No targets. No pressure. The more you recommend, the more you earn.",
-    highlight: "₹500–₹2,500 per device sold",
+      "Earn a commission on every device sold through the TechPay.ai platform. No targets. No pressure. The more you recommend, the more you earn.",
+    highlight: "₹500–₹2,500 per device sold. *Conditions Apply",
     Icon: CircleDollarSign,
     tone: "primary",
   },
   {
     title: "Your Own TechPay QR",
     description:
-      "Get a personalized QR code tied to your profile. Show it to customers. Every scan is tracked. Every purchase is credited to you — automatically.",
-    highlight: "Instant setup. Zero tech skills needed.",
+      "Get a personalized QR code tied to your profile. Recommend to customers. Every scan is tracked. Every purchase is credited to you — automatically.",
+    highlight: "Easy setup. Fast Onboarding",
     Icon: QrCode,
     tone: "pink",
   },
   {
     title: "AI Does the Heavy Lifting",
     description:
-      "Our AI recommends the perfect device for each customer based on their needs. You don't need to memorise specs — just share your QR and let the platform do the selling.",
-    highlight: "Smarter recommendations than any showroom",
+      "Our AI recommends the perfect device for each customer based on their needs. You don't need to memorise specs — just share your QR and let the platform assist in your sale.",
+    highlight: "Get Smarter. Provide Unlimited choices.",
     Icon: Bot,
     tone: "purple",
   },
   {
     title: "Zero Inventory, Zero Risk",
     description:
-      "You never hold stock. Devices ship directly from distributors to your customer's door. Your job is to introduce and recommend — we handle everything else.",
-    highlight: "No stock. No investment. No risk.",
+      "You never hold stock. Devices ship directly from distributors to your customer's door. You refer & recommend — the platform supports you with everything else.",
+    highlight: "Zero Investment. Zero Stock (to manage). Zero Risk",
     Icon: PackageCheck,
     tone: "pink",
   },
   {
     title: "Trusted Advisor Status",
     description:
-      "Become the go-to person in your PIN code for technology purchases. Build a loyal customer base that returns for support — and buys again through you.",
-    highlight: "Grow from technician to tech entrepreneur",
+      "Create a thriving tech business in your PIN code — earn trust, build loyal customers, and generate repeat purchases through your expertise.",
+    highlight: "Grow from tech expert to tech entrepreneur",
     Icon: Trophy,
     tone: "primary",
   },
   {
     title: "EMI Financing for Your Customers",
     description:
-      "Offer your customers flexible payment plans with fast approval. Remove the biggest barrier to purchase — upfront cost — and watch your conversion rate soar.",
-    highlight: "Instant approvals. No paperwork for you.",
+      "TechPay.ai platform through our finance partner(s) offers your customer(s) flexible payment plans with fast approvals. Remove the biggest barrier to purchase — upfront costs — and watch your conversion rate soar.",
+    highlight: "Fast approvals. No overheads for you.",
     Icon: BadgeCheck,
     tone: "primary",
   },
@@ -98,8 +99,8 @@ const benefits: Array<{
   {
     title: "Real-Time Dashboard",
     description:
-      "Track every scan, every lead, every sale, and every rupee earned — in real time on your phone. Complete transparency. Weekly payouts direct to your bank.",
-    highlight: "Weekly bank transfers. Always on time.",
+      "Track every scan, every lead, every sale, and every rupee earned — securely & in real time. Complete transparency.",
+    highlight: "Earn Weekly. On time, every time.",
     Icon: ChartNoAxesCombined,
     tone: "pink",
   },
@@ -109,12 +110,12 @@ const journeySteps = [
   {
     title: "Apply Online",
     description:
-      "Fill the associate partner form with your background and business details. Takes 5 minutes.",
+      "Fill up the retailer associate form with your details. Takes 5 minutes.",
   },
   {
     title: "KYC Verification",
     description:
-      "We verify your Aadhaar, PAN, and bank account. Usually done within 48 hours.",
+      "We verify your Aadhaar, PAN, and bank account. Done within 48 hours.",
   },
   {
     title: "Get Your QR",
@@ -124,12 +125,12 @@ const journeySteps = [
   {
     title: "Start Referring",
     description:
-      "Show your QR to customers. Guide them. Our AI and team close the deal — you get the credit.",
+      "Show your QR to customers. Guide them. Use our platform to close the deal — you get the credit.",
   },
   {
     title: "Get Paid Weekly",
     description:
-      "Earnings transfer to your bank every Friday. No delays. No minimums. Full transparency.",
+      "Earnings transfer to your bank account every week. No delays. No minimums. Full transparency.",
   },
 ] as const;
 
@@ -186,7 +187,6 @@ const testimonials = [
     name: "Rajesh Singh",
     role: "RMA Technician · Patna, Bihar",
     earnings: "Earned ₹18,400 in first 2 months",
-    colorClass: "bg-techpay-primary",
   },
   {
     quote:
@@ -195,7 +195,6 @@ const testimonials = [
     name: "Meena Krishnan",
     role: "IT Support · Coimbatore, TN",
     earnings: "₹23,000+ earned last month",
-    colorClass: "bg-techpay-purple",
   },
   {
     quote:
@@ -204,9 +203,26 @@ const testimonials = [
     name: "Amit Verma",
     role: "Computer Service · Meerut, UP",
     earnings: "12 sales in first month · ₹14,200 earned",
-    colorClass: "bg-techpay-pink",
   },
 ] as const;
+
+const testimonialFeatureItems = testimonials.map((testimonial, index) => ({
+  title: testimonial.name,
+  description: testimonial.quote,
+  icon: (
+    <span className="font-display text-sm font-bold leading-none">
+      {testimonial.initials}
+    </span>
+  ),
+  highlight: `${testimonial.role} · ${testimonial.earnings}`,
+  pattern: [
+    [6, 1],
+    [8, 4],
+    [10, 2],
+    [12, 5],
+    [13, index + 1],
+  ],
+}));
 
 const toneClasses = {
   primary:
@@ -270,9 +286,9 @@ function AssociateHero() {
             <span className="text-techpay-primary">technical expertise</span> into a thriving business.
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
-            You fix computers. You know customers. You are trusted in your
-            community. TechPay.ai gives you a QR code and a platform to sell the
-            right laptop to every customer — and earn on every sale.
+            You fix computers. You know your customers. Your community trusts
+            you. TechPay.ai gives you a platform to match every customer with
+            the right computer — turning your expertise into income.
           </p>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -286,6 +302,15 @@ function AssociateHero() {
               </div>
             ))}
           </div>
+          <p className="mt-5 text-xs font-semibold text-slate-400">
+            *Conditions Apply.{" "}
+            <a
+              className="text-techpay-primary underline-offset-4 transition hover:text-techpay-pink hover:underline"
+              href="#earnings-calculator"
+            >
+              View calculator
+            </a>
+          </p>
         </div>
 
         
@@ -357,12 +382,13 @@ function AssociateSectionNav() {
   return (
     <nav
       aria-label="Associate retailer sections"
-      className="relative z-10 border-b border-slate-200 bg-white px-5 py-4 md:px-[60px]"
+      className="fixed bottom-4 right-4 z-50 max-w-[calc(100vw-2rem)] sm:bottom-6 sm:right-6"
     >
-      <div className="mx-auto flex max-w-[1240px] flex-wrap items-center gap-3">
-        <LocalAnchor href="/associate-retailer/apply">Apply Now</LocalAnchor>
+      <div className="inline-flex max-w-full flex-wrap items-center justify-end gap-2 border border-white/70 bg-white/90 p-2 shadow-[0_18px_42px_rgba(15,23,42,0.14)] backdrop-blur-xl">
+        <LocalAnchor href="/associate-retailer/apply" emphasis>
+          Apply Now
+        </LocalAnchor>
         <LocalAnchor href="/associate-retailer/community">Community</LocalAnchor>
-     
       </div>
     </nav>
   );
@@ -381,11 +407,11 @@ function LocalAnchor({
     <ButtonLink
       className={
         emphasis
-          ? "!text-white [&_span]:!text-white"
-          : "!bg-slate-50 !text-slate-700 hover:!text-slate-950 [&_span]:!text-current"
+          ? "!text-white shadow-[0_12px_28px_rgba(237,29,95,0.22)] [&_span]:!text-white"
+          : "!border-slate-200 !bg-white !text-slate-700 hover:!border-techpay-primary/30 hover:!bg-techpay-primary/5 hover:!text-slate-950 [&_span]:!text-current"
       }
       href={href}
-      size={emphasis ? "compact" : "market"}
+      size="compact"
       variant={emphasis ? "primary" : "lightIcon"}
     >
       {children}
@@ -409,7 +435,6 @@ function BenefitsSection() {
               Your earnings.
             </>
           }
-          description="You already have the trust of your local customers. We add the AI recommendations, flexible financing, and logistics. You just make the introduction — and earn every time."
         />
 
         <FeaturesSectionDemo1
@@ -491,34 +516,25 @@ function CoverageSection() {
           {cityTiers.map((tier) => (
             <article
               key={tier.label}
-              className="relative overflow-hidden rounded-[22px] border border-slate-200 bg-white p-6 text-center shadow-[0_18px_48px_rgba(15,23,42,0.06)]"
+              className="scales-frame relative flex p-[16px] md:p-[18px]"
+              style={{ "--scales-color": "rgba(124, 58, 237, 0.42)" } as CSSProperties}
             >
-              <div
-                className={`absolute inset-x-0 bottom-0 h-1 ${
-                  tier.tone === "primary"
-                    ? "bg-techpay-primary"
-                    : tier.tone === "purple"
-                        ? "bg-techpay-purple"
-                        : "bg-techpay-pink"
-                }`}
-              />
-              <p
-                className={`text-xs font-bold uppercase ${
-                  tier.tone === "primary"
-                    ? "text-techpay-primary"
-                    : tier.tone === "purple"
-                        ? "text-techpay-purple"
-                        : "text-techpay-primary"
-                }`}
-              >
-                {tier.label}
-              </p>
-              <h3 className="mt-3 text-4xl font-bold text-slate-950">
-                {tier.count}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
-                {tier.cities}
-              </p>
+              <span className="scales-strip scales-strip--left" aria-hidden="true" />
+              <span className="scales-strip scales-strip--right" aria-hidden="true" />
+              <span className="scales-strip scales-strip--top" aria-hidden="true" />
+              <span className="scales-strip scales-strip--bottom" aria-hidden="true" />
+
+              <div className="relative z-1 h-full w-full overflow-hidden border border-slate-200 bg-white px-5 py-5 shadow-[0_18px_36px_rgba(15,23,42,0.08)] md:px-6 md:py-6">
+                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-techpay-primary">
+                  {tier.label}
+                </p>
+                <h3 className="mt-1 font-display text-[1.45rem] font-semibold tracking-[-0.03em] text-slate-950">
+                  {tier.count}
+                </h3>
+                <p className="mt-2 max-w-[640px] text-sm leading-7 text-slate-600 md:text-base">
+                  {tier.cities}
+                </p>
+              </div>
             </article>
           ))}
         </div>
@@ -559,36 +575,15 @@ function TestimonialsSection() {
           }
         />
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <article
-              key={testimonial.name}
-              className="rounded-[22px] border border-slate-200 bg-white p-6 shadow-[0_18px_48px_rgba(15,23,42,0.07)]"
-            >
-              <p className="text-sm italic leading-8 text-slate-600">
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
-              <div className="mt-6 flex items-center gap-3">
-                <span
-                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${testimonial.colorClass}`}
-                >
-                  {testimonial.initials}
-                </span>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-950">
-                    {testimonial.name}
-                  </h3>
-                  <p className="mt-1 text-xs text-slate-500">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </div>
-              <p className="mt-5 rounded-xl bg-techpay-primary/8 px-4 py-3 text-sm font-semibold text-techpay-primary">
-                {testimonial.earnings}
-              </p>
-            </article>
-          ))}
-        </div>
+        <FeaturesSectionDemo1
+          className="mt-12"
+          columnsClassName="lg:grid-cols-3"
+          contentClassName="min-h-[300px]"
+          descriptionClassName="italic"
+          iconPlacement="top"
+          items={testimonialFeatureItems}
+          numberPlacement="corner"
+        />
 
         <div className="mt-12 text-center">
           <ButtonLink

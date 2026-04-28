@@ -2,6 +2,20 @@
 
 import { useRouter } from "next/navigation";
 import { FormEvent, ReactNode, useRef, useState } from "react";
+import type { LucideIcon } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BriefcaseBusiness,
+  Check,
+  CheckCircle2,
+  ClipboardCheck,
+  CreditCard,
+  LockKeyhole,
+  PartyPopper,
+  UserRound,
+  UsersRound,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const states = [
@@ -153,12 +167,15 @@ const kitOptions = [
 ] as const;
 
 const progressSteps = [
-  "About You",
-  "Your Business",
-  "Your Customers",
-  "Bank & KYC",
-  "Review",
-] as const;
+  { label: "About You", Icon: UserRound },
+  { label: "Your Business", Icon: BriefcaseBusiness },
+  { label: "Your Customers", Icon: UsersRound },
+  { label: "Bank & KYC", Icon: CreditCard },
+  { label: "Review", Icon: ClipboardCheck },
+] as const satisfies ReadonlyArray<{
+  label: string;
+  Icon: LucideIcon;
+}>;
 
 const inputClass =
   "min-h-12 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-techpay-primary focus:ring-4 focus:ring-techpay-primary/10";
@@ -215,13 +232,14 @@ export default function AssociateApplicationForm() {
 
         <form className="mt-10" onSubmit={submitForm}>
           <div
-            className="mb-10 grid overflow-hidden rounded-2xl border border-slate-200 md:grid-cols-5"
+            className="mb-10 grid overflow-hidden border border-slate-200 md:grid-cols-5"
             hidden={submitted}
           >
-            {progressSteps.map((label, index) => {
+            {progressSteps.map(({ Icon, label }, index) => {
               const step = index + 1;
               const isActive = activeStep === step;
               const isDone = activeStep > step;
+              const StepIcon = isDone ? CheckCircle2 : Icon;
 
               return (
                 <Button
@@ -238,8 +256,13 @@ export default function AssociateApplicationForm() {
                   type="button"
                   variant={isActive ? "primary" : "lightIcon"}
                 >
-                  <span className="block text-base font-bold">{step}</span>
-                  {label}
+                  <span className="flex flex-col items-center gap-1">
+                    <span className="inline-flex items-center gap-1.5 text-base font-bold">
+                      <StepIcon aria-hidden="true" className="h-4 w-4" />
+                      {step}
+                    </span>
+                    <span>{label}</span>
+                  </span>
                 </Button>
               );
             })}
@@ -286,10 +309,11 @@ export default function AssociateApplicationForm() {
               <Button
                 className="!text-white [&_span]:!text-white"
                 onClick={() => goToStep(2)}
+                rightIcon={<ArrowRight aria-hidden="true" className="h-4 w-4" />}
                 type="button"
                 variant="primary"
               >
-                Next: Your Business →
+                Next: Your Business
               </Button>
             </FormNav>
           </FormPanel>
@@ -330,19 +354,21 @@ export default function AssociateApplicationForm() {
             <FormNav>
               <Button
                 className="!text-slate-800 [&_span]:!text-current"
+                leftIcon={<ArrowLeft aria-hidden="true" className="h-4 w-4" />}
                 onClick={() => goToStep(1)}
                 type="button"
                 variant="lightIcon"
               >
-                ← Back
+                Back
               </Button>
               <Button
                 className="!text-white [&_span]:!text-white"
                 onClick={() => goToStep(3)}
+                rightIcon={<ArrowRight aria-hidden="true" className="h-4 w-4" />}
                 type="button"
                 variant="primary"
               >
-                Next: Your Customers →
+                Next: Your Customers
               </Button>
             </FormNav>
           </FormPanel>
@@ -389,19 +415,21 @@ export default function AssociateApplicationForm() {
             <FormNav>
               <Button
                 className="!text-slate-800 [&_span]:!text-current"
+                leftIcon={<ArrowLeft aria-hidden="true" className="h-4 w-4" />}
                 onClick={() => goToStep(2)}
                 type="button"
                 variant="lightIcon"
               >
-                ← Back
+                Back
               </Button>
               <Button
                 className="!text-white [&_span]:!text-white"
                 onClick={() => goToStep(4)}
+                rightIcon={<ArrowRight aria-hidden="true" className="h-4 w-4" />}
                 type="button"
                 variant="primary"
               >
-                Next: Bank & KYC →
+                Next: Bank & KYC
               </Button>
             </FormNav>
           </FormPanel>
@@ -412,7 +440,10 @@ export default function AssociateApplicationForm() {
               description="Your earnings will be transferred weekly to the bank account below. All details are encrypted and stored securely."
             />
             <div className="mb-6 flex gap-3 rounded-2xl border border-techpay-primary/20 bg-techpay-primary/8 px-4 py-4 text-sm leading-7 text-slate-700">
-              <span aria-hidden="true">🔒</span>
+              <LockKeyhole
+                aria-hidden="true"
+                className="mt-1 h-5 w-5 shrink-0 text-techpay-primary"
+              />
               <span>
                 Your financial information is encrypted end-to-end. TechPay is
                 compliant with RBI data protection guidelines. We only use this
@@ -464,19 +495,21 @@ export default function AssociateApplicationForm() {
             <FormNav>
               <Button
                 className="!text-slate-800 [&_span]:!text-current"
+                leftIcon={<ArrowLeft aria-hidden="true" className="h-4 w-4" />}
                 onClick={() => goToStep(3)}
                 type="button"
                 variant="lightIcon"
               >
-                ← Back
+                Back
               </Button>
               <Button
                 className="!text-white [&_span]:!text-white"
                 onClick={() => goToStep(5)}
+                rightIcon={<ArrowRight aria-hidden="true" className="h-4 w-4" />}
                 type="button"
                 variant="primary"
               >
-                Review Application →
+                Review Application
               </Button>
             </FormNav>
           </FormPanel>
@@ -520,14 +553,20 @@ export default function AssociateApplicationForm() {
             <FormNav>
               <Button
                 className="!text-slate-800 [&_span]:!text-current"
+                leftIcon={<ArrowLeft aria-hidden="true" className="h-4 w-4" />}
                 onClick={() => goToStep(4)}
                 type="button"
                 variant="lightIcon"
               >
-                ← Back
+                Back
               </Button>
-              <Button className="!text-white [&_span]:!text-white" type="submit" variant="primary">
-                Submit Application ✓
+              <Button
+                className="!text-white [&_span]:!text-white"
+                rightIcon={<Check aria-hidden="true" className="h-4 w-4" />}
+                type="submit"
+                variant="primary"
+              >
+                Submit Application
               </Button>
             </FormNav>
           </FormPanel>
@@ -537,7 +576,10 @@ export default function AssociateApplicationForm() {
             hidden={!submitted}
           >
             <div className="mx-auto flex h-18 w-18 items-center justify-center rounded-full border-2 border-techpay-primary/30 bg-techpay-primary/10 text-4xl">
-              🎉
+              <PartyPopper
+                aria-hidden="true"
+                className="h-9 w-9 text-techpay-primary"
+              />
             </div>
             <h3 className="mt-6 font-display text-3xl font-bold text-slate-950">
               Application Received!
@@ -558,10 +600,10 @@ export default function AssociateApplicationForm() {
                   "Your personalized TechPay QR code is generated and sent via WhatsApp",
                   "Onboarding call + training session scheduled (45 minutes)",
                   "You're live — start referring and earning!",
-                ].map((item, index) => (
+                ].map((item) => (
                   <div key={item} className="flex gap-3">
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-techpay-primary text-xs font-bold text-white">
-                      {index + 1}
+                      <CheckCircle2 aria-hidden="true" className="h-4 w-4" />
                     </span>
                     <span className="text-sm leading-6 text-slate-600">{item}</span>
                   </div>
@@ -572,13 +614,15 @@ export default function AssociateApplicationForm() {
               <Button
                 className="!text-white [&_span]:!text-white"
                 onClick={showCommunity}
+                rightIcon={<ArrowRight aria-hidden="true" className="h-4 w-4" />}
                 type="button"
                 variant="primary"
               >
-                Join the Community →
+                Join the Community
               </Button>
               <Button
                 className="!text-slate-800 [&_span]:!text-current"
+                leftIcon={<ArrowLeft aria-hidden="true" className="h-4 w-4" />}
                 onClick={showPartnerPage}
                 type="button"
                 variant="lightIcon"
