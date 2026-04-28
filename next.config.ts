@@ -17,15 +17,7 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
-  async redirects() {
-    return [
-      {
-        source: "/associate-retailer/:path*",
-        destination: "/retailers",
-        permanent: true,
-      },
-    ];
-  },
+
   images: {
     unoptimized: true,
     remotePatterns: [

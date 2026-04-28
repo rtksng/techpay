@@ -15,6 +15,7 @@ export type FeatureSectionItem = {
   title: string;
   description: ReactNode;
   icon?: ReactNode;
+  hoverClassName?: string;
 };
 
 const defaultFeatures: FeatureSectionItem[] = [
@@ -79,16 +80,22 @@ const fallbackIcons = [
 type FeaturesSectionDemoProps = {
   features?: FeatureSectionItem[];
   className?: string;
+  desktopColumns?: 4 | 5;
 };
 
 export default function FeaturesSectionDemo({
   features = defaultFeatures,
   className,
+  desktopColumns = 4,
 }: FeaturesSectionDemoProps) {
+  const desktopGridClass =
+    desktopColumns === 5 ? "lg:grid-cols-5" : "lg:grid-cols-4";
+
   return (
     <div
       className={cn(
-        "relative z-10 mx-auto grid  grid-cols-1 overflow-hidden  border border-slate-200/80 bg-white md:grid-cols-2 lg:grid-cols-4",
+        "relative z-10 mx-auto grid  grid-cols-1 overflow-hidden  border border-slate-200/80 bg-white md:grid-cols-2",
+        desktopGridClass,
         className
       )}
     >
@@ -98,6 +105,8 @@ export default function FeaturesSectionDemo({
           {...feature}
           icon={feature.icon ?? fallbackIcons[index % fallbackIcons.length]}
           index={index}
+          itemCount={features.length}
+          desktopColumns={desktopColumns}
         />
       ))}
     </div>
@@ -108,34 +117,43 @@ const Feature = ({
   title,
   description,
   icon,
+  hoverClassName,
   index,
+  itemCount,
+  desktopColumns,
 }: {
   title: string;
   description: ReactNode;
   icon: ReactNode;
+  hoverClassName?: string;
   index: number;
+  itemCount: number;
+  desktopColumns: 4 | 5;
 }) => {
+  const isFirstDesktopColumn = index % desktopColumns === 0;
+  const isFirstDesktopRow = index < desktopColumns;
+  const shouldShowDesktopBottomBorder =
+    desktopColumns === 4 ? index < 4 : index + desktopColumns < itemCount;
+  const defaultHoverClassName = isFirstDesktopRow
+    ? "bg-linear-to-t from-techpay-primary/8 via-techpay-purple/6 to-transparent"
+    : "bg-linear-to-b from-techpay-orange/10 via-techpay-primary/6 to-transparent";
+
   return (
     <div
       className={cn(
         "group/feature relative flex h-full flex-col py-10",
         "lg:border-r lg:border-slate-200/80",
-        (index === 0 || index === 4) && "lg:border-l lg:border-slate-200/80",
-        index < 4 && "lg:border-b lg:border-slate-200/80"
+        isFirstDesktopColumn && "lg:border-l lg:border-slate-200/80",
+        shouldShowDesktopBottomBorder && "lg:border-b lg:border-slate-200/80"
       )}
     >
-      {index < 4 && (
-        <div
-          className="pointer-events-none absolute inset-0 h-full w-full bg-linear-to-t from-techpay-primary/8 via-techpay-purple/6 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100"
-          aria-hidden="true"
-        />
-      )}
-      {index >= 4 && (
-        <div
-          className="pointer-events-none absolute inset-0 h-full w-full bg-linear-to-b from-techpay-orange/10 via-techpay-primary/6 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100"
-          aria-hidden="true"
-        />
-      )}
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-0 h-full w-full opacity-0 transition duration-200 group-hover/feature:opacity-100",
+          hoverClassName ?? defaultHoverClassName
+        )}
+        aria-hidden="true"
+      />
 
       <div className="relative z-10 mb-4 px-8 text-techpay-primary">
         {icon}

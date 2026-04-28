@@ -24,6 +24,7 @@ const footerGroups = [
       { label: "OEM", href: "/oem" },
       { label: "Distributors", href: "/distributors" },
       { label: "Retailers", href: "/retailers" },
+      { label: "Associate Retailer", href: "/associate-retailer" },
     ],
   },
   {

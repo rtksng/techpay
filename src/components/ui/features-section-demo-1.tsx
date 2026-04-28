@@ -11,6 +11,8 @@ export type FeaturesSectionDemoItem = {
   borderClass?: string;
   surfaceClass?: string;
   glowClass?: string;
+  highlight?: ReactNode;
+  highlightClass?: string;
   pattern?: number[][];
 };
 
@@ -20,6 +22,7 @@ type FeaturesSectionDemoProps = {
   columnsClassName?: string;
   contentClassName?: string;
   cardClassName?: string;
+  highlightClassName?: string;
   titleClassName?: string;
   descriptionClassName?: string;
   numberPlacement?: "inline" | "corner";
@@ -63,6 +66,7 @@ export default function FeaturesSectionDemo1({
   columnsClassName,
   contentClassName,
   cardClassName,
+  highlightClassName,
   titleClassName,
   descriptionClassName,
   numberPlacement = "inline",
@@ -120,7 +124,7 @@ export default function FeaturesSectionDemo1({
                 {feature.icon && iconPlacement === "top" ? (
                   <span
                     className={cn(
-                      "mb-5 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-[18px] border border-white/70 bg-linear-to-r text-white shadow-[0_16px_36px_rgba(15,23,42,0.14)]",
+                      "mb-5 inline-flex h-14 w-14 shrink-0 items-center justify-center  border border-white/70 bg-linear-to-r text-white shadow-[0_16px_36px_rgba(15,23,42,0.14)]",
                       "from-techpay-primary via-techpay-pink to-techpay-purple/75",
                       feature.accentClass
                     )}
@@ -185,6 +189,17 @@ export default function FeaturesSectionDemo1({
             >
               {feature.description}
             </p>
+            {feature.highlight ? (
+              <p
+                className={cn(
+                  "mt-5  bg-techpay-primary/8 px-4 py-3 text-sm font-semibold text-techpay-primary",
+                  highlightClassName,
+                  feature.highlightClass
+                )}
+              >
+                {feature.highlight}
+              </p>
+            ) : null}
           </div>
         </div>
       ))}
