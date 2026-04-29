@@ -336,6 +336,19 @@ a {
   transform: translateX(10px);
 }
 
+.menu-nav-pink-hover {
+  position: relative;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.menu-nav-pink-hover:hover,
+.menu-nav-pink-hover:focus-visible {
+  color: var(--color-techpay-primary) !important;
+  transform: translateX(10px);
+}
+
 .menu-partner-panel {
   display: grid;
   grid-template-rows: 0fr;

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import LogoMark from "@/components/logo-mark";
+import { ButtonLink } from "@/components/ui/button";
 
 const aboutLink = {
   href: "/about-us",
@@ -23,11 +24,17 @@ const contactLink = {
   label: "Contact",
 } as const;
 
+const navPinkHoverClassName =
+  "menu-nav-pink-hover";
+
 const mainMenuLinkClassName =
-  "menu-nav-enter w-fit text-3xl font-extrabold leading-[1] text-techpay-heading no-underline transition hover:text-techpay-primary sm:text-4xl md:text-5xl";
+  `menu-nav-enter w-fit text-3xl font-extrabold leading-[1] text-techpay-heading no-underline sm:text-4xl md:text-5xl ${navPinkHoverClassName}`;
 
 const partnerTriggerClassName =
-  "menu-partner-trigger group flex w-full max-w-full cursor-pointer items-center gap-3 rounded-xl border-0 bg-transparent py-1 text-left text-3xl font-extrabold leading-[1] text-techpay-heading transition hover:text-techpay-primary sm:text-4xl md:gap-4 md:text-5xl";
+  `menu-partner-trigger group flex w-full max-w-full cursor-pointer items-center gap-3 rounded-xl border-0 bg-transparent py-1 text-left text-3xl font-extrabold leading-[1] text-techpay-heading sm:text-4xl md:gap-4 md:text-5xl ${navPinkHoverClassName}`;
+
+const partnerSubLinkClassName =
+  `menu-partner-sublink w-fit text-xl! font-medium leading-[1.05] text-techpay-heading no-underline sm:text-2xl! ${navPinkHoverClassName}`;
 
 const partnerChildLinks = [
   { href: "/oem", absoluteHref: "/oem", label: "OEM" },
@@ -47,14 +54,26 @@ const partnerPathPrefixes = [
   "/associate-retailer",
 ] as const;
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function stripBasePath(pathname: string) {
+  if (!basePath || !pathname.startsWith(basePath)) {
+    return pathname;
+  }
+
+  return pathname.slice(basePath.length) || "/";
+}
+
 function pathIsUnderPartner(pathname: string) {
   return partnerPathPrefixes.some((p) => pathname === p || pathname.startsWith(`${p}/`));
 }
 
 export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean }) {
   const pathname = usePathname();
+  const currentPathname = stripBasePath(pathname);
   const partnerPanelId = useId();
-  const onLandingPage = isLandingPage ?? pathname === "/";
+  const onLandingPage = isLandingPage ?? currentPathname === "/";
+  const showAssociateRetailerCtas = currentPathname === "/associate-retailer";
   const homeHref = onLandingPage ? "#hero" : "/";
   const aboutResolvedHref = onLandingPage ? aboutLink.href : aboutLink.absoluteHref;
   const futureRetailResolvedHref = onLandingPage
@@ -65,10 +84,10 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
     ...link,
     resolvedHref: onLandingPage ? link.href : link.absoluteHref,
   }));
-  const [partnerOpen, setPartnerOpen] = useState(() => pathIsUnderPartner(pathname));
+  const [partnerOpen, setPartnerOpen] = useState(() => pathIsUnderPartner(currentPathname));
 
   useEffect(() => {
-    if (pathIsUnderPartner(pathname)) {
+    if (pathIsUnderPartner(currentPathname)) {
       let cancelled = false;
 
       queueMicrotask(() => {
@@ -81,7 +100,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
         cancelled = true;
       };
     }
-  }, [pathname]);
+  }, [currentPathname]);
 
   return (
     <>
@@ -90,19 +109,41 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
           <Link href={homeHref} className="logo inline-flex items-center no-underline">
             <LogoMark priority={isLandingPage} />
           </Link>
-          <button
-            className="menu-toggle inline-flex cursor-pointer items-center gap-2 rounded-full border-0 bg-white/4 px-3 py-2.5 text-techpay-heading transition hover:bg-white/8 md:gap-[14px] md:px-[18px] md:py-[10px]"
-            type="button"
-            aria-expanded="false"
-            aria-controls="menu-overlay"
-            aria-label="Open navigation menu"
-          >
-            MENU
-            <span className="menu-toggle-icon flex flex-col gap-[5px]" aria-hidden="true">
-              <span className="block h-[2px] w-[22px] rounded-full bg-current" />
-              <span className="block h-[2px] w-[22px] rounded-full bg-current" />
-            </span>
-          </button>
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+            {showAssociateRetailerCtas ? (
+              <div className="hidden items-center gap-2 md:flex">
+                <ButtonLink
+                  className="!rounded-full !text-white shadow-[0_12px_28px_rgba(237,29,95,0.2)] [&_span]:!text-white"
+                  href="/associate-retailer/apply"
+                  size="compact"
+                  variant="primary"
+                >
+                  Apply Now
+                </ButtonLink>
+                <ButtonLink
+                  className="!rounded-full !border-white/14 !bg-white/8 !text-techpay-heading hover:!border-techpay-primary/35 hover:!bg-white/12 hover:!text-white [&_span]:!text-current"
+                  href="/associate-retailer/community"
+                  size="compact"
+                  variant="secondary"
+                >
+                  Join the Community
+                </ButtonLink>
+              </div>
+            ) : null}
+            <button
+              className="menu-toggle inline-flex cursor-pointer items-center gap-2 rounded-full border-0 bg-white/4 px-3 py-2.5 text-techpay-heading transition hover:bg-white/8 md:gap-[14px] md:px-[18px] md:py-[10px]"
+              type="button"
+              aria-expanded="false"
+              aria-controls="menu-overlay"
+              aria-label="Open navigation menu"
+            >
+              MENU
+              <span className="menu-toggle-icon flex flex-col gap-[5px]" aria-hidden="true">
+                <span className="block h-[2px] w-[22px] rounded-full bg-current" />
+                <span className="block h-[2px] w-[22px] rounded-full bg-current" />
+              </span>
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -127,6 +168,26 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
           <div className="menu-overlay-content grid flex-1 content-center gap-5 py-10 sm:gap-[22px] md:gap-7">
             
             <div className="menu-links grid gap-[14px] sm:gap-[18px]">
+              {showAssociateRetailerCtas ? (
+                <div className="menu-nav-enter mb-3 flex flex-col gap-3 sm:flex-row md:hidden">
+                  <ButtonLink
+                    className="!rounded-full !text-white [&_span]:!text-white"
+                    href="/associate-retailer/apply"
+                    size="compact"
+                    variant="primary"
+                  >
+                    Apply Now
+                  </ButtonLink>
+                  <ButtonLink
+                    className="!rounded-full !border-white/14 !bg-white/8 !text-techpay-heading hover:!border-techpay-primary/35 hover:!bg-white/12 hover:!text-white [&_span]:!text-current"
+                    href="/associate-retailer/community"
+                    size="compact"
+                    variant="secondary"
+                  >
+                    Join the Community
+                  </ButtonLink>
+                </div>
+              ) : null}
               <Link
                 className={mainMenuLinkClassName}
                 href={aboutResolvedHref}
@@ -186,7 +247,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
                       {partnerChildren.map((link) => (
                         <Link
                           key={link.label}
-                          className="menu-partner-sublink w-fit text-xl! font-medium leading-[1.05] text-techpay-heading no-underline transition hover:text-techpay-primary sm:text-2xl! "
+                          className={partnerSubLinkClassName}
                           href={link.resolvedHref}
                         >
                           {link.label}

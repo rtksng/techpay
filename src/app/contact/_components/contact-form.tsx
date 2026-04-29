@@ -1,18 +1,16 @@
 "use client";
 
 import { Check, ChevronDown, Send, UserRound } from "lucide-react";
-import { useId, useState } from "react";
+import { useId, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
-const salutations = ["Mr.", "Ms.", "Mrs.", "Dr.", "Prof."];
-const requestCategories = [
-  "General enquiry",
-  "Customer support",
-  "Partner request",
-  "Retailer enquiry",
-  "Financing support",
-  "Media enquiry",
-];
+const salutations = ["Select", "Mr.", "Ms.", "Mrs.", "Dr.", "Prof."] as const;
+
+const inputClass =
+  "h-12 w-full min-w-0 border border-white/12 bg-black/35 px-4 text-sm font-normal text-techpay-text outline-none transition placeholder:text-techpay-muted/70 focus:border-techpay-primary";
+
+const textareaClass =
+  "min-h-32 w-full min-w-0 resize-y border border-white/12 bg-black/35 px-4 py-3 text-sm font-normal text-techpay-text outline-none transition placeholder:text-techpay-muted/70 focus:border-techpay-primary";
 
 export default function ContactForm() {
   return (
@@ -28,79 +26,52 @@ export default function ContactForm() {
           <UserRound className="h-5 w-5" strokeWidth={1.8} />
         </span>
         <h2 className="font-display text-2xl font-semibold text-techpay-heading">
-          Contact Form
+          Contact Us form
         </h2>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
-        <CustomDropdown
-          label="Salutation"
-          name="salutation"
-          options={salutations}
-          placeholder="Select salutation"
-        />
-
-        <label className="grid gap-2 text-sm font-semibold text-techpay-heading">
-          First name
-          <input
-            name="firstName"
-            type="text"
-            autoComplete="given-name"
-            placeholder="Enter first name"
-            className="h-12 border border-white/12 bg-black/35 px-4 text-sm font-normal text-techpay-text outline-none transition placeholder:text-techpay-muted/70 focus:border-techpay-primary"
+      <FormSection title="Personal Details">
+        <FieldGrid columns={3}>
+          <CustomDropdown
+            label="Salutation"
+            name="salutation"
+            options={salutations}
+            placeholder="Select"
           />
-        </label>
-
-        <label className="grid gap-2 text-sm font-semibold text-techpay-heading">
-          Last name
-          <input
-            name="lastName"
-            type="text"
-            autoComplete="family-name"
-            placeholder="Enter last name"
-            className="h-12 border border-white/12 bg-black/35 px-4 text-sm font-normal text-techpay-text outline-none transition placeholder:text-techpay-muted/70 focus:border-techpay-primary"
-          />
-        </label>
-
-        <label className="grid gap-2 text-sm font-semibold text-techpay-heading">
-          Email
-          <input
-            name="email"
-            type="email"
-            autoComplete="email"
-            placeholder="name@example.com"
-            className="h-12 border border-white/12 bg-black/35 px-4 text-sm font-normal text-techpay-text outline-none transition placeholder:text-techpay-muted/70 focus:border-techpay-primary"
-          />
-        </label>
-
-        <label className="grid gap-2 text-sm font-semibold text-techpay-heading">
-          Mobile
-          <input
-            name="mobile"
-            type="tel"
+          <TextField autoComplete="given-name" label="First Name" name="firstName" />
+          <TextField autoComplete="family-name" label="Last Name" name="lastName" />
+        </FieldGrid>
+        <FieldGrid columns={2}>
+          <TextField
             autoComplete="tel"
-            placeholder="Enter mobile number"
-            className="h-12 border border-white/12 bg-black/35 px-4 text-sm font-normal text-techpay-text outline-none transition placeholder:text-techpay-muted/70 focus:border-techpay-primary"
+            label="Mobile No"
+            name="mobileNo"
+            type="tel"
           />
-        </label>
+          <TextField
+            autoComplete="email"
+            label="Email Address"
+            name="emailAddress"
+            type="email"
+          />
+        </FieldGrid>
+        <FieldGrid>
+          <TextareaField label="Address" name="address" />
+        </FieldGrid>
+        <FieldGrid columns={2}>
+          <TextField label="City" name="city" />
+          <TextField label="Pin" maxLength={6} name="pin" />
+        </FieldGrid>
+      </FormSection>
 
-        <CustomDropdown
-          label="Request (subject/category)"
-          name="requestCategory"
-          options={requestCategories}
-          placeholder="Select subject/category"
-        />
-      </div>
-
-      <label className="mt-5 grid gap-2 text-sm font-semibold text-techpay-heading">
-        Request (details)
-        <textarea
-          name="requestDetails"
-          rows={7}
-          placeholder="Tell us more about your request"
-          className="min-h-40 resize-y border border-white/12 bg-black/35 px-4 py-3 text-sm font-normal text-techpay-text outline-none transition placeholder:text-techpay-muted/70 focus:border-techpay-primary"
-        />
-      </label>
+      <FormSection title="Nature of Enquiry">
+        <FieldGrid>
+          <TextField label="Subject" name="subject" />
+        </FieldGrid>
+        <FieldGrid>
+          <TextareaField label="Detail" name="detail" />
+        </FieldGrid>
+      </FormSection>
 
       <div className="mt-7 flex flex-col gap-3 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
         <div aria-hidden="true" />
@@ -117,6 +88,98 @@ export default function ContactForm() {
   );
 }
 
+function FormSection({
+  children,
+  title,
+}: {
+  children: ReactNode;
+  title: string;
+}) {
+  return (
+    <section className="mb-7 border-b border-white/10 pb-7 last:mb-0 last:border-b-0 last:pb-0">
+      <h3 className="mb-5 text-sm font-semibold text-techpay-heading">{title}</h3>
+      {children}
+    </section>
+  );
+}
+
+function FieldGrid({
+  children,
+  columns = 1,
+}: {
+  children: ReactNode;
+  columns?: 1 | 2 | 3;
+}) {
+  return (
+    <div
+      className={`mb-5 grid gap-5 last:mb-0 ${
+        columns === 3
+          ? "md:grid-cols-2 xl:grid-cols-3"
+          : columns === 2
+            ? "md:grid-cols-2"
+            : ""
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function TextField({
+  autoComplete,
+  label,
+  maxLength,
+  name,
+  type = "text",
+}: {
+  autoComplete?: string;
+  label: string;
+  maxLength?: number;
+  name: string;
+  type?: string;
+}) {
+  return (
+    <Field label={label}>
+      <input
+        autoComplete={autoComplete}
+        className={inputClass}
+        maxLength={maxLength}
+        name={name}
+        type={type}
+      />
+    </Field>
+  );
+}
+
+function TextareaField({
+  label,
+  name,
+}: {
+  label: string;
+  name: string;
+}) {
+  return (
+    <Field label={label}>
+      <textarea className={textareaClass} name={name} />
+    </Field>
+  );
+}
+
+function Field({
+  children,
+  label,
+}: {
+  children: ReactNode;
+  label: string;
+}) {
+  return (
+    <label className="grid min-w-0 gap-2 text-sm font-semibold text-techpay-heading">
+      {label}
+      {children}
+    </label>
+  );
+}
+
 function CustomDropdown({
   label,
   name,
@@ -125,7 +188,7 @@ function CustomDropdown({
 }: {
   label: string;
   name: string;
-  options: string[];
+  options: readonly string[];
   placeholder: string;
 }) {
   const id = useId();
@@ -134,7 +197,7 @@ function CustomDropdown({
   const selectedLabel = value || placeholder;
 
   return (
-    <div className="relative grid gap-2 text-sm font-semibold text-techpay-heading">
+    <div className="relative grid min-w-0 gap-2 text-sm font-semibold text-techpay-heading">
       <label id={`${id}-label`}>{label}</label>
       <input type="hidden" name={name} value={value} />
       <button
