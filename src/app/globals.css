@@ -221,9 +221,9 @@ a {
   position: fixed;
   top: 66%;
   left: auto !important;
-  right: clamp(8rem, 16vw, 24rem) !important;
+  right: clamp(8rem, 16vw, 16rem) !important;
   z-index: 0;
-  width: clamp(120px, 10.5vw, 410px) !important;
+  width: clamp(280px, 24vw, 430px) !important;
   overflow: visible;
   pointer-events: none;
   opacity: 0;

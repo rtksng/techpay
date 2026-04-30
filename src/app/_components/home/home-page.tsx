@@ -147,7 +147,7 @@ export default function HomePage() {
               className="laptop-anchor hidden min-h-[clamp(280px,34vw,460px)] xl:block"
               aria-hidden="true"
             />
-            <div className="scales-frame relative ml-0 mr-auto w-full p-[18px] md:p-[22px] xl:ml-auto xl:mr-0 xl:w-[min(560px,100%)]">
+            <div className=" relative ml-0 mr-auto w-full p-[18px] md:p-[22px] xl:ml-auto xl:mr-0 xl:w-[min(560px,100%)]">
               <span className="scales-strip scales-strip--left" aria-hidden="true" />
               <span className="scales-strip scales-strip--right" aria-hidden="true" />
               <span className="scales-strip scales-strip--top" aria-hidden="true" />
@@ -183,7 +183,7 @@ export default function HomePage() {
           id="how-it-works"
         >
           <div className="section-pair mx-auto grid w-full items-center gap-0 md:gap-8 xl:gap-[clamp(40px,7vw,96px)] xl:[grid-template-columns:minmax(360px,460px)_minmax(0,1.15fr)]">
-            <div className="scales-frame relative ml-0 mr-auto w-full p-[18px] md:p-[22px] xl:w-[min(560px,100%)]">
+            <div className=" relative ml-0 mr-auto w-full p-[18px] md:p-[22px] xl:w-[min(560px,100%)]">
               <span className="scales-strip scales-strip--left" aria-hidden="true" />
               <span className="scales-strip scales-strip--right" aria-hidden="true" />
               <span className="scales-strip scales-strip--top" aria-hidden="true" />
@@ -227,7 +227,7 @@ export default function HomePage() {
               className="laptop-anchor hidden min-h-[clamp(280px,34vw,460px)] xl:block"
               aria-hidden="true"
             />
-            <div className="scales-frame relative ml-0 mr-auto w-full p-[18px] md:p-[22px] xl:ml-auto xl:mr-0 xl:w-[min(560px,100%)]">
+            <div className=" relative ml-0 mr-auto w-full p-[18px] md:p-[22px] xl:ml-auto xl:mr-0 xl:w-[min(560px,100%)]">
               <span className="scales-strip scales-strip--left" aria-hidden="true" />
               <span className="scales-strip scales-strip--right" aria-hidden="true" />
               <span className="scales-strip scales-strip--top" aria-hidden="true" />
@@ -262,7 +262,7 @@ export default function HomePage() {
           id="infinite-shelf"
         >
           <div className="section-pair mx-auto grid w-full items-center gap-0 md:gap-8 xl:gap-[clamp(40px,7vw,96px)] xl:[grid-template-columns:minmax(360px,460px)_minmax(0,1.15fr)]">
-            <div className="scales-frame relative ml-0 mr-auto w-full p-[18px] md:p-[22px] xl:w-[min(560px,100%)]">
+            <div className=" relative ml-0 mr-auto w-full p-[18px] md:p-[22px] xl:w-[min(560px,100%)]">
               <span className="scales-strip scales-strip--left" aria-hidden="true" />
               <span className="scales-strip scales-strip--right" aria-hidden="true" />
               <span className="scales-strip scales-strip--top" aria-hidden="true" />

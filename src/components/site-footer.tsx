@@ -3,8 +3,6 @@ import {
   IconBrandInstagram,
   IconBrandLinkedin,
   IconBrandX,
-  IconChevronRight,
-  IconMail,
 } from "@tabler/icons-react";
 import LogoMark from "@/components/logo-mark";
 import { ButtonAnchor } from "@/components/ui/button";
@@ -75,7 +73,7 @@ export default function SiteFooter() {
               Smarter ownership starts here.
             </h2>
             <p className="mt-4 max-w-md text-sm leading-7 text-techpay-muted md:text-base">
-              AI-guided recommendations, flexible payments, and real retail
+              AI-guided recommendations, flexible payments, and after-sales
               support for a better technology buying journey.
             </p>
 

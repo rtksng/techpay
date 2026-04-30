@@ -73,7 +73,7 @@ export default function ContactForm() {
         </FieldGrid>
       </FormSection>
 
-      <div className="mt-7 flex flex-col gap-3 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3   sm:flex-row sm:items-center sm:justify-between">
         <div aria-hidden="true" />
         <Button
           type="button"
@@ -96,7 +96,7 @@ function FormSection({
   title: string;
 }) {
   return (
-    <section className="mb-7 border-b border-white/10 pb-7 last:mb-0 last:border-b-0 last:pb-0">
+    <section className="mb-7  pb-7 last:mb-0 last:border-b-0 last:pb-0">
       <h3 className="mb-5 text-sm font-semibold text-techpay-heading">{title}</h3>
       {children}
     </section>

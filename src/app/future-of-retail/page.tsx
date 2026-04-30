@@ -22,7 +22,6 @@ import MarketAwareLinkButton from "@/app/_components/home/market-aware-link-butt
 import FeaturesSectionDemo1, {
   type FeaturesSectionDemoItem,
 } from "@/components/ui/features-section-demo-1";
-import { ButtonLink } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Future of Retail | TechPay.ai",
@@ -652,15 +651,6 @@ function FinalCtaSection() {
             Start with the AI advisor, browse the endless aisle, explore
             financing, and discover personalised support - all in one platform.
           </h2>
-          <div className="mt-9 flex">
-            <ButtonLink
-              href="/coming-soon"
-              size="md"
-              variant="primary"
-            >
-              Contact Us
-            </ButtonLink>
-          </div>
         </div>
 
         <div className="relative z-10 mt-10 mx-auto grid grid-cols-1 overflow-hidden border border-white/10 bg-white/6 backdrop-blur-xl md:grid-cols-2 xl:grid-cols-4">
@@ -698,9 +688,10 @@ function FinalCtaSection() {
                   kind={feature.kind}
                   label={feature.ctaLabel}
                   loadingLabel={feature.loadingLabel}
+                  className="!text-white shadow-[0_14px_34px_rgba(237,29,95,0.22)] [&_span]:!text-white"
                   fullWidth
                   size="compact"
-                  variant="secondary"
+                  variant="primary"
                 />
               </div>
             </div>

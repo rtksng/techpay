@@ -73,7 +73,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
   const currentPathname = stripBasePath(pathname);
   const partnerPanelId = useId();
   const onLandingPage = isLandingPage ?? currentPathname === "/";
-  const showAssociateRetailerCtas = currentPathname === "/associate-retailer";
+  const showAssociateRetailerApplyCta = currentPathname === "/associate-retailer";
   const homeHref = onLandingPage ? "#hero" : "/";
   const aboutResolvedHref = onLandingPage ? aboutLink.href : aboutLink.absoluteHref;
   const futureRetailResolvedHref = onLandingPage
@@ -110,7 +110,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
             <LogoMark priority={isLandingPage} />
           </Link>
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-            {showAssociateRetailerCtas ? (
+            {showAssociateRetailerApplyCta ? (
               <div className="hidden items-center gap-2 md:flex">
                 <ButtonLink
                   className="!rounded-full !text-white shadow-[0_12px_28px_rgba(237,29,95,0.2)] [&_span]:!text-white"
@@ -119,14 +119,6 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
                   variant="primary"
                 >
                   Apply Now
-                </ButtonLink>
-                <ButtonLink
-                  className="!rounded-full !border-white/14 !bg-white/8 !text-techpay-heading hover:!border-techpay-primary/35 hover:!bg-white/12 hover:!text-white [&_span]:!text-current"
-                  href="/associate-retailer/community"
-                  size="compact"
-                  variant="secondary"
-                >
-                  Join the Community
                 </ButtonLink>
               </div>
             ) : null}
@@ -168,7 +160,7 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
           <div className="menu-overlay-content grid flex-1 content-center gap-5 py-10 sm:gap-[22px] md:gap-7">
             
             <div className="menu-links grid gap-[14px] sm:gap-[18px]">
-              {showAssociateRetailerCtas ? (
+              {showAssociateRetailerApplyCta ? (
                 <div className="menu-nav-enter mb-3 flex flex-col gap-3 sm:flex-row md:hidden">
                   <ButtonLink
                     className="!rounded-full !text-white [&_span]:!text-white"
@@ -178,27 +170,19 @@ export default function SiteNavbar({ isLandingPage }: { isLandingPage?: boolean 
                   >
                     Apply Now
                   </ButtonLink>
-                  <ButtonLink
-                    className="!rounded-full !border-white/14 !bg-white/8 !text-techpay-heading hover:!border-techpay-primary/35 hover:!bg-white/12 hover:!text-white [&_span]:!text-current"
-                    href="/associate-retailer/community"
-                    size="compact"
-                    variant="secondary"
-                  >
-                    Join the Community
-                  </ButtonLink>
                 </div>
               ) : null}
-              <Link
-                className={mainMenuLinkClassName}
-                href={aboutResolvedHref}
-              >
-                {aboutLink.label}
-              </Link>
               <Link
                 className={mainMenuLinkClassName}
                 href={futureRetailResolvedHref}
               >
                 {futureRetailLink.label}
+              </Link>
+              <Link
+                className={mainMenuLinkClassName}
+                href={aboutResolvedHref}
+              >
+                {aboutLink.label}
               </Link>
               <Link
                 className={mainMenuLinkClassName}

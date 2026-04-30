@@ -21,11 +21,11 @@ const missionVision = [
     kicker: "Purpose in action",
     heading: "Make trusted technology ownership effortless.",
     body:
-      "TechPay.ai helps customers choose, finance, and own the right devices with AI-powered guidance, transparent payment paths, and dependable retail support.",
+      "TechPay.ai helps customers choose, finance, and own the right devices with AI-powered guidance, transparent payment paths, and dependable after-sales support.",
     points: [
-      "Bridge affordability gaps with flexible ownership options.",
       "Simplify decisions with AI guidance built around real customer needs.",
-      "Support retail partners with a smarter, more trusted buying journey.",
+      "Bridge affordability gaps with flexible ownership options.",
+      "Support customers with a smarter, more trusted buying journey.",
     ],
     accent: "from-techpay-primary via-techpay-orange to-techpay-purple",
     iconTone: "border-techpay-primary/40 bg-techpay-primary/12 text-techpay-primary",
@@ -34,7 +34,7 @@ const missionVision = [
   {
     label: "VISION",
     kicker: "Where we are going",
-    heading: "Build the world's most trusted PhyGital retail network.",
+    heading: "Build the world's most trusted PHYGITAL retail network.",
     body:
       "We envision a future where every customer can access modern technology through connected stores, intelligent assistance, and transparent financing across emerging markets.",
     points: [
@@ -121,7 +121,7 @@ const officeLocations = [
     Icon: Building2,
   },
   {
-    title: "TechPay.ai SDN BHD Malaysia",
+    title: "TechPay.ai Malaysia",
     lines: [
       "Lot 3A-01A, Level 3A, Glo Damansara",
       "Shopping Mall, 699, Jln Damansara",
@@ -244,7 +244,7 @@ export default function AboutUsPageContent() {
         </section>
 
         <div className="relative mx-auto flex w-full max-w-[1440px] flex-col">
-          <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden bg-white py-14 md:py-18">
+          <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden bg-white py-10 md:py-12">
             <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 md:px-6 lg:px-10">
               <div>
                 <p className="mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-techpay-primary">
@@ -257,7 +257,7 @@ export default function AboutUsPageContent() {
                   textAlign="left"
                   className="mb-3 block font-display text-[clamp(2.2rem,5vw,4rem)] font-bold tracking-[-0.04em] text-slate-950"
                 />
-                <p className="mb-8 max-w-4xl text-sm leading-6 text-slate-600 md:text-base md:leading-7">
+                <p className="mb-6 max-w-4xl text-sm leading-6 text-slate-600 md:text-base md:leading-7">
                   TechPay.ai brings together deep expertise across finance, AI,
                   product, growth, operations, partnerships, and consumer
                   technology. Together, the team combines strategic thinking

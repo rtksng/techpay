@@ -463,25 +463,16 @@ function SummaryCtaSection() {
             Apply to start earning as an Associate Retailer, or join the
             community to connect with the TechPay network first.
           </p>
-        </div>
-
-        <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
-          <ButtonLink
-            className="!rounded-full !text-white [&_span]:!text-white"
-            href="/associate-retailer/apply"
-            size="lg"
-            variant="primary"
-          >
-            Apply Now
-          </ButtonLink>
-          <ButtonLink
-            className="!rounded-full !border-white/20 !bg-white/8 !text-white hover:!border-techpay-primary/45 hover:!bg-white/12 [&_span]:!text-white"
-            href="/associate-retailer/community"
-            size="lg"
-            variant="secondary"
-          >
-            Join the Community
-          </ButtonLink>
+          <div className="mt-8 flex justify-start">
+            <ButtonLink
+              className="!rounded-full !border-white/18 !bg-white/8 !text-white shadow-[0_18px_42px_rgba(0,0,0,0.28)] backdrop-blur-2xl hover:!border-techpay-primary/45 hover:!bg-white/12 [&_span]:!text-white"
+              href="/associate-retailer/community"
+              size="lg"
+              variant="secondary"
+            >
+              Join the Community
+            </ButtonLink>
+          </div>
         </div>
       </div>
     </section>
