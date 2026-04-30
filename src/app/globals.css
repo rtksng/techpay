@@ -223,7 +223,7 @@ a {
   left: auto !important;
   right: clamp(8rem, 16vw, 16rem) !important;
   z-index: 0;
-  width: clamp(280px, 24vw, 430px) !important;
+  width: clamp(190px, 16vw, 300px) !important;
   overflow: visible;
   pointer-events: none;
   opacity: 0;
