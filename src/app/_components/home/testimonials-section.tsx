@@ -18,7 +18,7 @@ const testimonials: StaggerTestimonialItem[] = [
     useCase: "Creative & Digital Art",
     testimonial:
       "I am design student from Penang. I was worried about hidden fees & payment options before visiting a TechPay.ai powered Phygital store. The store was upfront about everything, and I walked out with a laptop that handles high-fidelity rendering and digital art like a 'piece of a cake'. The flexible payments & easy instalments took away all my worries.",
-    by: "Customer Name (Penang, Malaysia)",
+    by: "Aisha Rahman (Penang, Malaysia)",
   },
   {
     id: "professional-office-mumbai",
@@ -34,7 +34,7 @@ const testimonials: StaggerTestimonialItem[] = [
     useCase: "Development & Engineering",
     testimonial:
       "Since my old device had broken down, I needed a new device urgently for work. A device that could handle design applications like Autodesk & also load large excel files. Buying a device on TechPay.ai was almost instantenous, giving me the speed I needed for my daily office work without any administrative delay.",
-    by: "Customer Name (Shah Alam, Malaysia)",
+    by: "Daniel Tan (Shah Alam, Malaysia)",
   },
   {
     id: "professional-sales-chennai",
@@ -58,7 +58,7 @@ const testimonials: StaggerTestimonialItem[] = [
     useCase: "Portfolio Design & High Performance",
     testimonial:
       "I needed a laptop for my architecture classes and was worried high-performance models may not available in my city. TechPay.ai platform was able to source my device from the distributor directly & ship it the store in my neighborhood.",
-    by: "Customer Name (Malaka, Malaysia)",
+    by: "Nur Iman Hassan (Melaka, Malaysia)",
   },
   {
     id: "gamer-high-frame-rate-ipoh",
@@ -66,7 +66,7 @@ const testimonials: StaggerTestimonialItem[] = [
     useCase: "Competitive & High Frame-Rate",
     testimonial:
       "I am an amature gamer. I needed a device that supports high frame-rate gaming & streaming. I also wanted to use the device for my project work in school. The store manager explained the technical differences & helped me pick a device that actually fits for my school work and gaming needs.",
-    by: "Customer Name (Ipoh, Malaysia)",
+    by: "Amirul Hakim (Ipoh, Malaysia)",
   },
   {
     id: "home-office-johor-bahru",
@@ -74,7 +74,7 @@ const testimonials: StaggerTestimonialItem[] = [
     useCase: "Home Office & Remote Work",
     testimonial:
       "Paying upfront for a quality laptop felt out of reach for our family business in Johor Bahru. We needed it for accounts and accessing our partner sites. The easy instalments on TechPay.ai provided us with the cash flow relief so we did not have to worry about upfront capex investment for our home office.",
-    by: "Customer Name (Johor Bahru, Malaysia)",
+    by: "Siti Farah (Johor Bahru, Malaysia)",
   },
   {
     id: "home-learning-delhi",

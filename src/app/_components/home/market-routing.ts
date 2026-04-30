@@ -158,6 +158,18 @@ function getCurrentPosition() {
   });
 }
 
+async function getDeviceLocation() {
+  if (typeof window === "undefined" || !window.isSecureContext) {
+    return null;
+  }
+
+  try {
+    return await getCurrentPosition();
+  } catch {
+    return null;
+  }
+}
+
 export function getDashboardUrl(market: MarketCode) {
   return MARKET_CONFIG[market].dashboardUrl;
 }
@@ -312,6 +324,18 @@ export function getMarketFromCurrentUrl() {
   );
 }
 
+function getExplicitMarket() {
+  return getMarketFromCurrentUrl() ?? getMarketFromPathname();
+}
+
+function getActionFallbackMarket(initialMarket = DEFAULT_MARKET) {
+  return (
+    getExplicitMarket() ??
+    getMarketFromBrowser() ??
+    initialMarket
+  );
+}
+
 export function getPreferredMarket(initialMarket = DEFAULT_MARKET) {
   return (
     getMarketFromCurrentUrl() ??
@@ -404,7 +428,13 @@ export type RecommendationResolution =
 export async function resolveRecommendationUrl(
   initialMarket = DEFAULT_MARKET
 ) : Promise<RecommendationResolution> {
-  const currentMarket = getPreferredMarket(initialMarket);
+  const explicitMarket = getExplicitMarket();
+  const position = await getDeviceLocation();
+  const locationMarket = position
+    ? getMarketFromCoordinates(position.coords.latitude, position.coords.longitude)
+    : null;
+  const currentMarket =
+    explicitMarket ?? locationMarket ?? getActionFallbackMarket(initialMarket);
   const existingStoreId = getKnownStoreId(currentMarket);
 
   if (existingStoreId) {
@@ -418,7 +448,7 @@ export async function resolveRecommendationUrl(
     };
   }
 
-  if (typeof window === "undefined" || !window.isSecureContext) {
+  if (!position) {
     return {
       href: null,
       market: currentMarket,
@@ -426,7 +456,6 @@ export async function resolveRecommendationUrl(
     };
   }
 
-  const position = await getCurrentPosition();
   persistMarket(currentMarket);
   const storeId = await getNearestStoreIdFromCoordinates(
     currentMarket,
@@ -452,7 +481,19 @@ export async function resolveRecommendationUrl(
 }
 
 export async function resolveMarket(initialMarket = DEFAULT_MARKET) {
-  const nextMarket = getPreferredMarket(initialMarket);
+  const explicitMarket = getExplicitMarket();
+
+  if (explicitMarket) {
+    persistMarket(explicitMarket);
+    return explicitMarket;
+  }
+
+  const position = await getDeviceLocation();
+  const locationMarket = position
+    ? getMarketFromCoordinates(position.coords.latitude, position.coords.longitude)
+    : null;
+  const nextMarket = locationMarket ?? getActionFallbackMarket(initialMarket);
+
   persistMarket(nextMarket);
   return nextMarket;
 }
