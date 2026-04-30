@@ -11,8 +11,9 @@ const footerGroups = [
   {
     title: "Explore",
     links: [
-      { label: "About Us", href: "/about-us" },
       { label: "Future of Retail", href: "/future-of-retail" },
+
+      { label: "About Us", href: "/about-us" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -70,7 +71,7 @@ export default function SiteFooter() {
               <LogoMark />
             </Link>
             <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-techpay-heading md:text-4xl">
-              Smarter ownership starts here.
+              Briding the digital divide.
             </h2>
             <p className="mt-4 max-w-md text-sm leading-7 text-techpay-muted md:text-base">
               AI-guided recommendations, flexible payments, and after-sales

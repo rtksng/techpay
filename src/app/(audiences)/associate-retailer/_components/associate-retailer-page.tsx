@@ -465,10 +465,10 @@ function SummaryCtaSection() {
           </p>
           <div className="mt-8 flex justify-start">
             <ButtonLink
-              className="!rounded-full !border-white/18 !bg-white/8 !text-white shadow-[0_18px_42px_rgba(0,0,0,0.28)] backdrop-blur-2xl hover:!border-techpay-primary/45 hover:!bg-white/12 [&_span]:!text-white"
+              className="!rounded-none !text-white [&_span]:!text-white"
               href="/associate-retailer/community"
               size="lg"
-              variant="secondary"
+              variant="primary"
             >
               Join the Community
             </ButtonLink>
