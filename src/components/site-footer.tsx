@@ -74,8 +74,8 @@ export default function SiteFooter() {
               Briding the digital divide.
             </h2>
             <p className="mt-4 max-w-md text-sm leading-7 text-techpay-muted md:text-base">
-              AI-guided recommendations, flexible payments, and after-sales
-              support for a better technology buying journey.
+              AI-guided recommendations, unlimited choices, flexible payments,
+              and after-sales support for a better technology buying journey.
             </p>
 
             

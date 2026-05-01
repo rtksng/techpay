@@ -60,6 +60,9 @@ export default function ContactForm() {
         </FieldGrid>
         <FieldGrid columns={2}>
           <TextField label="City" name="city" />
+          <TextField label="State" name="state" />
+        </FieldGrid>
+        <FieldGrid>
           <TextField label="Pin" maxLength={6} name="pin" />
         </FieldGrid>
       </FormSection>

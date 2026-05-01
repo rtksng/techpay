@@ -114,8 +114,8 @@ const officeLocations = [
   {
     title: "TechPay.ai Singapore",
     lines: [
-      "7 Straits View, #05-01 Marina One",
-      "East Tower, Singapore 018936",
+      "336 Smith Street, #05-303,",
+      "New Bridge Centre, Singapore 050336",
     ],
     accent: "from-techpay-purple/30 to-techpay-primary/15",
     Icon: Building2,

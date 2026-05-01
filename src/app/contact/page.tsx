@@ -21,8 +21,7 @@ export default function ContactPage() {
             Get in touch
           </h1>
           <p className="mt-6 max-w-xl text-base leading-7 text-techpay-muted md:text-lg md:leading-8">
-            Send your request to TechPay.ai and we will get back to you at the
-            earliest.
+            Send us your request and we will get back to you at the earliest.
           </p>
         </div>
 
