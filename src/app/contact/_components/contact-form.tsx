@@ -62,8 +62,9 @@ export default function ContactForm() {
           <TextField label="City" name="city" />
           <TextField label="State" name="state" />
         </FieldGrid>
-        <FieldGrid>
+        <FieldGrid columns={2}>
           <TextField label="Pin" maxLength={6} name="pin" />
+          <TextField autoComplete="country-name" label="Country" name="country" />
         </FieldGrid>
       </FormSection>
 

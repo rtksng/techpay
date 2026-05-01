@@ -460,8 +460,7 @@ function SummaryCtaSection() {
             Bring TechPay.ai to your city.
           </h2>
           <p className="mt-5 max-w-2xl text-sm leading-8 text-slate-300 md:text-base">
-            Are you ready for the AI retail revolution. Join TechPay.ai: Earn &
-            Connect. Apply to Earn Now
+            Are you ready for the AI retail revolution? Join TechPay.ai. Apply Now.
           </p>
           <div className="mt-8 flex justify-start">
             <ButtonLink

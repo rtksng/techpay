@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   Globe2,
   Landmark,
-  MapPinned,
   Target,
   Telescope,
 } from "lucide-react";
@@ -129,7 +128,7 @@ const officeLocations = [
       "WP Kuala Lumpur 6000, Malaysia",
     ],
     accent: "from-techpay-orange/30 to-techpay-primary/15",
-    Icon: MapPinned,
+    Icon: Building2,
   },
   {
     title: "Coming Soon",
