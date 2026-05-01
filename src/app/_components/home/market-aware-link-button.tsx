@@ -50,7 +50,7 @@ export default function MarketAwareLinkButton({
 
     try {
       if (kind === "catalog") {
-        const market = getPreferredMarket(DEFAULT_MARKET);
+        const market = await resolveMarket(DEFAULT_MARKET);
         window.location.assign(getDashboardUrl(market));
         return;
       }

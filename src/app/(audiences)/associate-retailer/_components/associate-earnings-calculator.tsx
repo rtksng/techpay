@@ -107,7 +107,7 @@ export default function AssociateEarningsCalculator() {
             />
           </div>
 
-          <div>
+          <div className="self-center">
             <div className=" border border-techpay-primary/25 bg-techpay-primary/12 p-7 text-center">
               <p className="text-xs font-semibold uppercase text-white/55">
                 Monthly earnings
@@ -128,13 +128,7 @@ export default function AssociateEarningsCalculator() {
               </p>
             </div>
 
-            <div className="mt-5 flex justify-center">
-              <span
-                className={`inline-flex min-h-9 items-center justify-center  border px-4 py-2 text-xs font-semibold ${estimate.tier.className}`}
-              >
-                🏅 {estimate.tier.label} Tier
-              </span>
-            </div>
+           
           </div>
         </div>
       </div>

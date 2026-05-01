@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { IconBrandLinkedin } from "@tabler/icons-react";
 
-import { FollowerPointerCard } from "@/components/ui/following-pointer";
-
 type Leader = {
   name: string;
   title: string;
@@ -41,16 +39,11 @@ export default function FollowingPointerDemo({
     <div className="grid gap-5  md:grid-cols-2 xl:grid-cols-3">
       {leaders.map((leader, index) => {
         return (
-          <FollowerPointerCard
+          <div
             key={leader.name}
             className="h-full"
-            title={
-              <TitleComponent
-                title={leader.name}
-              />
-            }
           >
-            <article className="group relative flex h-full flex-col overflow-hidden border border-slate-200 bg-white shadow-[0_20px_45px_rgba(15,23,42,0.08)] transition duration-300">
+            <article className="relative flex h-full flex-col overflow-hidden border border-slate-200 bg-white shadow-[0_20px_45px_rgba(15,23,42,0.08)] transition duration-300">
               <div className="flex h-full items-start gap-4 p-4 md:gap-5 md:p-5">
                 <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border border-slate-200 bg-slate-50 md:h-28 md:w-28">
                   <div className="absolute inset-0 bg-linear-to-br from-slate-100 via-white to-slate-100" />
@@ -99,27 +92,9 @@ export default function FollowingPointerDemo({
                 </div>
               </div>
             </article>
-          </FollowerPointerCard>
+          </div>
         );
       })}
-    </div>
-  );
-}
-
-function TitleComponent({
-  title,
-}: {
-  title: string;
-}) {
-  return (
-    <div className="flex items-center gap-2 text-white px-3">
-      {/* <div className="flex h-6 w-6 items-center justify-center rounded-full border border-white/50 bg-white/15 text-[0.65rem] font-semibold">
-        {initials}
-      </div> */}
-      <div className="leading-tight">
-        <p className="text-sm font-semibold">{title}</p>
-        {/* <p className="text-[0.7rem] text-white/80">{subtitle}</p> */}
-      </div>
     </div>
   );
 }

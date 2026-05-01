@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   BadgeCheck,
@@ -154,75 +153,40 @@ const cityTiers = [
     count: "8",
     cities:
       "Mumbai · Delhi · Bengaluru · Chennai · Hyderabad · Kolkata · Pune · Ahmedabad",
-    tone: "primary",
   },
   {
     label: "Tier 2 — Major Cities",
     count: "50+",
     cities:
       "Jaipur · Surat · Lucknow · Kochi · Chandigarh · Indore · Coimbatore · Nagpur + more",
-    tone: "primary",
   },
   {
     label: "Tier 3 — Growing Towns",
     count: "150+",
     cities:
       "District capitals and growing towns across all states. First-mover advantage for early partners.",
-    tone: "purple",
   },
   {
     label: "Tier 4 — Deep India",
     count: "100+",
     cities:
       "Semi-urban and rural centres with strong RMA & computer service presence. High demand, low competition.",
-    tone: "pink",
   },
 ] as const;
 
-const testimonials = [
-  {
-    quote:
-      "I've been doing laptop repairs in Patna for 8 years. Never thought I could make commission on new sales too. TechPay changed that. My customers ask me what to buy anyway — now I get paid for it.",
-    initials: "RS",
-    name: "Rajesh Singh",
-    role: "RMA Technician · Patna, Bihar",
-    earnings: "Earned ₹18,400 in first 2 months",
-  },
-  {
-    quote:
-      "I run a small IT support shop in Coimbatore. My walk-in customers always ask for laptop recommendations. Now instead of sending them to a showroom, I scan my QR — and get 2% on every device. It's passive income on top of my repair business.",
-    initials: "MK",
-    name: "Meena Krishnan",
-    role: "IT Support · Coimbatore, TN",
-    earnings: "₹23,000+ earned last month",
-  },
-  {
-    quote:
-      "In Meerut, people trust local technicians more than big stores. With TechPay I became the trusted source for buying too. The EMI option is a game-changer — everyone can afford it now.",
-    initials: "AV",
-    name: "Amit Verma",
-    role: "Computer Service · Meerut, UP",
-    earnings: "12 sales in first month · ₹14,200 earned",
-  },
-] as const;
-
-const testimonialFeatureItems = testimonials.map((testimonial, index) => ({
-  title: testimonial.name,
-  description: testimonial.quote,
-  icon: (
-    <span className="font-display text-sm font-bold leading-none">
-      {testimonial.initials}
-    </span>
-  ),
-  highlight: `${testimonial.role} · ${testimonial.earnings}`,
-  pattern: [
-    [6, 1],
-    [8, 4],
-    [10, 2],
-    [12, 5],
-    [13, index + 1],
-  ],
-}));
+const coverageFeatureItems: OfficeFeatureSectionItem[] = cityTiers.map(
+  (tier) => ({
+    title: tier.label,
+    icon: (
+      <span className="font-display text-lg font-bold leading-none">
+        {tier.count}
+      </span>
+    ),
+    description: <p>{tier.cities}</p>,
+    hoverClassName:
+      "bg-linear-to-t from-techpay-primary/8 via-techpay-purple/6 to-transparent",
+  })
+);
 
 const toneClasses = {
   primary:
@@ -241,12 +205,12 @@ const benefitCardClasses = {
   purple: {
     borderClass: "border-techpay-purple/18",
     glowClass: "bg-techpay-purple/14",
-    highlightClass: "bg-techpay-purple/8 text-techpay-purple",
+    highlightClass: "bg-techpay-primary/8 text-techpay-primary",
   },
   pink: {
     borderClass: "border-techpay-pink/22",
     glowClass: "bg-techpay-pink/16",
-    highlightClass: "bg-techpay-pink/12 text-techpay-primary",
+    highlightClass: "bg-techpay-primary/8 text-techpay-primary",
   },
 } as const;
 
@@ -254,12 +218,11 @@ export default function AssociateRetailerPage() {
   return (
     <main className="bg-[#f7f7fb] text-slate-950">
       <AssociateHero />
-      <AssociateSectionNav />
       <BenefitsSection />
       <AssociateEarningsCalculator />
       <JourneySection />
       <CoverageSection />
-      <TestimonialsSection />
+      <SummaryCtaSection />
     </main>
   );
 }
@@ -280,7 +243,7 @@ function AssociateHero() {
 
       <div className="relative z-10 mx-auto  max-w-[1240px] ">
         <div>
-          
+
           <h1 className="mt-7 max-w-4xl font-display text-4xl font-bold  text-white md:text-6xl lg:text-7xl">
             Turn your{" "}
             <span className="text-techpay-primary">technical expertise</span> into a thriving business.
@@ -299,18 +262,20 @@ function AssociateHero() {
               >
                 <p className="text-2xl font-bold text-white">{stat.value}</p>
                 <p className="mt-1 text-xs text-slate-400">{stat.label}</p>
+                {stat.label === "Monthly earning potential" ? (
+                  <p className="mt-2 text-xs font-semibold text-slate-400">
+                    *Conditions Apply.{" "}
+                    <a
+                      className="text-techpay-primary underline-offset-4 transition hover:text-techpay-pink hover:underline"
+                      href="#earnings-calculator"
+                    >
+                      View calculator
+                    </a>
+                  </p>
+                ) : null}
               </div>
             ))}
           </div>
-          <p className="mt-5 text-xs font-semibold text-slate-400">
-            *Conditions Apply.{" "}
-            <a
-              className="text-techpay-primary underline-offset-4 transition hover:text-techpay-pink hover:underline"
-              href="#earnings-calculator"
-            >
-              View calculator
-            </a>
-          </p>
         </div>
 
         
@@ -375,47 +340,6 @@ function HeroMotionLines() {
         />
       </svg>
     </div>
-  );
-}
-
-function AssociateSectionNav() {
-  return (
-    <nav
-      aria-label="Associate retailer sections"
-      className="fixed bottom-4 right-4 z-50 max-w-[calc(100vw-2rem)] sm:bottom-6 sm:right-6"
-    >
-      <div className="inline-flex max-w-full flex-wrap items-center justify-end gap-2 border border-white/70 bg-white/90 p-2 shadow-[0_18px_42px_rgba(15,23,42,0.14)] backdrop-blur-xl">
-        <LocalAnchor href="/associate-retailer/apply" emphasis>
-          Apply Now
-        </LocalAnchor>
-        <LocalAnchor href="/associate-retailer/community">Community</LocalAnchor>
-      </div>
-    </nav>
-  );
-}
-
-function LocalAnchor({
-  children,
-  emphasis,
-  href,
-}: {
-  children: React.ReactNode;
-  emphasis?: boolean;
-  href: string;
-}) {
-  return (
-    <ButtonLink
-      className={
-        emphasis
-          ? "!text-white shadow-[0_12px_28px_rgba(237,29,95,0.22)] [&_span]:!text-white"
-          : "!border-slate-200 !bg-white !text-slate-700 hover:!border-techpay-primary/30 hover:!bg-techpay-primary/5 hover:!text-slate-950 [&_span]:!text-current"
-      }
-      href={href}
-      size="compact"
-      variant={emphasis ? "primary" : "lightIcon"}
-    >
-      {children}
-    </ButtonLink>
   );
 }
 
@@ -509,91 +433,45 @@ function CoverageSection() {
               we&apos;re building everywhere.
             </>
           }
-          description="We're recruiting Associate Retailers across T1 through T4 cities. You know your city. We'll give you the platform."
+          description="We're recruiting Associate Retailers across T1 through T4 cities. Partner with Us. Growth with Us."
         />
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {cityTiers.map((tier) => (
-            <article
-              key={tier.label}
-              className="scales-frame relative flex p-[16px] md:p-[18px]"
-              style={{ "--scales-color": "rgba(124, 58, 237, 0.42)" } as CSSProperties}
-            >
-              <span className="scales-strip scales-strip--left" aria-hidden="true" />
-              <span className="scales-strip scales-strip--right" aria-hidden="true" />
-              <span className="scales-strip scales-strip--top" aria-hidden="true" />
-              <span className="scales-strip scales-strip--bottom" aria-hidden="true" />
-
-              <div className="relative z-1 h-full w-full overflow-hidden border border-slate-200 bg-white px-5 py-5 shadow-[0_18px_36px_rgba(15,23,42,0.08)] md:px-6 md:py-6">
-                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-techpay-primary">
-                  {tier.label}
-                </p>
-                <h3 className="mt-1 font-display text-[1.45rem] font-semibold tracking-[-0.03em] text-slate-950">
-                  {tier.count}
-                </h3>
-                <p className="mt-2 max-w-[640px] text-sm leading-7 text-slate-600 md:text-base">
-                  {tier.cities}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-10 text-center">
-          <p className="text-sm leading-7 text-slate-600">
-            Target:{" "}
-            <strong className="text-slate-950">
-              15,000 PIN Codes · 300+ Cities · 10,000+ Associate Retailers
-            </strong>
-          </p>
-          <ButtonLink
-            className="mt-5 !text-white [&_span]:!text-white"
-            href="/associate-retailer/apply"
-            size="md"
-            variant="primary"
-          >
-            Check availability in your city →
-          </ButtonLink>
-        </div>
+        <OfficeFeatureGrid
+          className="mt-12"
+          desktopColumns={4}
+          features={coverageFeatureItems}
+        />
       </div>
     </section>
   );
 }
 
-function TestimonialsSection() {
+function SummaryCtaSection() {
   return (
-    <section className="bg-[#f7f7fb] px-5 py-20 md:px-[60px] md:py-24">
-      <div className="mx-auto max-w-[1240px]">
-        <SectionHeading
-          eyebrow="Early Partner Stories"
-          title={
-            <>
-              People just like you are
-              <br />
-              already earning.
-            </>
-          }
-        />
-
-        <FeaturesSectionDemo1
-          className="mt-12"
-          columnsClassName="lg:grid-cols-3"
-          contentClassName="min-h-[300px]"
-          descriptionClassName="italic"
-          iconPlacement="top"
-          items={testimonialFeatureItems}
-          numberPlacement="corner"
-        />
-
-        <div className="mt-12 text-center">
-          <ButtonLink
-            className="!text-white [&_span]:!text-white"
-            href="/associate-retailer/apply"
-            size="md"
-            variant="primary"
-          >
-            Join them — Apply now →
-          </ButtonLink>
+    <section className="relative isolate overflow-hidden bg-techpay-bg px-5 py-16 text-white md:px-[60px] md:py-20">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(237,29,95,0.2),transparent_32%),linear-gradient(135deg,#010101_0%,#160718_58%,#010101_100%)]" />
+      <HeroMotionLines />
+      <div className="relative z-10 mx-auto flex max-w-[1240px] flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <div className="max-w-3xl">
+          <p className="mb-4 text-xs font-bold uppercase text-techpay-primary">
+            Ready to start
+          </p>
+          <h2 className="font-display text-3xl font-bold leading-tight text-white md:text-5xl">
+            Bring TechPay.ai to your city.
+          </h2>
+          <p className="mt-5 max-w-2xl text-sm leading-8 text-slate-300 md:text-base">
+            Are you ready for the AI retail revolution? Join TechPay.ai. Apply Now.
+          </p>
+          <div className="mt-8 flex justify-start">
+            <ButtonLink
+              className="!rounded-none !text-white [&_span]:!text-white"
+              href="/associate-retailer/community"
+              size="lg"
+              variant="primary"
+            >
+              Join the Community
+            </ButtonLink>
+          </div>
         </div>
       </div>
     </section>

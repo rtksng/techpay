@@ -2,32 +2,31 @@ import type { ComponentType, SVGProps } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import {
-  Bot,
-  Boxes,
+  BotMessageSquare,
   ChartNoAxesCombined,
   CheckCircle2,
-  Headset,
+  HandCoins,
   Languages,
+  MonitorCog,
   PackageCheck,
+  PackageSearch,
   PanelsTopLeft,
   SearchCheck,
   ShieldCheck,
   Sparkles,
   Store,
   UsersRound,
-  WalletCards,
 } from "lucide-react";
 import HeroFeatureStackEnhancer from "@/app/future-of-retail/_components/hero-feature-stack-enhancer";
 import MarketAwareLinkButton from "@/app/_components/home/market-aware-link-button";
 import FeaturesSectionDemo1, {
   type FeaturesSectionDemoItem,
 } from "@/components/ui/features-section-demo-1";
-import { ButtonLink } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Future of Retail | TechPay.ai",
   description:
-    "TechPay bridges both worlds - delivering the best of each in one intelligent platform.",
+    "TechPay.ai bridges both worlds - delivering the best of each in one intelligent platform.",
 };
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
@@ -157,25 +156,25 @@ const heroFeatures: Array<{
     imageSrc: "/future-of-retail/AI-Recommendations.webp",
     loadingLabel: "Get Recommendations",
     kind: "recommendation",
-    Icon: Bot,
+    Icon: BotMessageSquare,
     accent: "primary",
   },
   {
     eyebrow: "Endless Aisle Catalog",
-    title: "Sell beyond the shelf.",
+    title: "See beyond the shelf.",
     description:
       "When a product isn't in store, TechPay surfaces real-time stock from distributor(s) warehouses instantly. Retailers never lose a sale to an empty shelf again.",
     bullets: [
       "Live dual-warehouse visibility",
-      "54+ HP SKUs always available",
+      "100+ SKUs always available",
       "In-store & warehouse filters",
     ],
-    ctaLabel: "Browse the Catalog",
+    ctaLabel: "Get your device today",
     imageAlt: "Endless aisle catalog experience preview",
     imageSrc: "/future-of-retail/Endless-Aisle-Catalog.webp",
-    loadingLabel: "Browse the Catalog",
+    loadingLabel: "Get your device today",
     kind: "catalog",
-    Icon: Boxes,
+    Icon: PackageSearch,
     accent: "orange",
   },
   {
@@ -193,7 +192,7 @@ const heroFeatures: Array<{
     imageSrc: "/future-of-retail/Financing-Options.webp",
     loadingLabel: "Check Eligibility",
     kind: "eligibility",
-    Icon: WalletCards,
+    Icon: HandCoins,
     accent: "purple",
   },
   {
@@ -211,7 +210,7 @@ const heroFeatures: Array<{
     imageSrc: "/future-of-retail/Personalised-IT-Helpdesk.webp",
     loadingLabel: "Subscribe to Support",
     kind: "helpdesk",
-    Icon: Headset,
+    Icon: MonitorCog,
     accent: "pink",
   },
 ];
@@ -293,7 +292,7 @@ function FutureRetailHero() {
             The gap between physical stores and eCommerce is closing.
           </h1>
           <p className="mt-6 max-w-[680px] text-base leading-8 text-white/74 md:text-[1.05rem]">
-            TechPay bridges both worlds - delivering the best of each in one
+            TechPay.ai bridges both worlds - delivering the best of each in one
             intelligent platform.
           </p>
         </div>
@@ -537,7 +536,7 @@ function HeroFeaturesSection() {
               TechPay&apos;s Hero Features
             </p>
             <h2 className="font-display text-[2.05rem] font-bold leading-[1.1] text-slate-950 md:text-[2.65rem] xl:text-[3rem]">
-              Four capabilities that make TechPay the most complete phygital
+              Four capabilities that make TechPay.ai the most complete phygital
               platform.
             </h2>
           </div>
@@ -646,21 +645,12 @@ function FinalCtaSection() {
       <div className="relative z-10 mx-auto max-w-[1440px]">
         <div className="max-w-4xl">
           <p className="mb-4 text-sm font-semibold uppercase text-techpay-primary mt-10 md:mt-0">
-            Experience All Four Features Today
+            TechPay.ai - An Intelligent PHYGITAL Platform
           </p>
           <h2 className="font-display text-[2.05rem] font-bold leading-[1.1] text-white md:text-[2.65rem] xl:text-[3rem]">
             Start with the AI advisor, browse the endless aisle, explore
             financing, and discover personalised support - all in one platform.
           </h2>
-          <div className="mt-9 flex">
-            <ButtonLink
-              href="/coming-soon"
-              size="md"
-              variant="primary"
-            >
-              Contact Us
-            </ButtonLink>
-          </div>
         </div>
 
         <div className="relative z-10 mt-10 mx-auto grid grid-cols-1 overflow-hidden border border-white/10 bg-white/6 backdrop-blur-xl md:grid-cols-2 xl:grid-cols-4">
@@ -698,9 +688,10 @@ function FinalCtaSection() {
                   kind={feature.kind}
                   label={feature.ctaLabel}
                   loadingLabel={feature.loadingLabel}
+                  className="!text-white shadow-[0_14px_34px_rgba(237,29,95,0.22)] [&_span]:!text-white"
                   fullWidth
                   size="compact"
-                  variant="secondary"
+                  variant="primary"
                 />
               </div>
             </div>

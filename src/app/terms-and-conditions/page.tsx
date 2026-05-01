@@ -11,196 +11,65 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-static";
 
+function paragraphBlocks(texts: string[]): NonNullable<LegalPolicy["blocks"]> {
+  return texts.map((text) => ({ type: "paragraph", text }));
+}
+
 const indiaTermsPolicy: LegalPolicy = {
   title: "Terms and Conditions",
-  blocks: [
-    {
-      type: "paragraph",
-      text: "The following Terms and Conditions will be deemed to have been accepted by the user on usage of the website\u00a0www.techpay.ai\u00a0and the corresponding applications.",
-    },
-    {
-      type: "paragraph",
-      text: "Terms shall refer to Terms and Conditions. The term \u201cUser\u201d shall refer to the user who is browsing the site. The term \u201cTpay\u201d shall refer to\u00a0Tpay Platform Private Limited.\u00a0The term \u201cSite\u201d refers to\u00a0www.techpay.ai\u00a0and the corresponding applications owned and monitored by Tpay. The Site facilitates the listing and sale of products by authorised retailers of Original Equipment Manufacturers (\u201cOEMs\u201d) or OEM-appointed distributors only. Tpay acts solely as a facilitator for such sales and does not itself own, list, or sell any products. All products sold through the Site are subject to the respective OEM\u2019s or authorised retailer\u2019s warranty terms and conditions annexed or packaged with such products. Tpay shall not be responsible for the warranty, quality, merchantability, performance, fitness for a particular purpose, repair, replacement, or after-sales service of the products, which shall be the sole responsibility of the concerned OEM or authorised retailer/distributor. Tpay is an online intermediary platform as defined under applicable laws and does not assume any liability for the products, their availability, or performance. All transactions, representations, and warranties relating to the products are solely between the User and the respective authorised retailer or distributor.",
-    },
-    {
-      type: "paragraph",
-      text: "By using the Site, the User agrees to follow and be bound by the following Terms concerning the use of the Site. The User shall ensure that their use of the Site complies with all applicable laws, including but not limited to consumer protection, e-commerce, and data protection laws. Tpay may revise the Terms at any time without any notice to the User. \u00a0The corresponding and related applications within the Site may have different Terms of use posted.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay may provide the User with a user ID and password to enable the User to access certain areas of this Site or other contents or services. The User must ensure that the user ID and password are kept confidential. Tpay may terminate the User\u2019s access at any time for any reason. The provisions regarding the disclaimer of warranty,\u00a0 the accuracy of the information, and indemnification shall survive such termination. Tpay may monitor access to the Site. All content present on this Site is the exclusive property of Tpay. The software, content, images, graphics, videos, and audio used on this Site belong to Tpay. Certain content, software, text, images, graphics, videos, and audio used on the Site may belong to the authorized service provider/partner of Tpay. No material from this Site may be copied, modified, reproduced, republished, uploaded, transmitted, posted or distributed in any form without prior written permission from Tpay. All rights not expressly granted herein are reserved. Unauthorized use of the materials appearing on this Site may violate copyright, trademark and other applicable laws, and could result in criminal or civil penalties. Tpay is a to-be-registered trademark of Tpay Platform Private Limited. This trademark may not be used in any manner without prior written consent from Tpay Platform Private Limited.If there is a conflict between the Terms and Terms of use posted for a specific area of the Site, the latter shall have precedence with respect to your use of that area of the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay may change or discontinue any aspect of its Site at any time, including its content or features. Tpay reserves the right to change the Terms of the Site. Such changes shall be effective immediately upon notice, which shall be placed on the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay makes no warranty that:",
-    },
-    {
-      type: "paragraph",
-      text: "The Site will meet your requirements;",
-    },
-    {
-      type: "paragraph",
-      text: "The Site will be available on an uninterrupted, timely, secure, or error-free basis; and",
-    },
-    {
-      type: "paragraph",
-      text: "The results that may be obtained from the use of the Site or any services offered through the Site will be accurate or reliable.",
-    },
-    {
-      type: "paragraph",
-      text: "The Site, and all content, materials, information, software, products and services provided on the Site, are provided on an \u201cas is\u201d and \u201cas available\u201d basis. Tpay expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose and non-infringement.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay does not make any warranties, express or implied, including, without limitation, those of merchantability and fitness for a particular purpose, with respect to any information, data, statements or products made available on the Site. The product images, descriptions, and specifications displayed on the Site are provided by the respective authorised retailers or distributors. Tpay does not warrant or represent that such information is accurate, complete, reliable, or error-free and shall not be liable for any inaccuracies or omissions therein. Returns, replacements, or refunds (if applicable) shall be governed by the return and refund policy or as may be communicated at the time of purchase or listed on the product page.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay shall have no responsibility for any damage to User\u2019s computer system or loss of data that results from the download of any content, materials, or information from the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "In no event will Tpay be liable for damages of any kind, including without limitation, direct, incidental or consequential damages (including, but not limited to, damages for lost profits, business interruption and loss of programs or information) arising out of the use of or inability to use of the Site, or any information provided on the Site, or in the products any claim attributable to errors, omissions or other inaccuracies in the product or interpretations thereof. Some jurisdictions do not allow the limitation or exclusion of liability. Accordingly, some of the above limitations may not apply to the User.",
-    },
-    {
-      type: "paragraph",
-      text: "The Site may provide links to websites and access to content, products, and services from third parties, including users, advertisers, service providers and partners of the Site. The User agrees that Tpay is not responsible for the availability of, and content provided on third-party websites. The User is requested to peruse the policies posted by other websites regarding privacy and other topics before use. Tpay is not responsible for third-party content accessible through the Site, including opinions, advice, statements, and advertisements, and the User shall bear all risks associated with the use of such content. TPAY is not responsible for any loss or damage of any sort to the User may incur from dealing with any third party.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay does not accept unauthorized idea submissions outside of established business relationships. To protect the interests of Tpay\u2019s current clients and itself, Tpay will treat the issue of such submissions with great care. Importantly, without a clear business relationship, Tpay cannot and does not treat any such submissions in confidence. Accordingly, please do not communicate unauthorized idea submissions to Tpay through this website. Any ideas disclosed to Tpay outside a pre-existing and documented confidential business relationship are not confidential and Tpay may therefore develop, use and freely disclose or publish similar ideas without compensating or accounting to the User. Tpay will make every reasonable effort to return or destroy any unauthorized idea submissions without detailed review of them. However, if a review is necessary in Tpay\u2019s sole discretion, it will be with the understanding that Tpay assumes no obligation to protect the confidentiality of the idea or compensate the User for its disclosure or use. By submitting an idea or other detailed submission to Tpay through this website or application, the User unconditionally agrees to be bound by these Terms.",
-    },
-    {
-      type: "paragraph",
-      text: "The User agrees to indemnify, defend and hold Tpay harmless from and against all losses, expenses, damages and costs, including reasonable attorneys\u2019 fees, arising out of or relating to any misuse by the User of the content and services provided on the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "Without prejudice to Tpay\u2019s other rights under these Terms, if the User breaches these Terms and conditions in any way, Tpay may take such action as it deems appropriate to deal with the breach, including suspending the User\u2019s access to the website, prohibiting the User from accessing the website, blocking computers having the User\u2019s IP address from accessing the website, contacting the User\u2019s internet service provider to request that they block the User\u2019s access to the website and/or initiating court proceedings.",
-    },
-    {
-      type: "paragraph",
-      text: "The information contained on the Site has been obtained from sources believed to be reliable.",
-    },
-    {
-      type: "paragraph",
-      text: "The User\u2019s right to privacy is of paramount importance to Tpay. Please refer to\u00a0Privacy Policy\u00a0for more information. Tpay reserves the right to use the information to provide the User with a more personalized online experience. Please refer to\u00a0Cookie Policy\u00a0for more information.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay shall not be liable for any failure or delay in performance, or interruption in the operation of the Site, due to factors beyond its reasonable control including, but not limited to, acts of God, natural disasters, power failures, or internet disruptions. The Terms shall be governed exclusively by the laws of India and any dispute arising therein shall be subject to the exclusive jurisdiction of the Bangalore Courts.",
-    },
-    {
-      type: "paragraph",
-      text: "If you have any questions about these Terms and Conditions, please email us:\u00a0contact@techpay.ai",
-    },
-  ],
+  blocks: paragraphBlocks([
+    "The following Terms and Conditions will be deemed to have been accepted by the user on usage of the website\u00a0www.techpay.ai\u00a0and the corresponding applications.",
+    "Terms shall refer to Terms and Conditions. The term \u201cUser\u201d shall refer to the user who is browsing the site. The term \u201cTpay\u201d shall refer to\u00a0Tpay Platform Private Limited.\u00a0The term \u201cSite\u201d refers to\u00a0www.techpay.ai\u00a0and the corresponding applications owned and monitored by Tpay. The Site facilitates the listing and sale of products by authorised retailers of Original Equipment Manufacturers (\u201cOEMs\u201d) or OEM-appointed distributors only. Tpay acts solely as a facilitator for such sales and does not itself own, list, or sell any products. All products sold through the Site are subject to the respective OEM\u2019s or authorised retailer\u2019s warranty terms and conditions annexed or packaged with such products. Tpay shall not be responsible for the warranty, quality, merchantability, performance, fitness for a particular purpose, repair, replacement, or after-sales service of the products, which shall be the sole responsibility of the concerned OEM or authorised retailer/distributor. Tpay is an online intermediary platform as defined under applicable laws and does not assume any liability for the products, their availability, or performance. All transactions, representations, and warranties relating to the products are solely between the User and the respective authorised retailer or distributor.",
+    "By using the Site, the User agrees to follow and be bound by the following Terms concerning the use of the Site. The User shall ensure that their use of the Site complies with all applicable laws, including but not limited to consumer protection, e-commerce, and data protection laws. Tpay may revise the Terms at any time without any notice to the User. \u00a0The corresponding and related applications within the Site may have different Terms of use posted.",
+    "Tpay may provide the User with a user ID and password to enable the User to access certain areas of this Site or other contents or services. The User must ensure that the user ID and password are kept confidential. Tpay may terminate the User\u2019s access at any time for any reason. The provisions regarding the disclaimer of warranty,\u00a0 the accuracy of the information, and indemnification shall survive such termination. Tpay may monitor access to the Site. All content present on this Site is the exclusive property of Tpay. The software, content, images, graphics, videos, and audio used on this Site belong to Tpay. Certain content, software, text, images, graphics, videos, and audio used on the Site may belong to the authorized service provider/partner of Tpay. No material from this Site may be copied, modified, reproduced, republished, uploaded, transmitted, posted or distributed in any form without prior written permission from Tpay. All rights not expressly granted herein are reserved. Unauthorized use of the materials appearing on this Site may violate copyright, trademark and other applicable laws, and could result in criminal or civil penalties. Tpay is a to-be-registered trademark of Tpay Platform Private Limited. This trademark may not be used in any manner without prior written consent from Tpay Platform Private Limited.If there is a conflict between the Terms and Terms of use posted for a specific area of the Site, the latter shall have precedence with respect to your use of that area of the Site.",
+    "Tpay may change or discontinue any aspect of its Site at any time, including its content or features. Tpay reserves the right to change the Terms of the Site. Such changes shall be effective immediately upon notice, which shall be placed on the Site.",
+    "Tpay makes no warranty that:",
+    "The Site will meet your requirements;",
+    "The Site will be available on an uninterrupted, timely, secure, or error-free basis; and",
+    "The results that may be obtained from the use of the Site or any services offered through the Site will be accurate or reliable.",
+    "The Site, and all content, materials, information, software, products and services provided on the Site, are provided on an \u201cas is\u201d and \u201cas available\u201d basis. Tpay expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose and non-infringement.",
+    "Tpay does not make any warranties, express or implied, including, without limitation, those of merchantability and fitness for a particular purpose, with respect to any information, data, statements or products made available on the Site. The product images, descriptions, and specifications displayed on the Site are provided by the respective authorised retailers or distributors. Tpay does not warrant or represent that such information is accurate, complete, reliable, or error-free and shall not be liable for any inaccuracies or omissions therein. Returns, replacements, or refunds (if applicable) shall be governed by the return and refund policy or as may be communicated at the time of purchase or listed on the product page.",
+    "Tpay shall have no responsibility for any damage to User\u2019s computer system or loss of data that results from the download of any content, materials, or information from the Site.",
+    "In no event will Tpay be liable for damages of any kind, including without limitation, direct, incidental or consequential damages (including, but not limited to, damages for lost profits, business interruption and loss of programs or information) arising out of the use of or inability to use of the Site, or any information provided on the Site, or in the products any claim attributable to errors, omissions or other inaccuracies in the product or interpretations thereof. Some jurisdictions do not allow the limitation or exclusion of liability. Accordingly, some of the above limitations may not apply to the User.",
+    "The Site may provide links to websites and access to content, products, and services from third parties, including users, advertisers, service providers and partners of the Site. The User agrees that Tpay is not responsible for the availability of, and content provided on third-party websites. The User is requested to peruse the policies posted by other websites regarding privacy and other topics before use. Tpay is not responsible for third-party content accessible through the Site, including opinions, advice, statements, and advertisements, and the User shall bear all risks associated with the use of such content. TPAY is not responsible for any loss or damage of any sort to the User may incur from dealing with any third party.",
+    "Tpay does not accept unauthorized idea submissions outside of established business relationships. To protect the interests of Tpay\u2019s current clients and itself, Tpay will treat the issue of such submissions with great care. Importantly, without a clear business relationship, Tpay cannot and does not treat any such submissions in confidence. Accordingly, please do not communicate unauthorized idea submissions to Tpay through this website. Any ideas disclosed to Tpay outside a pre-existing and documented confidential business relationship are not confidential and Tpay may therefore develop, use and freely disclose or publish similar ideas without compensating or accounting to the User. Tpay will make every reasonable effort to return or destroy any unauthorized idea submissions without detailed review of them. However, if a review is necessary in Tpay\u2019s sole discretion, it will be with the understanding that Tpay assumes no obligation to protect the confidentiality of the idea or compensate the User for its disclosure or use. By submitting an idea or other detailed submission to Tpay through this website or application, the User unconditionally agrees to be bound by these Terms.",
+    "The User agrees to indemnify, defend and hold Tpay harmless from and against all losses, expenses, damages and costs, including reasonable attorneys\u2019 fees, arising out of or relating to any misuse by the User of the content and services provided on the Site.",
+    "Without prejudice to Tpay\u2019s other rights under these Terms, if the User breaches these Terms and conditions in any way, Tpay may take such action as it deems appropriate to deal with the breach, including suspending the User\u2019s access to the website, prohibiting the User from accessing the website, blocking computers having the User\u2019s IP address from accessing the website, contacting the User\u2019s internet service provider to request that they block the User\u2019s access to the website and/or initiating court proceedings.",
+    "The information contained on the Site has been obtained from sources believed to be reliable.",
+    "The User\u2019s right to privacy is of paramount importance to Tpay. Please refer to\u00a0Privacy Policy\u00a0for more information. Tpay reserves the right to use the information to provide the User with a more personalized online experience. Please refer to\u00a0Cookie Policy\u00a0for more information.",
+    "Tpay shall not be liable for any failure or delay in performance, or interruption in the operation of the Site, due to factors beyond its reasonable control including, but not limited to, acts of God, natural disasters, power failures, or internet disruptions. The Terms shall be governed exclusively by the laws of India and any dispute arising therein shall be subject to the exclusive jurisdiction of the Bangalore Courts.",
+    "If you have any questions about these Terms and Conditions, please email us:\u00a0contact@techpay.ai",
+  ]),
 };
 
 const malaysiaTermsPolicy: LegalPolicy = {
   title: "Terms and Conditions",
-  blocks: [
-    {
-      type: "paragraph",
-      text: "The following Terms and Conditions will be deemed to have been accepted by the user on usage of the website\u00a0www.techpay.ai\u00a0and the corresponding applications.",
-    },
-    {
-      type: "paragraph",
-      text: "Terms shall refer to Terms and Conditions. The term \u201cUser\u201d shall refer to the user who is browsing the site. The term \u201cTpay\u201d shall refer to\u00a0TECHPAYAI SDN BHD. The term \u201cSite\u201d refers to\u00a0www.techpay.ai\u00a0and the corresponding applications owned and monitored by Tpay.",
-    },
-    {
-      type: "paragraph",
-      text: "By using the Site, the User agrees to follow and be bound by the following Terms concerning the use of the Site. Tpay may revise the Terms at any time without any notice to the User. \u00a0The corresponding and related applications within the Site may have different Terms of use posted.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay may provide the User with a user ID and password to enable the User to access certain areas of this Site or other contents or services. The User must ensure that the user ID and password are kept confidential.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay may terminate the User\u2019s access at any time for any reason. The provisions regarding the disclaimer of warranty, the accuracy of the information, and indemnification shall survive such termination. Tpay may monitor access to the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "All content present on this Site is the exclusive property of Tpay. The software, content, images, graphics, videos, and audio used on this Site belong to Tpay. Certain content, software, text, images, graphics, videos, and audio used on the Site may belong to the authorized service provider/partner of Tpay. No material from this Site may be copied, modified, reproduced, republished, uploaded, transmitted, posted or distributed in any form without prior written permission from Tpay. All rights not expressly granted herein are reserved. Unauthorized use of the materials appearing on this Site may violate copyright, trademark and other applicable laws, and could result in criminal or civil penalties. Tpay is a to-be-registered trademark of Tpay Platform Private Limited. This trademark may not be used in any manner without prior written consent from Tpay Platform Private Limited.",
-    },
-    {
-      type: "paragraph",
-      text: "If there is a conflict between the Terms and Terms of use posted for a specific area of the Site, the latter shall have precedence with respect to your use of that area of the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay may change or discontinue any aspect of its Site at any time, including its content or features. Tpay reserves the right to change the Terms of the Site. Such changes shall be effective immediately upon notice, which shall be placed on the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay makes no warranty that:",
-    },
-    {
-      type: "paragraph",
-      text: "The Site will meet your requirements.",
-    },
-    {
-      type: "paragraph",
-      text: "The Site will be available on an uninterrupted, timely, secure, or error-free basis; and",
-    },
-    {
-      type: "paragraph",
-      text: "The results that may be obtained from the use of the Site or any services offered through the Site will be accurate or reliable.",
-    },
-    {
-      type: "paragraph",
-      text: "The Site, and all content, materials, information, software, products and services provided on the Site, are provided on an \u201cas is\u201d and \u201cas available\u201d basis. Tpay expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose and non-infringement.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay does not make any warranties, express or implied, including, without limitation, those of merchantability and fitness for a particular purpose, with respect to any information, data, statements or products made available on the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay shall have no responsibility for any damage to User\u2019s computer system or loss of data that results from the download of any content, materials, or information from the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "In no event will Tpay be liable for damages of any kind, including without limitation, direct, incidental or consequential damages (including, but not limited to, damages for lost profits, business interruption and loss of programs or information) arising out of the use of or inability to use of the Site, or any information provided on the Site, or in the products any claim attributable to errors, omissions or other inaccuracies in the product or interpretations thereof. Some jurisdictions do not allow the limitation or exclusion of liability. Accordingly, some of the above limitations may not apply to the User.",
-    },
-    {
-      type: "paragraph",
-      text: "The Site may provide links to websites and access to content, products, and services from third parties, including users, advertisers, service providers and partners of the Site. The User agrees that Tpay is not responsible for the availability of, and content provided on third-party websites. The User is requested to peruse the policies posted by other websites regarding privacy and other topics before use. Tpay is not responsible for third-party content accessible through the Site, including opinions, advice, statements, and advertisements, and the User shall bear all risks associated with the use of such content. TPAY is not responsible for any loss or damage of any sort to the User may incur from dealing with any third party.",
-    },
-    {
-      type: "paragraph",
-      text: "Tpay does not accept unauthorized idea submissions outside of established business relationships. To protect the interests of Tpay\u2019s current clients and itself, Tpay will treat the issue of such submissions with great care. Importantly, without a clear business relationship, Tpay cannot and does not treat any such submissions in confidence. Accordingly, please do not communicate unauthorized idea submissions to Tpay through this website. Any ideas disclosed to Tpay outside a pre-existing and documented confidential business relationship are not confidential and Tpay may therefore develop, use and freely disclose or publish similar ideas without compensating or accounting to the User. Tpay will make every reasonable effort to return or destroy any unauthorized idea submissions without detailed review of them. However, if a review is necessary in Tpay\u2019s sole discretion, it will be with the understanding that Tpay assumes no obligation to protect the confidentiality of the idea or compensate the User for its disclosure or use. By submitting an idea or other detailed submission to Tpay through this website or application, the User unconditionally agrees to be bound by these Terms.",
-    },
-    {
-      type: "paragraph",
-      text: "The User agrees to indemnify, defend and hold Tpay harmless from and against all losses, expenses, damages and costs, including reasonable attorneys\u2019 fees, arising out of or relating to any misuse by the User of the content and services provided on the Site.",
-    },
-    {
-      type: "paragraph",
-      text: "Without prejudice to Tpay\u2019s other rights under these Terms, if the User breaches these Terms and conditions in any way, Tpay may take such action as it deems appropriate to deal with the breach, including suspending the User\u2019s access to the website, prohibiting the User from accessing the website, blocking computers having the User\u2019s IP address from accessing the website, contacting the User\u2019s internet service provider to request that they block the User\u2019s access to the website and/or initiating court proceedings.",
-    },
-    {
-      type: "paragraph",
-      text: "The information contained on the Site has been obtained from sources believed to be reliable.",
-    },
-    {
-      type: "paragraph",
-      text: "The User\u2019s right to privacy is of paramount importance to Tpay. Please refer to\u00a0Privacy Policy\u00a0for more information. Tpay reserves the right to use the information to provide the User with a more personalized online experience. Please refer to\u00a0Cookie Policy\u00a0for more information.",
-    },
-    {
-      type: "paragraph",
-      text: "The Terms shall be governed exclusively by the laws of Malaysia and any dispute arising therein shall be subject to the exclusive jurisdiction of the Kuala Lumpur Courts of Malaysia.",
-    },
-    {
-      type: "paragraph",
-      text: "If you have any questions about these Terms and Conditions, please email us:\u00a0contact@techpay.ai",
-    },
-  ],
+  blocks: paragraphBlocks([
+    "The following Terms and Conditions will be deemed to have been accepted by the user on usage of the website\u00a0www.techpay.ai\u00a0and the corresponding applications.",
+    "Terms shall refer to Terms and Conditions. The term \u201cUser\u201d shall refer to the user who is browsing the site. The term \u201cTpay\u201d shall refer to\u00a0TECHPAYAI SDN BHD. The term \u201cSite\u201d refers to\u00a0www.techpay.ai\u00a0and the corresponding applications owned and monitored by Tpay.",
+    "By using the Site, the User agrees to follow and be bound by the following Terms concerning the use of the Site. Tpay may revise the Terms at any time without any notice to the User. \u00a0The corresponding and related applications within the Site may have different Terms of use posted.",
+    "Tpay may provide the User with a user ID and password to enable the User to access certain areas of this Site or other contents or services. The User must ensure that the user ID and password are kept confidential.",
+    "Tpay may terminate the User\u2019s access at any time for any reason. The provisions regarding the disclaimer of warranty, the accuracy of the information, and indemnification shall survive such termination. Tpay may monitor access to the Site.",
+    "All content present on this Site is the exclusive property of Tpay. The software, content, images, graphics, videos, and audio used on this Site belong to Tpay. Certain content, software, text, images, graphics, videos, and audio used on the Site may belong to the authorized service provider/partner of Tpay. No material from this Site may be copied, modified, reproduced, republished, uploaded, transmitted, posted or distributed in any form without prior written permission from Tpay. All rights not expressly granted herein are reserved. Unauthorized use of the materials appearing on this Site may violate copyright, trademark and other applicable laws, and could result in criminal or civil penalties. Tpay is a to-be-registered trademark of Tpay Platform Private Limited. This trademark may not be used in any manner without prior written consent from Tpay Platform Private Limited.",
+    "If there is a conflict between the Terms and Terms of use posted for a specific area of the Site, the latter shall have precedence with respect to your use of that area of the Site.",
+    "Tpay may change or discontinue any aspect of its Site at any time, including its content or features. Tpay reserves the right to change the Terms of the Site. Such changes shall be effective immediately upon notice, which shall be placed on the Site.",
+    "Tpay makes no warranty that:",
+    "The Site will meet your requirements.",
+    "The Site will be available on an uninterrupted, timely, secure, or error-free basis; and",
+    "The results that may be obtained from the use of the Site or any services offered through the Site will be accurate or reliable.",
+    "The Site, and all content, materials, information, software, products and services provided on the Site, are provided on an \u201cas is\u201d and \u201cas available\u201d basis. Tpay expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose and non-infringement.",
+    "Tpay does not make any warranties, express or implied, including, without limitation, those of merchantability and fitness for a particular purpose, with respect to any information, data, statements or products made available on the Site.",
+    "Tpay shall have no responsibility for any damage to User\u2019s computer system or loss of data that results from the download of any content, materials, or information from the Site.",
+    "In no event will Tpay be liable for damages of any kind, including without limitation, direct, incidental or consequential damages (including, but not limited to, damages for lost profits, business interruption and loss of programs or information) arising out of the use of or inability to use of the Site, or any information provided on the Site, or in the products any claim attributable to errors, omissions or other inaccuracies in the product or interpretations thereof. Some jurisdictions do not allow the limitation or exclusion of liability. Accordingly, some of the above limitations may not apply to the User.",
+    "The Site may provide links to websites and access to content, products, and services from third parties, including users, advertisers, service providers and partners of the Site. The User agrees that Tpay is not responsible for the availability of, and content provided on third-party websites. The User is requested to peruse the policies posted by other websites regarding privacy and other topics before use. Tpay is not responsible for third-party content accessible through the Site, including opinions, advice, statements, and advertisements, and the User shall bear all risks associated with the use of such content. TPAY is not responsible for any loss or damage of any sort to the User may incur from dealing with any third party.",
+    "Tpay does not accept unauthorized idea submissions outside of established business relationships. To protect the interests of Tpay\u2019s current clients and itself, Tpay will treat the issue of such submissions with great care. Importantly, without a clear business relationship, Tpay cannot and does not treat any such submissions in confidence. Accordingly, please do not communicate unauthorized idea submissions to Tpay through this website. Any ideas disclosed to Tpay outside a pre-existing and documented confidential business relationship are not confidential and Tpay may therefore develop, use and freely disclose or publish similar ideas without compensating or accounting to the User. Tpay will make every reasonable effort to return or destroy any unauthorized idea submissions without detailed review of them. However, if a review is necessary in Tpay\u2019s sole discretion, it will be with the understanding that Tpay assumes no obligation to protect the confidentiality of the idea or compensate the User for its disclosure or use. By submitting an idea or other detailed submission to Tpay through this website or application, the User unconditionally agrees to be bound by these Terms.",
+    "The User agrees to indemnify, defend and hold Tpay harmless from and against all losses, expenses, damages and costs, including reasonable attorneys\u2019 fees, arising out of or relating to any misuse by the User of the content and services provided on the Site.",
+    "Without prejudice to Tpay\u2019s other rights under these Terms, if the User breaches these Terms and conditions in any way, Tpay may take such action as it deems appropriate to deal with the breach, including suspending the User\u2019s access to the website, prohibiting the User from accessing the website, blocking computers having the User\u2019s IP address from accessing the website, contacting the User\u2019s internet service provider to request that they block the User\u2019s access to the website and/or initiating court proceedings.",
+    "The information contained on the Site has been obtained from sources believed to be reliable.",
+    "The User\u2019s right to privacy is of paramount importance to Tpay. Please refer to\u00a0Privacy Policy\u00a0for more information. Tpay reserves the right to use the information to provide the User with a more personalized online experience. Please refer to\u00a0Cookie Policy\u00a0for more information.",
+    "The Terms shall be governed exclusively by the laws of Malaysia and any dispute arising therein shall be subject to the exclusive jurisdiction of the Kuala Lumpur Courts of Malaysia.",
+    "If you have any questions about these Terms and Conditions, please email us:\u00a0contact@techpay.ai",
+  ]),
 };
 
 export default function TermsAndConditionsPage() {
